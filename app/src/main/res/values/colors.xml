@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#d2000000</color>
+    <color name="colorPrimaryDark">#ed1b1b1b</color>
+    <color name="colorBlue">#0288D1</color>
+    <color name="listDivider">#ffffff</color>
+
+
+</resources>
