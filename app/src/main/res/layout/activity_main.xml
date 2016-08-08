@@ -151,7 +151,7 @@
                         android:layout_marginTop="34dp" />
 
                     <Button
-                        android:id="@+id/angry_btn"
+                        android:id="@+id/button1"
 
                         android:text="Διεύθυνση Διαρκών Επιτροπών"
                         android:textColor="#343434"
@@ -174,9 +174,9 @@
                         android:layout_height="40dp"
                         android:id="@+id/imageView4"
                         android:src="@drawable/cancel_button_inactive"
-                        android:layout_alignTop="@+id/angry_btn"
-                        android:layout_toRightOf="@+id/angry_btn"
-                        android:layout_toEndOf="@+id/angry_btn"
+                        android:layout_alignTop="@+id/button1"
+                        android:layout_toRightOf="@+id/button1"
+                        android:layout_toEndOf="@+id/button1"
                         android:layout_marginLeft="6dp" />
                 </RelativeLayout>
 
@@ -239,7 +239,7 @@
                     android:paddingTop="180dp" >
 
                     <Button
-                        android:id="@+id/button"
+                        android:id="@+id/button3"
                         android:text="Διεύθυνση Διαρκών Επιτροπών"
                         android:textColor="#343434"
                         android:textSize="10sp"
@@ -273,9 +273,9 @@
                         android:layout_height="40dp"
                         android:id="@+id/imageView5"
                         android:src="@drawable/cancel_button_inactive"
-                        android:layout_alignTop="@+id/button"
-                        android:layout_toRightOf="@+id/button"
-                        android:layout_toEndOf="@+id/button"
+                        android:layout_alignTop="@+id/button3"
+                        android:layout_toRightOf="@+id/button3"
+                        android:layout_toEndOf="@+id/button3"
                         android:layout_marginLeft="6dp" />
                 </RelativeLayout>
 
@@ -288,7 +288,7 @@
                     android:paddingTop="260dp" >
 
                     <Button
-                        android:id="@+id/button3"
+                        android:id="@+id/button4"
                         android:text="Διεύθυνση Διαρκών Επιτροπών"
                         android:textColor="#343434"
                         android:textSize="10sp"
@@ -322,9 +322,9 @@
                         android:layout_height="40dp"
                         android:id="@+id/imageView7"
                         android:src="@drawable/cancel_button_inactive"
-                        android:layout_alignTop="@+id/button3"
-                        android:layout_toRightOf="@+id/button3"
-                        android:layout_toEndOf="@+id/button3"
+                        android:layout_alignTop="@+id/button4"
+                        android:layout_toRightOf="@+id/button4"
+                        android:layout_toEndOf="@+id/button4"
                         android:layout_marginLeft="6dp" />
                 </RelativeLayout>
 
@@ -337,7 +337,7 @@
                     android:paddingTop="340dp" >
 
                     <Button
-                        android:id="@+id/button4"
+                        android:id="@+id/button5"
                         android:text="ΑΔΑ (Αριθμός Δικτυακής Αναζήτησης)"
                         android:textColor="#343434"
                         android:textSize="10sp"
@@ -371,9 +371,9 @@
                         android:layout_height="40dp"
                         android:id="@+id/imageView8"
                         android:src="@drawable/cancel_button_inactive"
-                        android:layout_alignTop="@+id/button4"
-                        android:layout_toRightOf="@+id/button4"
-                        android:layout_toEndOf="@+id/button4"
+                        android:layout_alignTop="@+id/button5"
+                        android:layout_toRightOf="@+id/button5"
+                        android:layout_toEndOf="@+id/button5"
                         android:layout_marginLeft="6dp" />
                 </RelativeLayout>
 
@@ -386,7 +386,7 @@
                     android:paddingTop="420dp" >
 
                     <Button
-                        android:id="@+id/button5"
+                        android:id="@+id/button6"
                         android:text="Αριθμός Πρωτοκόλου"
                         android:textColor="#343434"
                         android:textSize="10sp"
@@ -420,9 +420,9 @@
                         android:layout_height="40dp"
                         android:id="@+id/imageView9"
                         android:src="@drawable/cancel_button_inactive"
-                        android:layout_alignTop="@+id/button5"
-                        android:layout_toRightOf="@+id/button5"
-                        android:layout_toEndOf="@+id/button5"
+                        android:layout_alignTop="@+id/button6"
+                        android:layout_toRightOf="@+id/button6"
+                        android:layout_toEndOf="@+id/button6"
                         android:layout_marginLeft="6dp" />
                 </RelativeLayout>
 
@@ -449,7 +449,7 @@
                         android:layout_marginTop="10dp" />
 
                     <Button
-                        android:id="@+id/button6"
+                        android:id="@+id/button7"
                         android:text="Ελεύθερο Κείμενο"
                         android:textColor="#343434"
                         android:textSize="10sp"
@@ -469,9 +469,9 @@
                         android:layout_height="40dp"
                         android:id="@+id/imageView10"
                         android:src="@drawable/cancel_button_inactive"
-                        android:layout_alignTop="@+id/button6"
-                        android:layout_toRightOf="@+id/button6"
-                        android:layout_toEndOf="@+id/button6"
+                        android:layout_alignTop="@+id/button7"
+                        android:layout_toRightOf="@+id/button7"
+                        android:layout_toEndOf="@+id/button7"
                         android:layout_marginLeft="6dp" />
                 </RelativeLayout>
 
@@ -614,5 +614,7 @@
             </RelativeLayout>
         </ScrollView>
     </RelativeLayout>
+
+
 
 </RelativeLayout>
