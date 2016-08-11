@@ -1,4 +1,4 @@
-package com.example.alex.diafaneia;
+package com.example.alex.diafaneia.Model;
 
 
 /**
@@ -11,6 +11,7 @@ public class Sector {
     private String sectorCleanUrl;
     private String sectorId;
     private String parentSector;
+
     private String sector_url = "(URL_DIEFTHINSEIS_TMIMATA)";
     private String  base_url = "(URL_BASE)";
 

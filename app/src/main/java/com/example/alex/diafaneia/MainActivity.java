@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.alex.diafaneia.Utils.Constants;
 
 
 public class MainActivity extends AppCompatActivity  {
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity  {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),ActivityTwo.class);
-                intent.putExtra("B","Υπηρεσία / Φορέας ");
+                intent.putExtra("B", Constants.SECTOR_TITLE);
                 startActivity(intent);
             }
 
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity  {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),ActivityTwo.class);
-                intent.putExtra("B","Θεματική Ενότητα");
+                intent.putExtra("B",Constants.DOCUMENT_TITLE);
                 startActivity(intent);
             }
 
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity  {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),ActivityTwo.class);
-                intent.putExtra("B","Είδος Απόφασης");
+                intent.putExtra("B",Constants.TYPE_TITLE);
                 startActivity(intent);
             }
 
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity  {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),ActivityTwo.class);
-                intent.putExtra("B","Τελικός Υπογραφόντας");
+                intent.putExtra("B",Constants.SIGNER_TITLE);
                 startActivity(intent);
             }
 
