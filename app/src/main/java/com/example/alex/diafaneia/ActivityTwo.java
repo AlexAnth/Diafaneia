@@ -62,12 +62,6 @@ public class ActivityTwo extends AppCompatActivity {
         TextView textUi= (TextView)findViewById(R.id.TextInput);
         textUi.setText(text);
 
-        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.content);
-
-        adapter =  new JsonAdapter(JsonCollection);
-        recyclerView.setAdapter(adapter);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
-        recyclerView.setLayoutManager(layoutManager);
 
 
 
@@ -88,8 +82,16 @@ public class ActivityTwo extends AppCompatActivity {
 
                 break;
         }
-        updateUI();
+        Log.v("Διαφάνεια","UpdateUI:"+ "Got Here!");
 
+        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.content);
+        adapter =  new JsonAdapter(JsonCollection);
+        recyclerView.setAdapter(adapter);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false);
+        recyclerView.setLayoutManager(layoutManager);
+
+        updateUI();
+        adapter.notifyDataSetChanged();
 
 
 
@@ -106,7 +108,9 @@ public class ActivityTwo extends AppCompatActivity {
             }else if (object.getClass().equals(Type.class)){
                    text.setText(((Type) object).getTypeTitle());
             }
+
         }
+        Log.v("Διαφάνεια","UpdateUI:"+ "Got Here!");
     }
     public void downloadAPI(String text){
 
@@ -245,6 +249,7 @@ public class ActivityTwo extends AppCompatActivity {
 
         }
 
+
     }
 
     public class JsonAdapter extends RecyclerView.Adapter<ObjectViewHolder>
@@ -277,31 +282,25 @@ public class ActivityTwo extends AppCompatActivity {
 
     public class ObjectViewHolder extends RecyclerView.ViewHolder{
 
-        private TextView text;
+        private TextView ltext;
 
         public ObjectViewHolder(View itemView){
             super(itemView);
-            text = (TextView) itemView.findViewById(R.id.card_text);
+            ltext = (TextView) itemView.findViewById(R.id.card_text);
         }
 
         public  void updateUI(Object object){
             Log.v("Διαφάνεια","UpdateUI:"+ "Got Here!");
 
             if (object.getClass().equals(Sector.class)){
-                text.setText(((Sector) object).getSectorTitle());
+                ltext.setText(((Sector) object).getSectorTitle());
             }else if (object.getClass().equals(Signer.class)){
-                 text.setText(((Signer) object).getSignerFullName());
+                 ltext.setText(((Signer) object).getSignerFullName());
             }else if (object.getClass().equals(Document.class)){
-                text.setText(((Document) object).getDocumentTitle());
+                ltext.setText(((Document) object).getDocumentTitle());
             }else if (object.getClass().equals(Type.class)){
-                text.setText(((Type) object).getTypeTitle());
-}
-
-
-
-
-
-
+                ltext.setText(((Type) object).getTypeTitle());
+            }
 
         }
 
