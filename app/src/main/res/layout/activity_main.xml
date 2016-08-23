@@ -153,7 +153,6 @@
                     <Button
                         android:id="@+id/button1"
 
-                        android:text="Διεύθυνση Διαρκών Επιτροπών"
                         android:textColor="#343434"
                         android:textSize="10sp"
 
@@ -168,6 +167,18 @@
                         android:layout_marginLeft="22dp"
                         android:textStyle="normal"
                         android:textAlignment="center" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Υπηρεσία / Φορέας"
+                        android:id="@+id/text1"
+                        android:layout_marginLeft="35dp"
+                        android:layout_alignParentStart="false"
+                        android:textSize="13dp"
+                        android:textColor="#7F7F7F"
+                        android:layout_marginTop="67dp" />
 
                     <ImageView
                         android:layout_width="40dp"
@@ -190,7 +201,6 @@
 
                     <Button
                         android:id="@+id/button2"
-                        android:text="Πράξεις κανονιστικού χαρακτήρα "
                         android:textColor="#343434"
                         android:textSize="10sp"
                         android:layout_width="255dp"
@@ -218,6 +228,18 @@
                         android:layout_alignParentTop="false"
                         android:layout_marginTop="10dp" />
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Θεματική Ενότητα"
+                        android:id="@+id/text2"
+                        android:layout_marginLeft="35dp"
+                        android:layout_alignParentStart="false"
+                        android:textSize="13dp"
+                        android:textColor="#7F7F7F"
+                        android:layout_marginTop="42dp" />
+
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
@@ -240,7 +262,6 @@
 
                     <Button
                         android:id="@+id/button3"
-                        android:text="Διεύθυνση Διαρκών Επιτροπών"
                         android:textColor="#343434"
                         android:textSize="10sp"
                         android:layout_width="255dp"
@@ -268,6 +289,18 @@
                         android:layout_alignParentTop="false"
                         android:layout_marginTop="10dp" />
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Είδος Απόφασης"
+                        android:id="@+id/text3"
+                        android:layout_marginLeft="35dp"
+                        android:layout_alignParentStart="false"
+                        android:textSize="13dp"
+                        android:textColor="#7F7F7F"
+                        android:layout_marginTop="42dp" />
+
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
@@ -289,7 +322,6 @@
 
                     <Button
                         android:id="@+id/button4"
-                        android:text="Διεύθυνση Διαρκών Επιτροπών"
                         android:textColor="#343434"
                         android:textSize="10sp"
                         android:layout_width="255dp"
@@ -317,6 +349,18 @@
                         android:layout_alignParentTop="false"
                         android:layout_marginTop="10dp" />
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Τελικός Υπογράφοντας"
+                        android:id="@+id/text4"
+                        android:layout_marginLeft="35dp"
+                        android:layout_alignParentStart="false"
+                        android:textSize="13dp"
+                        android:textColor="#7F7F7F"
+                        android:layout_marginTop="42dp" />
+
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
@@ -338,7 +382,6 @@
 
                     <Button
                         android:id="@+id/button5"
-                        android:text="ΑΔΑ (Αριθμός Δικτυακής Αναζήτησης)"
                         android:textColor="#343434"
                         android:textSize="10sp"
                         android:layout_width="255dp"
@@ -366,6 +409,20 @@
                         android:layout_alignParentTop="false"
                         android:layout_marginTop="10dp" />
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="ΑΔΑ (Αριθμός Δικτυακής Αναζήτησης)"
+                        android:id="@+id/text5"
+                        android:layout_marginLeft="35dp"
+                        android:layout_alignParentLeft="false"
+                        android:layout_alignParentStart="false"
+                        android:textSize="13dp"
+                        android:textColor="#7F7F7F"
+                        android:layout_alignParentTop="false"
+                        android:layout_marginTop="42dp" />
+
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
@@ -387,7 +444,6 @@
 
                     <Button
                         android:id="@+id/button6"
-                        android:text="Αριθμός Πρωτοκόλου"
                         android:textColor="#343434"
                         android:textSize="10sp"
                         android:layout_width="255dp"
@@ -414,6 +470,18 @@
                         android:textColor="#0288D1"
                         android:layout_alignParentTop="false"
                         android:layout_marginTop="10dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Αριθμός Πρωτοκόλου"
+                        android:id="@+id/text6"
+                        android:layout_marginLeft="35dp"
+                        android:layout_alignParentStart="false"
+                        android:textSize="13dp"
+                        android:textColor="#7F7F7F"
+                        android:layout_marginTop="42dp" />
 
                     <ImageView
                         android:layout_width="40dp"
@@ -450,7 +518,6 @@
 
                     <Button
                         android:id="@+id/button7"
-                        android:text="Ελεύθερο Κείμενο"
                         android:textColor="#343434"
                         android:textSize="10sp"
                         android:layout_width="255dp"
@@ -463,6 +530,18 @@
                         android:textAllCaps="false"
                         android:layout_marginLeft="22dp"
                         android:textStyle="normal" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Ελεύθερο Κείμενο"
+                        android:id="@+id/text7"
+                        android:layout_marginLeft="35dp"
+                        android:layout_alignParentStart="false"
+                        android:textSize="13dp"
+                        android:layout_marginTop="42dp"
+                        android:textColor="#7F7F7F" />
 
                     <ImageView
                         android:layout_width="40dp"
