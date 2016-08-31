@@ -7,6 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorBlue</item>
 
+
     </style>
 
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
@@ -18,5 +19,8 @@
         <item name="android:layout_height">1dp</item>
         <item name="android:background">@color/listDivider</item>
     </style>
+
+
+
 
 </resources>

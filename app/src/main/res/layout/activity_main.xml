@@ -3,7 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ffffff">
+    android:background="#ffffff"
+    android:focusableInTouchMode="true"
+    android:id="@+id/RL1">
 
 
     <RelativeLayout
@@ -93,21 +95,26 @@
         android:layout_marginTop="100dp"
         android:background="@drawable/background_with_shadow"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp">
+        android:layout_marginRight="10dp"
+        >
 
 
         <ScrollView
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true">
+            android:layout_centerHorizontal="true"
+            android:id="@+id/scrollView">
 
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:layout_gravity="center_horizontal"
-                android:gravity="center_horizontal">
+                android:gravity="center_horizontal"
+                android:focusableInTouchMode="true"
+                android:focusable="true"
+                >
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -169,8 +176,8 @@
                         android:textAlignment="center" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="Υπηρεσία / Φορέας"
                         android:id="@+id/text1"
@@ -178,12 +185,18 @@
                         android:layout_alignParentStart="false"
                         android:textSize="13dp"
                         android:textColor="#7F7F7F"
-                        android:layout_marginTop="67dp" />
+                        android:layout_alignRight="@+id/button1"
+                        android:layout_alignEnd="@+id/button1"
+                        android:layout_alignTop="@+id/button1"
+                        android:layout_alignBottom="@+id/button1"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="10dp" />
 
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:id="@+id/imageView4"
+                        android:id="@+id/cancel1"
                         android:src="@drawable/cancel_button_inactive"
                         android:layout_alignTop="@+id/button1"
                         android:layout_toRightOf="@+id/button1"
@@ -229,8 +242,8 @@
                         android:layout_marginTop="10dp" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="Θεματική Ενότητα"
                         android:id="@+id/text2"
@@ -238,12 +251,18 @@
                         android:layout_alignParentStart="false"
                         android:textSize="13dp"
                         android:textColor="#7F7F7F"
-                        android:layout_marginTop="42dp" />
+                        android:layout_alignRight="@+id/button2"
+                        android:layout_alignEnd="@+id/button2"
+                        android:layout_alignTop="@+id/button2"
+                        android:layout_alignBottom="@+id/button2"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="10dp" />
 
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:id="@+id/imageView6"
+                        android:id="@+id/cancel2"
                         android:src="@drawable/cancel_button_inactive"
                         android:layout_alignTop="@+id/button2"
                         android:layout_toRightOf="@+id/button2"
@@ -290,8 +309,8 @@
                         android:layout_marginTop="10dp" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="Είδος Απόφασης"
                         android:id="@+id/text3"
@@ -299,12 +318,18 @@
                         android:layout_alignParentStart="false"
                         android:textSize="13dp"
                         android:textColor="#7F7F7F"
-                        android:layout_marginTop="42dp" />
+                        android:layout_toLeftOf="@+id/cancel3"
+                        android:layout_toStartOf="@+id/cancel3"
+                        android:layout_alignTop="@+id/button3"
+                        android:layout_alignBottom="@+id/button3"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="10dp" />
 
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:id="@+id/imageView5"
+                        android:id="@+id/cancel3"
                         android:src="@drawable/cancel_button_inactive"
                         android:layout_alignTop="@+id/button3"
                         android:layout_toRightOf="@+id/button3"
@@ -339,7 +364,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="Τελικός Υπογράφοντας"
+                        android:text="Τελικός Υπογράφων"
                         android:id="@+id/textView6"
                         android:layout_marginLeft="35dp"
                         android:layout_alignParentLeft="false"
@@ -350,21 +375,27 @@
                         android:layout_marginTop="10dp" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="Τελικός Υπογράφοντας"
+                        android:text="Τελικός Υπογράφων"
                         android:id="@+id/text4"
                         android:layout_marginLeft="35dp"
                         android:layout_alignParentStart="false"
                         android:textSize="13dp"
                         android:textColor="#7F7F7F"
-                        android:layout_marginTop="42dp" />
+                        android:layout_alignRight="@+id/button4"
+                        android:layout_alignEnd="@+id/button4"
+                        android:layout_alignTop="@+id/button4"
+                        android:layout_alignBottom="@+id/button4"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="10dp" />
 
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:id="@+id/imageView7"
+                        android:id="@+id/cancel4"
                         android:src="@drawable/cancel_button_inactive"
                         android:layout_alignTop="@+id/button4"
                         android:layout_toRightOf="@+id/button4"
@@ -378,22 +409,31 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentStart="false"
                     android:id="@+id/relativeLayout5"
-                    android:paddingTop="340dp" >
+                    android:paddingTop="340dp"
 
-                    <Button
-                        android:id="@+id/button5"
-                        android:textColor="#343434"
-                        android:textSize="10sp"
+                    >
+
+                    <EditText
+                        android:id="@+id/editText1"
                         android:layout_width="255dp"
                         android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:textColorHint="#7F7F7F"
+                        android:hint="ΑΔΑ (Αριθμός Δικτυακής Αναζήτησης)"
+                        android:textSize="13dp"
+                        android:imeOptions="actionDone"
+                        android:imeActionId="1"
                         android:background="@drawable/button"
-                        android:shadowColor="#ffffff"
-                        android:shadowDx="0"
-                        android:singleLine="true"
+                        android:focusableInTouchMode="true"
+                        android:focusable="true"
+                        android:enabled="true"
                         android:layout_below="@+id/textView7"
-                        android:textAllCaps="false"
+                        android:paddingLeft="14dp"
+                        android:layout_alignLeft="@+id/textView7"
+                        android:layout_alignParentStart="true"
                         android:layout_marginLeft="22dp"
-                        android:textStyle="normal" />
+                        android:inputType="textNoSuggestions">
+                    </EditText>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -409,28 +449,13 @@
                         android:layout_alignParentTop="false"
                         android:layout_marginTop="10dp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="ΑΔΑ (Αριθμός Δικτυακής Αναζήτησης)"
-                        android:id="@+id/text5"
-                        android:layout_marginLeft="35dp"
-                        android:layout_alignParentLeft="false"
-                        android:layout_alignParentStart="false"
-                        android:textSize="13dp"
-                        android:textColor="#7F7F7F"
-                        android:layout_alignParentTop="false"
-                        android:layout_marginTop="42dp" />
-
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:id="@+id/imageView8"
+                        android:id="@+id/cancel5"
                         android:src="@drawable/cancel_button_inactive"
-                        android:layout_alignTop="@+id/button5"
-                        android:layout_toRightOf="@+id/button5"
-                        android:layout_toEndOf="@+id/button5"
+                        android:layout_below="@+id/textView7"
+                        android:layout_toRightOf="@+id/editText1"
                         android:layout_marginLeft="6dp" />
                 </RelativeLayout>
 
@@ -442,20 +467,6 @@
                     android:id="@+id/relativeLayout6"
                     android:paddingTop="420dp" >
 
-                    <Button
-                        android:id="@+id/button6"
-                        android:textColor="#343434"
-                        android:textSize="10sp"
-                        android:layout_width="255dp"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/button"
-                        android:shadowColor="#ffffff"
-                        android:shadowDx="0"
-                        android:singleLine="true"
-                        android:layout_below="@+id/textView8"
-                        android:textAllCaps="false"
-                        android:layout_marginLeft="22dp"
-                        android:textStyle="normal" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -471,26 +482,36 @@
                         android:layout_alignParentTop="false"
                         android:layout_marginTop="10dp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <EditText
+                        android:id="@+id/editText2"
+                        android:layout_width="255dp"
                         android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="Αριθμός Πρωτοκόλου"
-                        android:id="@+id/text6"
-                        android:layout_marginLeft="35dp"
-                        android:layout_alignParentStart="false"
+                        android:layout_centerHorizontal="true"
+                        android:textColorHint="#7F7F7F"
+                        android:hint="Αριθμός Πρωτοκόλου"
                         android:textSize="13dp"
-                        android:textColor="#7F7F7F"
-                        android:layout_marginTop="42dp" />
+                        android:imeOptions="actionDone"
+                        android:imeActionId="1"
+                        android:background="@drawable/button"
+                        android:focusableInTouchMode="true"
+                        android:focusable="true"
+                        android:enabled="true"
+                        android:layout_below="@+id/textView8"
+                        android:paddingLeft="14dp"
+                        android:layout_alignLeft="@+id/textView8"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginLeft="22dp"
+                        android:inputType="textNoSuggestions">
+                    </EditText>
 
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:id="@+id/imageView9"
+                        android:id="@+id/cancel6"
                         android:src="@drawable/cancel_button_inactive"
-                        android:layout_alignTop="@+id/button6"
-                        android:layout_toRightOf="@+id/button6"
-                        android:layout_toEndOf="@+id/button6"
+                        android:layout_alignTop="@+id/editText2"
+                        android:layout_toRightOf="@+id/editText2"
+                        android:layout_toEndOf="@+id/editText2"
                         android:layout_marginLeft="6dp" />
                 </RelativeLayout>
 
@@ -516,41 +537,36 @@
                         android:layout_alignParentTop="false"
                         android:layout_marginTop="10dp" />
 
-                    <Button
-                        android:id="@+id/button7"
-                        android:textColor="#343434"
-                        android:textSize="10sp"
+                    <EditText
+                        android:id="@+id/editText3"
                         android:layout_width="255dp"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/button"
-                        android:shadowColor="#ffffff"
-                        android:shadowDx="0"
-                        android:singleLine="true"
-                        android:layout_below="@+id/textView9"
-                        android:textAllCaps="false"
-                        android:layout_marginLeft="22dp"
-                        android:textStyle="normal" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:text="Ελεύθερο Κείμενο"
-                        android:id="@+id/text7"
-                        android:layout_marginLeft="35dp"
-                        android:layout_alignParentStart="false"
+                        android:layout_centerHorizontal="true"
+                        android:textColorHint="#7F7F7F"
+                        android:hint="Ελεύθερο Κείμενο"
                         android:textSize="13dp"
-                        android:layout_marginTop="42dp"
-                        android:textColor="#7F7F7F" />
+                        android:imeOptions="actionDone"
+                        android:imeActionId="1"
+                        android:background="@drawable/button"
+                        android:focusableInTouchMode="true"
+                        android:focusable="true"
+                        android:enabled="true"
+                        android:layout_below="@+id/textView9"
+                        android:paddingLeft="14dp"
+                        android:layout_alignLeft="@+id/textView9"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginLeft="22dp"
+                        android:inputType="textNoSuggestions">
+                    </EditText>
 
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:id="@+id/imageView10"
+                        android:id="@+id/cancel7"
                         android:src="@drawable/cancel_button_inactive"
-                        android:layout_alignTop="@+id/button7"
-                        android:layout_toRightOf="@+id/button7"
-                        android:layout_toEndOf="@+id/button7"
+                        android:layout_alignTop="@+id/editText3"
+                        android:layout_toRightOf="@+id/editText3"
+                        android:layout_toEndOf="@+id/editText3"
                         android:layout_marginLeft="6dp" />
                 </RelativeLayout>
 
@@ -571,9 +587,9 @@
                         android:id="@+id/textView11"
                         android:paddingTop="25dp"
                         android:paddingLeft="30dp"
-                        android:textSize="15dp"
+                        android:textSize="15sp"
                         android:textColor="#ffffff"
-                        android:layout_alignTop="@+id/textView14"
+                        android:layout_alignBottom="@+id/cancel_date_2"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true" />
 
@@ -588,55 +604,49 @@
                         android:textSize="15dp"
                         android:singleLine="false"
                         android:textColor="#ffffff"
-                        android:layout_marginTop="7dp"
-                        android:layout_alignBottom="@+id/view2" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="11/2/2013"
-                        android:id="@+id/textView13"
-                        android:paddingTop="72dp"
-                        android:paddingLeft="80dp"
-                        android:textSize="15dp"
-                        android:layout_alignTop="@+id/textView12"
+                        android:layout_alignTop="@+id/textView11"
                         android:layout_alignParentLeft="true"
                         android:layout_alignParentStart="true" />
 
-                    <TextView
+                    <EditText
+                        android:id="@+id/etxt_fromdate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
-                        android:text="04/2/2013"
-                        android:id="@+id/textView14"
-                        android:paddingTop="25dp"
-                        android:paddingLeft="80dp"
-                        android:textSize="15dp"
-                        android:layout_above="@+id/imageView11"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true" />
+                        android:layout_weight=".5"
+                        android:hint="@string/from_date"
+                        android:text="12/7/2014"
+                        android:layout_alignEnd="@+id/textView10"
+                        android:layout_marginTop="23dp" />
+
+                    <EditText
+                        android:id="@+id/etxt_todate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/to_date"
+                        android:text="20/4/2016"
+                        android:layout_alignStart="@+id/etxt_fromdate"
+                        android:layout_marginTop="72dp" />
 
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:id="@+id/imageView11"
+                        android:id="@+id/cancel_date_1"
                         android:src="@drawable/cancel_button_inactive"
                         android:layout_below="@+id/view"
-                        android:layout_alignLeft="@+id/imageView12"
-                        android:layout_alignStart="@+id/imageView12"
+                        android:layout_alignLeft="@+id/cancel_date_2"
+                        android:layout_alignStart="@+id/cancel_date_2"
                         android:layout_marginTop="8dp" />
 
                     <ImageView
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:id="@+id/imageView12"
+                        android:id="@+id/cancel_date_2"
                         android:src="@drawable/cancel_button_inactive"
                         android:layout_alignParentTop="true"
                         android:layout_toRightOf="@+id/view"
                         android:layout_toEndOf="@+id/view"
                         android:layout_marginLeft="6dp"
-                        android:layout_marginTop="7dp" />
+                        android:layout_marginTop="18dp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -645,7 +655,10 @@
                         android:text="ημ/νια ανάρτησης"
                         android:id="@+id/textView10"
                         android:textSize="24dp"
-                        android:paddingLeft="2dp" />
+                        android:paddingLeft="2dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true" />
 
                     <View style="@style/Divider"
                         android:layout_width="258dp"
@@ -658,9 +671,9 @@
                         android:layout_width="258dp"
                         android:layout_height="1dp"
                         android:id="@+id/view2"
-                        android:layout_below="@+id/imageView11"
-                        android:layout_toLeftOf="@+id/imageView12"
-                        android:layout_toStartOf="@+id/imageView12" />
+                        android:layout_below="@+id/cancel_date_1"
+                        android:layout_toLeftOf="@+id/cancel_date_2"
+                        android:layout_toStartOf="@+id/cancel_date_2" />
                 </RelativeLayout>
 
                 <LinearLayout

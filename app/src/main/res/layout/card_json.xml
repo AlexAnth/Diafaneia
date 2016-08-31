@@ -12,8 +12,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:background="#ffffff"
-        android:weightSum="1"
-        android:paddingTop="10dp">
+        android:weightSum="1">
 
         <TextView
             android:layout_width="wrap_content"
@@ -31,7 +30,6 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="#E7E7E7"
-            android:layout_marginBottom="5dp"
             android:id="@+id/view3"
             android:layout_below="@+id/card_text" />
 

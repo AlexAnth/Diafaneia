@@ -6,7 +6,6 @@ package com.example.alex.diafaneia.Utils;
 
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +35,6 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.DataObjectHolder> 
                 super(itemView);
                 ltext = (TextView) itemView.findViewById(R.id.card_text);
                 cv = (CardView) itemView.findViewById(R.id.cv);
-                Log.v("Diafaneia :", "Adding Listener");
                 itemView.setOnClickListener(this);
             }
 

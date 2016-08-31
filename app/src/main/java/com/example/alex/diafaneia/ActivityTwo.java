@@ -1,12 +1,14 @@
 package com.example.alex.diafaneia;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
+import android.view.View;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -43,7 +45,7 @@ public class ActivityTwo extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RVAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-
+    private String text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +56,7 @@ public class ActivityTwo extends AppCompatActivity {
 
 
         // Get the right Label
-        String text = getIntent().getStringExtra("B");
+        text = getIntent().getStringExtra("B");
         Log.v("Διαφάνεια", "JSON:" + text);
         TextView textUi = (TextView) findViewById(R.id.TextInput);
         textUi.setText(text);
@@ -74,6 +76,39 @@ public class ActivityTwo extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ((RVAdapter) mAdapter).setOnItemClickListener(new RVAdapter
+                .MyClickListener() {
+            @Override
+            public void onItemClick(int position, View v) {
+                Log.v("Hi!", " Clicked on Item " + (JsonCollection.get(position)));
+
+                // Check the Category selected
+                if (text.equalsIgnoreCase(Constants.SECTOR_TITLE)){
+                    Log.v("Hi!", " Clicked on Item " + ((Sector) JsonCollection.get(position)).getSectorTitle());
+                    Sector s = (Sector) JsonCollection.get(position);
+                    MainActivity.setSector(s);
+                }else if (text.equalsIgnoreCase(Constants.DOCUMENT_TITLE)){
+                    Log.v("Hi!", " Clicked on Item " + ((Document) JsonCollection.get(position)).getDocumentTitle());
+                    Document d = (Document) JsonCollection.get(position);
+                    MainActivity.setDocument(d);
+                }else if (text.equalsIgnoreCase(Constants.TYPE_TITLE)){
+                    Log.v("Hi!", " Clicked on Item " + ((Type) JsonCollection.get(position)).getTypeTitle());
+                    Type t = (Type) JsonCollection.get(position);
+                    MainActivity.setType(t);
+                }else if (text.equalsIgnoreCase(Constants.SIGNER_TITLE)){
+                    Log.v("Hi!", " Clicked on Item " + ((Signer) JsonCollection.get(position)).getSignerFullName());
+                    Signer s = (Signer) JsonCollection.get(position);
+                    MainActivity.setSigner(s);
+                }
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+
+            }
+        });
+    }
 
     private ArrayList downloadAPI(String text) {
 

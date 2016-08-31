@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Διαφάνεια</string>
-
+    <string name="from_date">12/7/2014</string>
+    <string name="to_date">20/4/2016</string>
 </resources>
