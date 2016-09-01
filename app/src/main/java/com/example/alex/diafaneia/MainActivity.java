@@ -209,7 +209,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onClick(View v) {
                 c5.setImageResource(R.drawable.cancel_button_inactive);
                 editText1.setText(null);
-                editText1.setTextColor(Color.parseColor("#7E7E7E"));
                 ADA=null;
 
                 InputMethodManager imm = (InputMethodManager) RL1.getContext()
@@ -225,7 +224,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 c6.setImageResource(R.drawable.cancel_button_inactive);
                 editText2.setText(null);
-                editText2.setTextColor(Color.parseColor("#7E7E7E"));
                 protoc_Num=null;
 
                 InputMethodManager imm = (InputMethodManager) RL1.getContext()
@@ -240,7 +238,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onClick(View v) {
                 c7.setImageResource(R.drawable.cancel_button_inactive);
                 editText3.setText(null);
-                editText3.setTextColor(Color.parseColor("#7E7E7E"));
                 free_Text_str=null;
 
                 InputMethodManager imm = (InputMethodManager) RL1.getContext()
