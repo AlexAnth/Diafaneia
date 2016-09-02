@@ -32,6 +32,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import static com.example.alex.diafaneia.MainActivity.getDocument;
+
 /**
  * Created by Alex on 3/8/2016.
  */
@@ -222,7 +224,7 @@ public class ActivityTwo extends AppCompatActivity {
             Volley.newRequestQueue(this).add(jsonRequest);
 
         } else if (text.equalsIgnoreCase(Constants.TYPE_TITLE)) {        // if types
-
+            final Document doc= getDocument();
             final JsonArrayRequest jsonRequest = new JsonArrayRequest(Request.Method.GET, DOCUMENT_TYPES_BASE_URL, null, new Response.Listener<JSONArray>() {
 
                 public void onResponse(JSONArray response) {
@@ -234,10 +236,12 @@ public class ActivityTwo extends AppCompatActivity {
                             if (jsonArray.length() == 2) {
                                 String title = jsonArray.getJSONObject(1).getString("Title");
                                 String id = jsonArray.getJSONObject(1).getString("ID");
-
+                                String pt = jsonobject.getString("ParentType");
                                 Type type = new Type(title, id);
-                                JsonCollection.add(type);
-                                Log.v("Διαφάνεια", "TYPES:" + type.getTypeTitle());
+                                if (doc.getDocumentId().equals(pt)){
+                                    JsonCollection.add(type);
+                                    Log.v("Διαφάνεια", "TYPES:" + type.getTypeTitle());
+                                }
                             }
 
                         } mAdapter.notifyDataSetChanged();

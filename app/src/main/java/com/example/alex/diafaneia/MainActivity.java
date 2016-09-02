@@ -173,6 +173,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 text_Doc.setText(Constants.DOCUMENT_TITLE);
                 text_Doc.setTextColor(Color.parseColor("#7E7E7E"));
                 document=null;
+                if(type!=null){
+                    text_Type.setTextColor(Color.parseColor("#333333"));
+                    text_Type.setText(Constants.TYPE_TITLE);
+                    text_Type.setTextColor(Color.parseColor("#7E7E7E"));
+                    type=null;
+                }
+
             }
 
         });
@@ -311,9 +318,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         thirdButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),ActivityTwo.class);
-                intent.putExtra("B",Constants.TYPE_TITLE);
-                startActivity(intent);
+                if(document!=null) {
+                    Intent intent = new Intent(getApplicationContext(), ActivityTwo.class);
+                    intent.putExtra("B", Constants.TYPE_TITLE);
+                    startActivity(intent);
+                }
             }
 
         });
@@ -390,6 +399,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public static void setSigner(Signer signer) {
         MainActivity.signer = signer;
+    }
+
+    public static Document getDocument() {
+       return document;
     }
 
 
