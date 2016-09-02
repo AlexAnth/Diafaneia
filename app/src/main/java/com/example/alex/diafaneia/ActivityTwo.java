@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -72,6 +73,15 @@ public class ActivityTwo extends AppCompatActivity {
 
         JsonCollection=downloadAPI(text);
 
+        ImageView info_button=(ImageView)findViewById(R.id.info_btn);
+        info_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),Info.class);
+                startActivity(intent);
+            }
+
+        });
 
 
     }

@@ -44,8 +44,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static String fromDate = null;
     private static String toDate = null;
 
-
-
     private EditText fromDateEtxt;
     private EditText toDateEtxt;
     private DatePickerDialog fromDatePickerDialog;
@@ -71,6 +69,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView c7;
     private ImageView c8;
     private ImageView c9;
+    private ImageView info_button;
+    private ImageView action_button;
     private RelativeLayout RL1;
 
     private Button firstButton;
@@ -87,7 +87,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         findViewsById();
-
 
         // Date Pickers
         dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
@@ -277,6 +276,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
 
         });
+        info_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),Info.class);
+                startActivity(intent);
+            }
+
+        });
 
 
 
@@ -354,6 +361,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         c7= (ImageView) findViewById(R.id.cancel7);
         c8= (ImageView) findViewById(R.id.cancel_date_2);
         c9= (ImageView) findViewById(R.id.cancel_date_1);
+
+        //Info and Action Buttons
+        info_button=(ImageView) findViewById(R.id.info_btn);
+        action_button=(ImageView) findViewById(R.id.action_btn);
 
         // Unfocus from Edit Texts
         RL1=(RelativeLayout)findViewById(R.id.RL1);

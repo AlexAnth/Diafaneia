@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+
+
+    <ImageView
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:id="@+id/upper_right"
+        android:background="#03A9F4"
+        android:layout_alignParentRight="true" />
+
+    <ImageView
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:id="@+id/low_right"
+        android:background="#03A9F4"
+        android:layout_below="@+id/upper_right"
+        android:layout_alignParentRight="true" />
+
+    <ImageView
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:id="@+id/upper_left"
+        android:background="#03A9F4" />
+
+    <ImageView
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:id="@+id/low_left"
+        android:layout_below="@+id/upper_right"
+        android:background="#03A9F4" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:id="@+id/blue_background_bottom"
+        android:layout_alignParentBottom="true"
+        android:background="#03A9F4" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/relativeL"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/background_with_shadow">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:id="@+id/relativeLayout"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/imageView3"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:contentDescription="a"
+                android:background="#03A9F4" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/info_btn"
+                android:layout_alignParentEnd="false"
+                android:src="@drawable/info_icon_selected"
+                android:paddingTop="2dp"
+                android:paddingRight="5dp"
+                android:layout_marginTop="2dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="2dp" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/imageView2"
+                android:layout_alignParentTop="false"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="false"
+                android:src="@drawable/bookmark_icon"
+                android:paddingTop="2dp"
+                android:paddingRight="5dp"
+                android:layout_marginRight="42dp"
+                android:layout_marginTop="2dp" />
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/imageView19"
+                android:src="@drawable/logo_white_border"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="5dp" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Διαφάνεια"
+                android:id="@+id/textView"
+                android:textColor="#ffffff"
+                android:shadowColor="#b5343434"
+                android:singleLine="false"
+                android:textSize="27sp"
+                android:gravity="bottom"
+                android:padding="6dp"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/imageView19"
+                android:layout_toEndOf="@+id/imageView19" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Πληροφορίες"
+                android:id="@+id/TextInput"
+                android:textSize="20dp"
+                android:layout_below="@+id/info_btn"
+                android:layout_alignLeft="@+id/imageView19"
+                android:layout_alignStart="@+id/imageView19" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="81dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp">
+            
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/info"
+                android:textColor="#191919"
+                android:padding="20dp"
+                android:id="@+id/textView13" />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/textView13"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:text="@string/telephone"
+                android:textColor="#191919"
+                android:textColorLink="#0040DD"
+                android:autoLink="phone"
+                android:id="@+id/textView17"
+                android:paddingLeft="20dp" />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/fax"
+                android:textColor="#191919"
+                android:textColorLink="#0040DD"
+                android:autoLink="phone"
+                android:layout_below="@+id/textView17"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:paddingTop="5dp"
+                android:paddingLeft="20dp"
+                android:id="@+id/textView14" />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/adress"
+                android:textColor="#191919"
+                android:paddingTop="15dp"
+                android:paddingLeft="20dp"
+                android:layout_below="@+id/textView14"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:id="@+id/textView18" />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/comments"
+                android:textColor="#191919"
+                android:paddingTop="15dp"
+                android:paddingLeft="20dp"
+                android:autoLink="email"
+                android:layout_below="@+id/textView18"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textColorLink="#0040DD"
+                android:paddingRight="5dp" />
+
+
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

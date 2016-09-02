@@ -2,4 +2,11 @@
     <string name="app_name">Διαφάνεια</string>
     <string name="from_date">12/7/2014</string>
     <string name="to_date">20/4/2016</string>
+    <string name="info">Το τηλεφωνικό κέντρο της Βουλής των Ελλήνων είναι:</string>
+    <string name="telephone">Τηλ: <a href="+302103707000">+30 210 370 7000</a> </string>
+    <string name="fax">Fax: <a href="+302103707814">+30 210 370 7814</a> </string>
+    <string name="adress">Ταχυδρομική διεύθυνση:\nΜέγαρο Βουλής\n100 21 Αθήνα </string>
+    <string name="comments">Για σχόλια και παρατηρήσεις μπορείτε να\nεπικοινωνείτε με την Βουλή των Ελλήνων\nστέλνοντας e-mail στην διέυθυνση:
+        <a href="infopar@parliament.gr">infopar@parliament.gr</a></string>
+
 </resources>
