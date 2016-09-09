@@ -10,11 +10,6 @@ public class Sector {
     private String sectorTitle;
     private String sectorCleanUrl;
     private String sectorId;
-    private String parentSector;
-
-    private String sector_url = "(URL_DIEFTHINSEIS_TMIMATA)";
-    private String  base_url = "(URL_BASE)";
-
 
     public Sector(String sectorTitle ,String sectorCleanUrl ,String sectorId ) {
         this.sectorTitle = sectorTitle;

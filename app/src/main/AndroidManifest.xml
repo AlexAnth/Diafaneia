@@ -31,6 +31,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".Info"
             android:screenOrientation="portrait"/>
+        <activity android:name=".Results_Activity"
+            android:screenOrientation="portrait"/>
 
 
     </application>

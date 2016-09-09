@@ -29,7 +29,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="#E7E7E7"
+            android:background="#CBCBCB"
             android:id="@+id/view3"
             android:layout_below="@+id/card_text" />
 

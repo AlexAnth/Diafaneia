@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 
 
-
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
@@ -22,11 +22,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.alex.diafaneia.Model.Document;
+import com.example.alex.diafaneia.Model.Result;
 import com.example.alex.diafaneia.Model.Sector;
 import com.example.alex.diafaneia.Model.Signer;
 import com.example.alex.diafaneia.Model.Type;
 import com.example.alex.diafaneia.Utils.Constants;
 
+import java.io.Serializable;
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
 
@@ -43,6 +45,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private static String free_Text_str = null;
     private static String fromDate = null;
     private static String toDate = null;
+
+
+    static Result r = null;
 
     private EditText fromDateEtxt;
     private EditText toDateEtxt;
@@ -78,6 +83,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button thirdButton;
     private Button fourthButton;
 
+    private ImageView clear_b;
+    private ImageView search_b;
 
 
     // Action Listeners
@@ -149,6 +156,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             text_Sign.setText(signer.getSignerFullName());
             text_Sign.setTextColor(Color.parseColor("#333333"));
             c4.setImageResource(R.drawable.cancel_button_active);
+        }
+
+
+        //ADA
+        if(ADA!=null) {
+            c5.setImageResource(R.drawable.cancel_button_active);
+        }
+        //
+        if(protoc_Num!=null) {
+            c6.setImageResource(R.drawable.cancel_button_active);
+        }//
+        if(free_Text_str!=null) {
+            c7.setImageResource(R.drawable.cancel_button_active);
+        }
+        if(fromDate!=null) {
+            c8.setImageResource(R.drawable.cancel_button_active);
+        }
+        if(toDate!=null) {
+            c9.setImageResource(R.drawable.cancel_button_active);
         }
 
         c1.setOnClickListener(new View.OnClickListener() {
@@ -261,10 +287,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 text.setText("12/7/2014");
                 fromDate=null;
 
-                InputMethodManager imm = (InputMethodManager) RL1.getContext()
-                        .getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(RL1.getWindowToken(), 0);
-                text.setCursorVisible(false);
+//                InputMethodManager imm = (InputMethodManager) RL1.getContext()
+//                        .getSystemService(Context.INPUT_METHOD_SERVICE);
+//                imm.hideSoftInputFromWindow(RL1.getWindowToken(), 0);
+//                text.setCursorVisible(false);
             }
 
         });
@@ -276,10 +302,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 text.setText("20/4/2016");
                 toDate=null;
 
-                InputMethodManager imm = (InputMethodManager) RL1.getContext()
-                        .getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(RL1.getWindowToken(), 0);
-                text.setCursorVisible(false);
+//                InputMethodManager imm = (InputMethodManager) RL1.getContext()
+//                        .getSystemService(Context.INPUT_METHOD_SERVICE);
+//                imm.hideSoftInputFromWindow(RL1.getWindowToken(), 0);
+//                text.setCursorVisible(false);
             }
 
         });
@@ -340,7 +366,44 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         cancelButton(editText2);
         cancelButton(editText3);
 
+        search_b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                r= new Result(sector, document,type,signer, ADA, protoc_Num,free_Text_str, fromDate, toDate);
+                Intent intent = new Intent(getApplicationContext(),Results_Activity.class);
+                startActivity(intent);
+            }
 
+        });
+        clear_b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                c1.performClick();
+                c2.performClick();
+                c3.performClick();
+                c4.performClick();
+                c5.setImageResource(R.drawable.cancel_button_inactive);
+                editText1.setText(null);
+                ADA=null;
+                c6.setImageResource(R.drawable.cancel_button_inactive);
+                editText2.setText(null);
+                protoc_Num=null;
+                c7.setImageResource(R.drawable.cancel_button_inactive);
+                editText3.setText(null);
+                free_Text_str=null;
+                c8.setImageResource(R.drawable.cancel_button_inactive);
+                EditText text = (EditText) findViewById(R.id.etxt_fromdate);
+                text.setText("12/7/2014");
+                fromDate=null;
+                c9.setImageResource(R.drawable.cancel_button_inactive);
+                EditText text2 = (EditText) findViewById(R.id.etxt_todate);
+                text2.setText("20/4/2016");
+                toDate=null;
+
+            }
+
+        });
 
     }
 
@@ -359,6 +422,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //Date Picker
         fromDateEtxt = (EditText) findViewById(R.id.etxt_fromdate);
         toDateEtxt = (EditText) findViewById(R.id.etxt_todate);
+
+        clear_b=(ImageView) findViewById(R.id.clear_btn);
+        search_b=(ImageView) findViewById(R.id.search_btn);
 
         //cancel buttons
         c1= (ImageView) findViewById(R.id.cancel1);
@@ -426,6 +492,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Calendar newDate = Calendar.getInstance();
                 newDate.set(year, monthOfYear, dayOfMonth);
                 fromDateEtxt.setText(dateFormatter.format(newDate.getTime()));
+                c8.setImageResource(R.drawable.cancel_button_active);
             }
 
         },newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
@@ -436,6 +503,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Calendar newDate = Calendar.getInstance();
                 newDate.set(year, monthOfYear, dayOfMonth);
                 toDateEtxt.setText(dateFormatter.format(newDate.getTime()));
+                c9.setImageResource(R.drawable.cancel_button_active);
             }
 
         },newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
@@ -456,21 +524,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int  test = 0;
         if(text.getId()==editText1.getId()){
             test=1;
+            if (ADA != null) {
+                text.setText(ADA);
+            }
         }else if(text.getId()==editText2.getId()){
             test=2;
-        }else if(text.getId()==editText3.getId()){
-            test=3;
-        }
-
-        if (test == 1){
-                if (ADA != null) {
-                    text.setText(ADA);
-                }
-        }else if (test==2){
             if (protoc_Num != null) {
                 text.setText(protoc_Num);
             }
-        }else if (test==3){
+        }else if(text.getId()==editText3.getId()){
+            test=3;
             if (free_Text_str != null) {
                 text.setText(free_Text_str);
             }
@@ -519,6 +582,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
 
         });
+    }
+
+    public static Result getR() {
+        return r;
     }
 
 }

@@ -11,8 +11,6 @@ public class Signer {
     private String signerInfo;
     private String signerCleanUrl;
 
-    private String signer_url = "(URL_TELIKOI_IPOGRAFONTES)";
-    private String  base_url = "(URL_BASE)";
 
 
     // constructor

@@ -688,7 +688,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/imageView13"
+                        android:id="@+id/clear_btn"
                         android:layout_weight="1"
                         android:src="@drawable/clear_white_button"
                         android:paddingLeft="15dp" />
@@ -696,7 +696,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/imageView14"
+                        android:id="@+id/search_btn"
                         android:layout_weight="1"
                         android:src="@drawable/search_white_button"
                         android:paddingRight="15dp" />
