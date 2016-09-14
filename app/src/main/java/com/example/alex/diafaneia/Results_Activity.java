@@ -14,35 +14,32 @@ import android.widget.TextView;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.alex.diafaneia.Model.Document;
 import com.example.alex.diafaneia.Model.Result;
 import com.example.alex.diafaneia.Model.Search;
-import com.example.alex.diafaneia.Model.Sector;
-import com.example.alex.diafaneia.Model.Signer;
-import com.example.alex.diafaneia.Model.Type;
-import com.example.alex.diafaneia.Utils.Constants;
-import com.example.alex.diafaneia.Utils.RVAdapter;
 import com.example.alex.diafaneia.Utils.RVAdapter2;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
-import static com.example.alex.diafaneia.MainActivity.getDocument;
+import java.util.TimeZone;
+
+
 
 /**
  * Created by Alex on 3/8/2016.
  */
 public class Results_Activity extends AppCompatActivity {
 
-    ArrayList <Object> JsonCollection= new ArrayList();
+    ArrayList <Search> JsonCollection= new ArrayList();
 
-    final String RESULTS_BASE_URL = "http://diafaneia.hellenicparliament.gr//api.ashx?q=documents";
+    final String RESULTS_BASE_URL = "http://diafaneia.hellenicparliament.gr//api.ashx?q=documents&pageSize=100";
     final String DOCUMENT_TYPE ="&type=";
     final String SIGNER ="&signer=";
     final String SECTOR ="&sector=";
@@ -56,6 +53,7 @@ public class Results_Activity extends AppCompatActivity {
     private RVAdapter2 mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private Result result;
+    private TextView reco;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +66,7 @@ public class Results_Activity extends AppCompatActivity {
         // Get the intent
         result = MainActivity.getR();
 
-
+        reco = (TextView) findViewById(R.id.res_number);
         mRecyclerView = (RecyclerView) findViewById(R.id.result_card);
         mRecyclerView.setNestedScrollingEnabled(false);
         mRecyclerView.setHasFixedSize(true);
@@ -79,7 +77,10 @@ public class Results_Activity extends AppCompatActivity {
         mAdapter = new RVAdapter2(JsonCollection);
         mRecyclerView.setAdapter(mAdapter);
 
-        JsonCollection=downloadAPI(result);
+        this.JsonCollection=downloadAPI(result);
+
+
+
 
         ImageView info_button=(ImageView)findViewById(R.id.info_btn);
         info_button.setOnClickListener(new View.OnClickListener() {
@@ -97,7 +98,7 @@ public class Results_Activity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        ( mAdapter).setOnItemClickListener(new RVAdapter2
+        ((RVAdapter2)mAdapter).setOnItemClickListener(new RVAdapter2
                 .MyClickListener() {
             @Override
             public void onItemClick(int position, View v) {
@@ -117,19 +118,26 @@ public class Results_Activity extends AppCompatActivity {
                     JSONObject jsonobj = new JSONObject(response.toString());
 
                     String records = jsonobj.getString("TotalRecords");
+                    reco.setText("Βρέθηκαν "+records+" αποφάσεις:");
+
 
                     JSONArray jsonarray  = jsonobj.getJSONArray("Data");
                     for (int i = 0; i < jsonarray.length(); i++) {
                         JSONObject jsonobject = jsonarray.getJSONObject(i);
                         Search search =createResult(jsonobject);
 
-                        JsonCollection.add(search);
 
                     }
                     mAdapter.notifyDataSetChanged();
+                    for (int i = 0; i < JsonCollection.size(); i++) {
+                        Search jsonobject = JsonCollection.get(i);
+                        Log.v("Διαφάνεια", "Results :" + jsonobject.getDocument());
+                    }
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
             }
         }, new Response.ErrorListener() {
             @Override
@@ -180,7 +188,6 @@ public class Results_Activity extends AppCompatActivity {
     private Search createResult(JSONObject jsonobject) throws JSONException {
 
         String sector= jsonobject.getJSONObject("Sector").getString("Title");
-        Log.v("Διαφάνεια", "test:" + sector);
         String document= jsonobject.getJSONObject("DocumentType").getString("Title");
         String type =jsonobject.getJSONObject("DocumentType").getJSONArray("HierarchyPath").getJSONObject(1).getString("Title");
         String signer = jsonobject.getJSONObject("FinalSigner").getString("Fullname")+ " " +
@@ -188,6 +195,17 @@ public class Results_Activity extends AppCompatActivity {
         String ADA = jsonobject.getString("ADA");
         String ProtocolNumber = jsonobject.getString("ProtocolNumber");
         String PublishDate = jsonobject.getString("PublishDate");
+        //Date formating
+        PublishDate = PublishDate.replaceAll("\\D+","");
+        long x=Long.parseLong(PublishDate);
+        x=x/10000;
+
+        TimeZone tz = TimeZone.getTimeZone("GMT+0200");
+        Calendar cal = Calendar.getInstance(tz);
+        cal.setTimeInMillis(x);
+        SimpleDateFormat f = new SimpleDateFormat("dd-MM-yyyy");
+        f.setTimeZone(tz);
+        PublishDate=f.format(cal.getTime());
 
         String fileURL="http://diafaneia.hellenicparliament.gr/" + jsonobject.getJSONObject("Attachment")
                 .getString("FilePath");
@@ -197,6 +215,8 @@ public class Results_Activity extends AppCompatActivity {
         Search search = new Search(sector,document,type, signer, ADA, ProtocolNumber, fileURL, pathName,
                 sbject,PublishDate);
 
+        Log.v("Διαφάνεια", "Results :" + search.getSbject());
+        JsonCollection.add(search);
         return search;
     }
 

@@ -5,15 +5,16 @@ package com.example.alex.diafaneia.Model;
  */
 public class Result {
 
-    private static Sector sector ;
-    private static Document document ;
-    private static Type type ;
-    private static Signer signer ;
-    private static String ADA ;
-    private static String protoc_Num ;
-    private static String free_Text_str ;
-    private static String fromDate ;
-    private static String toDate ;
+
+    private  Signer signer;
+    private  Sector sector ;
+    private  Document document ;
+    private  Type type ;
+    private  String ADA ;
+    private  String protoc_Num ;
+    private  String free_Text_str ;
+    private  String fromDate ;
+    private  String toDate ;
 
     public Result(Sector sector,Document document,Type type,Signer signer,String ADA,String protoc_Num,String free_Text_str,String fromDate,String toDate ){
         this.sector=sector;
@@ -27,39 +28,39 @@ public class Result {
         this.toDate=toDate;
     }
 
-    public static Document getDocument() {
+    public Document getDocument() {
         return document;
     }
 
-    public static Sector getSector() {
+    public  Sector getSector() {
         return sector;
     }
 
-    public static Type getType() {
+    public  Type getType() {
         return type;
     }
 
-    public static Signer getSigner() {
+    public  Signer getSigner() {
         return signer;
     }
 
-    public static String getADA() {
+    public  String getADA() {
         return ADA;
     }
 
-    public static String getProtoc_Num() {
+    public  String getProtoc_Num() {
         return protoc_Num;
     }
 
-    public static String getFree_Text_str() {
+    public String getFree_Text_str() {
         return free_Text_str;
     }
 
-    public static String getFromDate() {
+    public String getFromDate() {
         return fromDate;
     }
 
-    public static String getToDate() {
+    public  String getToDate() {
         return toDate;
     }
 

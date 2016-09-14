@@ -5,16 +5,16 @@ package com.example.alex.diafaneia.Model;
  */
 public class Search {
 
-    private static String sector ;
-    private static String document ;
-    private static String type ;
-    private static String signer ;
-    private static String ADA ;
-    private static String protoc_Num ;
-    private static String publishDate ;
-    private static String fileURL ;
-    private static String pathName;
-    private  static  String sbject;
+    private  String sector ;
+    private  String document ;
+    private  String type ;
+    private  String signer ;
+    private  String ADA ;
+    private  String protoc_Num ;
+    private  String publishDate ;
+    private  String fileURL ;
+    private  String pathName;
+    private  String sbject;
 
 
     public Search(String sector, String document, String type, String signer, String ADA, String protoc_Num,String fileURL, String pathName,
@@ -34,43 +34,43 @@ public class Search {
         this.publishDate=publishDate ;
     }
 
-    public static String getDocument() {
+    public  String getDocument() {
         return document;
     }
 
-    public static String getPublishDate() {
+    public  String getPublishDate() {
         return publishDate;
     }
 
-    public static String getSector() {
+    public  String getSector() {
         return sector;
     }
 
-    public static String getType() {
+    public  String getType() {
         return type;
     }
 
-    public static String getSigner() {
+    public  String getSigner() {
         return signer;
     }
 
-    public static String getADA() {
+    public  String getADA() {
         return ADA;
     }
 
-    public static String getProtoc_Num() {
+    public  String getProtoc_Num() {
         return protoc_Num;
     }
 
-    public static String getFileURL() {
+    public  String getFileURL() {
         return fileURL;
     }
 
-    public static String getPathName() {
+    public  String getPathName() {
         return pathName;
     }
 
-    public static String getSbject() {
+    public  String getSbject() {
         return sbject;
     }
 
