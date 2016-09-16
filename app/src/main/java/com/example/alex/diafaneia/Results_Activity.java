@@ -1,6 +1,7 @@
 package com.example.alex.diafaneia;
 
 
+import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -55,6 +57,7 @@ public class Results_Activity extends AppCompatActivity {
     private Result result;
     private TextView reco;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -80,8 +83,6 @@ public class Results_Activity extends AppCompatActivity {
         this.JsonCollection=downloadAPI(result);
 
 
-
-
         ImageView info_button=(ImageView)findViewById(R.id.info_btn);
         info_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,7 +99,7 @@ public class Results_Activity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        ((RVAdapter2)mAdapter).setOnItemClickListener(new RVAdapter2
+        (mAdapter).setOnItemClickListener(new RVAdapter2
                 .MyClickListener() {
             @Override
             public void onItemClick(int position, View v) {
@@ -161,9 +162,7 @@ public class Results_Activity extends AppCompatActivity {
         if(result.getSigner()!=null) {
             temp=temp+SIGNER+result.getSigner().getSignerId();
         }
-        if(result.getSector()!=null) {
-            temp=temp+result.getSector().getSectorId();
-        }
+
         if(result.getDocument()!=null) {
             temp=temp+DOCUMENT_TYPE+result.getDocument().getDocumentId();
         }
@@ -182,18 +181,27 @@ public class Results_Activity extends AppCompatActivity {
         if(result.getToDate()!=null) {
             temp=temp+DATE_TO+result.getToDate();
         }
+        Log.v("Διαφάνεια", "URL:" + temp);
         return temp;
     }
 
     private Search createResult(JSONObject jsonobject) throws JSONException {
 
         String sector= jsonobject.getJSONObject("Sector").getString("Title");
-        String document= jsonobject.getJSONObject("DocumentType").getString("Title");
-        String type =jsonobject.getJSONObject("DocumentType").getJSONArray("HierarchyPath").getJSONObject(1).getString("Title");
-        String signer = jsonobject.getJSONObject("FinalSigner").getString("Fullname")+ " " +
-                (jsonobject.getJSONObject("FinalSigner").getString("Info"));
+        String type= jsonobject.getJSONObject("DocumentType").getString("Title");
+        String document =jsonobject.getJSONObject("DocumentType").getJSONArray("HierarchyPath").getJSONObject(0).getString("Title");
+        String signer;
+        try {
+            signer = (jsonobject.getJSONObject("FinalSigner").getString("Info")) + " " +
+                    jsonobject.getJSONObject("FinalSigner").getString("Fullname");
+        }catch(Exception e){
+            signer=" Δεν βρέθηκε υπογράφων.";
+        }
+
         String ADA = jsonobject.getString("ADA");
         String ProtocolNumber = jsonobject.getString("ProtocolNumber");
+        if (ProtocolNumber.equals("null") ) ProtocolNumber="";
+
         String PublishDate = jsonobject.getString("PublishDate");
         //Date formating
         PublishDate = PublishDate.replaceAll("\\D+","");
@@ -215,7 +223,6 @@ public class Results_Activity extends AppCompatActivity {
         Search search = new Search(sector,document,type, signer, ADA, ProtocolNumber, fileURL, pathName,
                 sbject,PublishDate);
 
-        Log.v("Διαφάνεια", "Results :" + search.getSbject());
         JsonCollection.add(search);
         return search;
     }

@@ -87,7 +87,11 @@ public class RVAdapter2 extends RecyclerView.Adapter<RVAdapter2.DataObjectHolder
         holder.ADA.setText(search.getADA());
         holder.date.setText(search.getPublishDate());
         holder.protoc_num.setText(search.getProtoc_Num());
-        holder.sectors.setText(search.getADA());
+//        if (search.getType()!=null){
+            holder.sectors.setText(search.getSector()+", "+search.getType());
+//        }else{
+//            holder.sectors.setText(search.getSector());
+//        }
         holder.text_1.setText(search.getSbject());
         String span="<font color='#007AB2'>"+"ΘΕΜΑΤΙΚΗ ΕΝΟΤΗΤΑ"+"</font>"+" : "+search.getDocument();
         holder.text_2.setText(Html.fromHtml(span));

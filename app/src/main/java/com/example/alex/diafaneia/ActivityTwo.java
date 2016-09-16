@@ -138,7 +138,7 @@ public class ActivityTwo extends AppCompatActivity {
                             String id = jsonobject.getString("ID");
                             String CleanUrl = jsonobject.getString("CleanUrl");
 
-                            Sector sector = new Sector(name, id, CleanUrl);
+                            Sector sector = new Sector(name,CleanUrl,id);
                             JsonCollection.add(sector);
                             Log.v("Διαφάνεια", "SECTORS:" + sector.getSectorTitle());
                         }
