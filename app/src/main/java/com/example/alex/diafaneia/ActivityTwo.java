@@ -60,7 +60,6 @@ public class ActivityTwo extends AppCompatActivity {
 
         // Get the right Label
         text = getIntent().getStringExtra("B");
-        Log.v("Διαφάνεια", "JSON:" + text);
         TextView textUi = (TextView) findViewById(R.id.TextInput);
         textUi.setText(text);
         mRecyclerView = (RecyclerView) findViewById(R.id.content);
@@ -99,19 +98,18 @@ public class ActivityTwo extends AppCompatActivity {
 
                 // Check the Category selected
                 if (text.equalsIgnoreCase(Constants.SECTOR_TITLE)){
-                    Log.v("Hi!", " Clicked on Item " + ((Sector) JsonCollection.get(position)).getSectorTitle());
                     Sector s = (Sector) JsonCollection.get(position);
                     MainActivity.setSector(s);
                 }else if (text.equalsIgnoreCase(Constants.DOCUMENT_TITLE)){
-                    Log.v("Hi!", " Clicked on Item " + ((Document) JsonCollection.get(position)).getDocumentTitle());
+
                     Document d = (Document) JsonCollection.get(position);
                     MainActivity.setDocument(d);
                 }else if (text.equalsIgnoreCase(Constants.TYPE_TITLE)){
-                    Log.v("Hi!", " Clicked on Item " + ((Type) JsonCollection.get(position)).getTypeTitle());
+
                     Type t = (Type) JsonCollection.get(position);
                     MainActivity.setType(t);
                 }else if (text.equalsIgnoreCase(Constants.SIGNER_TITLE)){
-                    Log.v("Hi!", " Clicked on Item " + ((Signer) JsonCollection.get(position)).getSignerFullName());
+
                     Signer s = (Signer) JsonCollection.get(position);
                     MainActivity.setSigner(s);
                 }
@@ -140,7 +138,7 @@ public class ActivityTwo extends AppCompatActivity {
 
                             Sector sector = new Sector(name,CleanUrl,id);
                             JsonCollection.add(sector);
-                            Log.v("Διαφάνεια", "SECTORS:" + sector.getSectorTitle());
+
                         }
                         mAdapter.notifyDataSetChanged();
                     } catch (JSONException e) {
@@ -172,7 +170,7 @@ public class ActivityTwo extends AppCompatActivity {
 
                             Signer signer = new Signer(name, id, CleanUrl);
                             JsonCollection.add(signer);
-                            Log.v("Διαφάνεια", "SIGNERS:" + signer.getSignerFullName());
+
                         }
                         mAdapter.notifyDataSetChanged();
                     } catch (JSONException e) {
@@ -205,7 +203,7 @@ public class ActivityTwo extends AppCompatActivity {
                             Document document = new Document(title, id);
                             if (jsonArray.length() == 1) {          // Prevents duplicates
                                 JsonCollection.add(document);
-                                Log.v("Διαφάνεια", "DOCUMENTS:" + document.getDocumentTitle());
+
                             }
 
                         } mAdapter.notifyDataSetChanged();
@@ -240,7 +238,7 @@ public class ActivityTwo extends AppCompatActivity {
                                 Type type = new Type(title, id);
                                 if (doc.getDocumentId().equals(pt)){
                                     JsonCollection.add(type);
-                                    Log.v("Διαφάνεια", "TYPES:" + type.getTypeTitle());
+
                                 }
                             }
 

@@ -162,14 +162,7 @@
                 android:layout_gravity="center_horizontal"
                 android:gravity="center_horizontal">
 
-                <ProgressBar
-                    android:id="@+id/pbHeaderProgress"
-                    android:style="@style/Spinner"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_centerHorizontal="true">
-                </ProgressBar>
+
 
                 <android.support.v7.widget.RecyclerView
                     android:layout_width="match_parent"

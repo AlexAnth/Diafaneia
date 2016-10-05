@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="115dp"
+        android:id="@+id/relativeLayout8"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="#03A9F4"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_above="@+id/relativeLayout12"/>
+
+
+
+    <ImageView
+        android:layout_width="10dp"
+        android:layout_height="65dp"
+        android:id="@+id/imageView4"
+        android:background="#81D4F9"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="50dp" />
+
+    <ImageView
+        android:layout_width="10dp"
+        android:layout_height="50dp"
+        android:id="@+id/imageView10"
+        android:background="#81D4F9"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_gravity="right" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:id="@+id/blue_background_bottom"
+        android:layout_alignParentBottom="true"
+        android:background="#03A9F4"
+        android:layout_marginTop="540dp" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/frameL"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
+        android:background="@drawable/background_with_shadow">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:id="@+id/relativeLayout"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+
+            <ImageView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:id="@+id/imageView3"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:adjustViewBounds="true"
+                android:scaleType="fitXY"
+                android:contentDescription="a"
+                android:background="#03A9F4" />
+
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/imageView2"
+                android:layout_alignParentTop="false"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="false"
+                android:src="@drawable/bookmark_icon"
+                android:paddingTop="2dp"
+                android:paddingRight="5dp"
+                android:layout_marginRight="42dp"
+                android:layout_marginTop="2dp" />
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/imageView19"
+                android:src="@drawable/logo_white_border"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="5dp" />
+
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:id="@+id/info_btn"
+                android:layout_alignParentEnd="false"
+                android:src="@drawable/info_icon"
+                android:paddingTop="2dp"
+                android:paddingRight="5dp"
+                android:layout_marginTop="2dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="2dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Διαφάνεια"
+                android:id="@+id/textView"
+                android:textColor="#ffffff"
+                android:shadowColor="#b5343434"
+                android:singleLine="false"
+                android:textSize="27sp"
+                android:gravity="bottom"
+                android:padding="6dp"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/imageView19"
+                android:layout_toEndOf="@+id/imageView19" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Απόφαση"
+                android:id="@+id/TextInput"
+                android:textSize="20dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignLeft="@+id/imageView19"
+                android:layout_alignStart="@+id/imageView19"
+                android:layout_marginLeft="25dp"
+                android:layout_marginStart="25dp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginTop="80dp"
+            android:layout_height="530dp">
+
+
+            <ScrollView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <com.example.alex.diafaneia.Utils.ZoomableImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:id="@+id/image" />
+
+                </RelativeLayout>
+
+
+            </ScrollView>
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@mipmap/ic_navigate_next_black_36dp"
+            android:id="@+id/next"
+            android:layout_marginTop="120dp"
+            android:layout_marginLeft="350dp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@mipmap/ic_navigate_before_black_36dp"
+            android:id="@+id/back"
+            android:layout_marginTop="120dp" />
+    </FrameLayout>
+
+</FrameLayout>

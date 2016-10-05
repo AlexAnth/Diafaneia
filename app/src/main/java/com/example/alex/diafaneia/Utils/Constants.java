@@ -1,5 +1,7 @@
 package com.example.alex.diafaneia.Utils;
 
+
+
 /**
  * Created by user1 on 10/8/2016.
  */
@@ -18,5 +20,7 @@ public  class Constants {
     public static final String PROTOC_NUM_TITLE = "Αριθμός Πρωτοκόλου";
 
     public static final String FREE_TEXT_TITLE = "Ελεύθερο Κείμενο";
+
+
 
 }

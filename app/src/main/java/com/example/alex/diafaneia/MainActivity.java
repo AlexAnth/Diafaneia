@@ -1,14 +1,14 @@
 package com.example.alex.diafaneia;
+
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 
-
-import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.KeyEvent;
 
 import android.view.View;
@@ -28,7 +28,6 @@ import com.example.alex.diafaneia.Model.Signer;
 import com.example.alex.diafaneia.Model.Type;
 import com.example.alex.diafaneia.Utils.Constants;
 
-import java.io.Serializable;
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
 
@@ -200,6 +199,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 text_Doc.setTextColor(Color.parseColor("#7E7E7E"));
                 document=null;
                 if(type!=null){
+                    c3.setImageResource(R.drawable.cancel_button_inactive);
                     text_Type.setTextColor(Color.parseColor("#333333"));
                     text_Type.setText(Constants.TYPE_TITLE);
                     text_Type.setTextColor(Color.parseColor("#7E7E7E"));
@@ -369,6 +369,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         search_b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.v("Διαφάνεια", "Date Format from date : "+fromDate);
+                Log.v("Διαφάνεια", "Date Format to Date : "+toDate);
                 r= new Result(sector, document,type,signer, ADA, protoc_Num,free_Text_str, fromDate, toDate);
                 Intent intent = new Intent(getApplicationContext(),Results_Activity.class);
                 startActivity(intent);
@@ -492,7 +494,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Calendar newDate = Calendar.getInstance();
                 newDate.set(year, monthOfYear, dayOfMonth);
                 fromDateEtxt.setText(dateFormatter.format(newDate.getTime()));
-                c8.setImageResource(R.drawable.cancel_button_active);
+
+                fromDate=fromDateEtxt.getText().toString();
+                fromDate=fromDate.replace("-","%2F");
             }
 
         },newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
@@ -503,7 +507,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Calendar newDate = Calendar.getInstance();
                 newDate.set(year, monthOfYear, dayOfMonth);
                 toDateEtxt.setText(dateFormatter.format(newDate.getTime()));
-                c9.setImageResource(R.drawable.cancel_button_active);
+
+                toDate=toDateEtxt.getText().toString();
+                toDate=toDate.replace("-","%2F");
             }
 
         },newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
