@@ -159,7 +159,12 @@ public class Results_Activity extends AppCompatActivity {
                     JSONObject jsonobj = new JSONObject(response.toString());
 
                     String records = jsonobj.getString("TotalRecords");
-                    reco.setText("Βρέθηκαν "+records+" αποφάσεις:");
+                    if(records=="1"){
+                        reco.setText("Βρέθηκε "+records+" απόφαση");
+                    }else{
+                        reco.setText("Βρέθηκαν "+records+" αποφάσεις");
+
+                    }
 
 
                     JSONArray jsonarray  = jsonobj.getJSONArray("Data");
@@ -170,6 +175,7 @@ public class Results_Activity extends AppCompatActivity {
 
                     }
                     mAdapter.notifyDataSetChanged();
+
 
                 } catch (JSONException e) {
                     e.printStackTrace();

@@ -9,8 +9,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.alex.diafaneia.ActivityTwo;
 import com.example.alex.diafaneia.Model.Document;
 import com.example.alex.diafaneia.Model.Sector;
 import com.example.alex.diafaneia.Model.Signer;
@@ -45,7 +47,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.DataObjectHolder> 
         }
 
         public void setOnItemClickListener(MyClickListener myClickListener) {
-            this.myClickListener = myClickListener;
+            RVAdapter.myClickListener = myClickListener;
         }
 
         public RVAdapter(ArrayList<Object> myDataset) {
@@ -55,6 +57,8 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.DataObjectHolder> 
         @Override
         public DataObjectHolder onCreateViewHolder(ViewGroup parent,
                                                    int viewType) {
+
+
             View view = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.card_json, parent, false);
 
@@ -86,7 +90,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.DataObjectHolder> 
         }
 
         public interface MyClickListener {
-            public void onItemClick(int position, View v);
+            void onItemClick(int position, View v);
         }
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {

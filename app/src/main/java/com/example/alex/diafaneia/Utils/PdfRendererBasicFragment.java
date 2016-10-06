@@ -34,6 +34,7 @@ import android.widget.Toast;
 import com.example.alex.diafaneia.R;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 /**
@@ -55,7 +56,7 @@ public class PdfRendererBasicFragment extends Fragment implements View.OnClickLi
     /**
      * {@link android.graphics.pdf.PdfRenderer} to render the PDF.
      */
-    private PdfRenderer mPdfRenderer;
+    private PdfRenderer mPdfRenderer ;
 
     /**
      * Page that is currently shown on the screen.
@@ -88,6 +89,20 @@ public class PdfRendererBasicFragment extends Fragment implements View.OnClickLi
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+
+
+        // In this sample, we read a PDF from the assets directory.
+        File file = new File(Environment.getExternalStorageDirectory() + "/Αποφάσεις/" + "SYGROTHSH-EPITROPHS.pdf");
+        try {
+            mFileDescriptor = new ParcelFileDescriptor((ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY)));
+
+            // This is the PdfRenderer we use to render the PDF.
+
+            mPdfRenderer = new PdfRenderer(mFileDescriptor);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         super.onViewCreated(view, savedInstanceState);
         // Retain view references.
         mImageView = (ImageView) view.findViewById(R.id.image);
@@ -139,6 +154,7 @@ public class PdfRendererBasicFragment extends Fragment implements View.OnClickLi
      * Sets up a {@link android.graphics.pdf.PdfRenderer} and related resources.
      */
     private void openRenderer(Context context) throws IOException {
+
         // In this sample, we read a PDF from the assets directory.
         File file = new File(Environment.getExternalStorageDirectory() + "/Αποφάσεις/" + "SYGROTHSH-EPITROPHS.pdf");
         mFileDescriptor = new ParcelFileDescriptor((ParcelFileDescriptor.open(file,ParcelFileDescriptor.MODE_READ_ONLY)));
@@ -167,9 +183,9 @@ public class PdfRendererBasicFragment extends Fragment implements View.OnClickLi
     private void showPage(int index) {
 
 
-//        if (mPdfRenderer.getPageCount() <= index) {
-//            return;
-//        }
+        if (mPdfRenderer.getPageCount() <= index) {
+            return;
+        }
         // Make sure to close the current page before opening another one.
         if (null != mCurrentPage) {
             mCurrentPage.close();

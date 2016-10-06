@@ -62,7 +62,7 @@ public class RVAdapter2 extends RecyclerView.Adapter<RVAdapter2.DataObjectHolder
         }
 
         public void setOnItemClickListener(MyClickListener myClickListener) {
-            this.myClickListener = myClickListener;
+            RVAdapter2.myClickListener = myClickListener;
         }
 
         public RVAdapter2(ArrayList<Search> myDataset) {
@@ -107,7 +107,7 @@ public class RVAdapter2 extends RecyclerView.Adapter<RVAdapter2.DataObjectHolder
         }
 
         public interface MyClickListener {
-            public void onItemClick(int position, View v);
+            void onItemClick(int position, View v);
         }
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {

@@ -25,10 +25,11 @@ import java.io.File;
 
 
 public class PdfViewer extends Activity {
-    public  File file;
+
 
 
     public static final String FRAGMENT_PDF_RENDERER_BASIC = "pdf_renderer_basic";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +47,7 @@ public class PdfViewer extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pdf_view);
+
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
                     .add(R.id.container, new PdfRendererBasicFragment(),

@@ -10,6 +10,7 @@ import android.util.Log;
 
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -46,6 +47,7 @@ public class ActivityTwo extends AppCompatActivity {
     final String DOCUMENT_TYPES_BASE_URL = "http://diafaneia.hellenicparliament.gr//api.ashx?q=document-types";
 
     private RecyclerView mRecyclerView;
+    private ProgressBar mProgressBar;
     private RVAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private String text;
@@ -57,12 +59,13 @@ public class ActivityTwo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_two);
 
-
         // Get the right Label
         text = getIntent().getStringExtra("B");
         TextView textUi = (TextView) findViewById(R.id.TextInput);
+        mProgressBar= (ProgressBar)findViewById(R.id.progress_bar);
         textUi.setText(text);
         mRecyclerView = (RecyclerView) findViewById(R.id.content);
+        mRecyclerView.setVisibility(View.GONE);
         mRecyclerView.setNestedScrollingEnabled(false);
         mRecyclerView.setHasFixedSize(true);
 
@@ -90,7 +93,7 @@ public class ActivityTwo extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        ((RVAdapter) mAdapter).setOnItemClickListener(new RVAdapter
+        mAdapter.setOnItemClickListener(new RVAdapter
                 .MyClickListener() {
             @Override
             public void onItemClick(int position, View v) {
@@ -140,7 +143,10 @@ public class ActivityTwo extends AppCompatActivity {
                             JsonCollection.add(sector);
 
                         }
+                        setUiProg();
                         mAdapter.notifyDataSetChanged();
+
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -172,6 +178,7 @@ public class ActivityTwo extends AppCompatActivity {
                             JsonCollection.add(signer);
 
                         }
+                        setUiProg();
                         mAdapter.notifyDataSetChanged();
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -206,7 +213,8 @@ public class ActivityTwo extends AppCompatActivity {
 
                             }
 
-                        } mAdapter.notifyDataSetChanged();
+                        }setUiProg();
+                        mAdapter.notifyDataSetChanged();
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -242,7 +250,9 @@ public class ActivityTwo extends AppCompatActivity {
                                 }
                             }
 
-                        } mAdapter.notifyDataSetChanged();
+                        }setUiProg();
+                        mAdapter.notifyDataSetChanged();
+
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -263,4 +273,10 @@ public class ActivityTwo extends AppCompatActivity {
 
     return JsonCollection;}
 
+
+    public void setUiProg(){
+        mProgressBar.setVisibility(View.GONE);
+        mRecyclerView.setVisibility(View.VISIBLE);
+    }
 }
+

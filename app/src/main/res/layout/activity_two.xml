@@ -155,23 +155,37 @@
 
             >
 
-            <RelativeLayout
+            <FrameLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:layout_gravity="center_horizontal"
                 android:gravity="center_horizontal">
 
-
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    style="?android:progressBarStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:paddingTop="150dp" />
 
                 <android.support.v7.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/content"
-                    android:layout_marginTop="25dp">
+                    android:layout_marginTop="25dp"
+                    android:visibility="gone">
 
                 </android.support.v7.widget.RecyclerView>
-            </RelativeLayout>
+
+
+
+            </FrameLayout>
+
+
+
+
         </ScrollView>
     </RelativeLayout>
     </RelativeLayout>
