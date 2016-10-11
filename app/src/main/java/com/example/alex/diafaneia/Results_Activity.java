@@ -1,26 +1,20 @@
 package com.example.alex.diafaneia;
 
-
-import android.annotation.SuppressLint;
-import android.app.DownloadManager;
-import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
-import android.net.Uri;
-import android.os.Build;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.os.Environment;
-import android.os.StrictMode;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
-
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -29,22 +23,12 @@ import com.android.volley.toolbox.Volley;
 import com.example.alex.diafaneia.Model.Result;
 import com.example.alex.diafaneia.Model.Search;
 import com.example.alex.diafaneia.Utils.RVAdapter2;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-
-import java.util.List;
 import java.util.TimeZone;
 
 
@@ -55,7 +39,7 @@ import java.util.TimeZone;
 public class Results_Activity extends AppCompatActivity {
 
     ArrayList <Search> JsonCollection= new ArrayList();
-
+    private ProgressBar mProgressBar;
     final String RESULTS_BASE_URL = "http://diafaneia.hellenicparliament.gr/api.ashx?q=documents&pageSize=50";
     final String DOCUMENT_TYPE ="&type=";
     final String SIGNER ="&signer=";
@@ -83,7 +67,7 @@ public class Results_Activity extends AppCompatActivity {
 
         // Get the intent
         result = MainActivity.getR();
-
+        mProgressBar= (ProgressBar)findViewById(R.id.progress_bar);
         reco = (TextView) findViewById(R.id.res_number);
         mRecyclerView = (RecyclerView) findViewById(R.id.result_card);
         mRecyclerView.setNestedScrollingEnabled(false);
@@ -95,7 +79,22 @@ public class Results_Activity extends AppCompatActivity {
         mAdapter = new RVAdapter2(JsonCollection);
         mRecyclerView.setAdapter(mAdapter);
 
-        this.JsonCollection=downloadAPI(result);
+        if(!internetConnection()) {
+            mProgressBar.setVisibility(View.GONE);
+            new AlertDialog.Builder(this)
+                    .setTitle("Σύνδεση στο Διαδίκτυο")
+                    .setMessage("Ελέγξτε την σύνδεσή σας και ξαναπροσπαθήστε.")
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(intent);
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+        }
+        JsonCollection = downloadAPI(result);
+
 
 
         ImageView info_button=(ImageView)findViewById(R.id.info_btn);
@@ -126,24 +125,7 @@ public class Results_Activity extends AppCompatActivity {
                 myIntent.putExtra("filename", filename); //Optional parameters
                 myIntent.putExtra("url", url);
                 Results_Activity.this.startActivity(myIntent);
-//                try {
-//                    if(isDownloadManagerAvailable(getApplicationContext())) {
-//                        downloadPDF(filename,url);
-//                    }
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//                File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() +"/"+ filename);
-//                Intent target = new Intent(Intent.ACTION_VIEW);
-//                target.setDataAndType(Uri.fromFile(file),"application/pdf");
-//                target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-//
-//                Intent intent = Intent.createChooser(target, "Open File");
-//                try {
-//                    startActivity(intent);
-//                } catch (ActivityNotFoundException e) {
-//                    // Instruct the user to install a PDF reader here, or something
-//                }
+
 
 
             }
@@ -161,6 +143,10 @@ public class Results_Activity extends AppCompatActivity {
                     String records = jsonobj.getString("TotalRecords");
                     if(records=="1"){
                         reco.setText("Βρέθηκε "+records+" απόφαση");
+                    }else if(records=="0") {
+                        reco.setText("Δεν βρέθηκαν απόφασεις");
+                        mProgressBar.setVisibility(View.GONE);
+                        mRecyclerView.setVisibility(View.VISIBLE);
                     }else{
                         reco.setText("Βρέθηκαν "+records+" αποφάσεις");
 
@@ -293,6 +279,17 @@ public class Results_Activity extends AppCompatActivity {
 
     }
 
+    public boolean internetConnection() {
+        boolean connected ;
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
+            //we are connected to a network
+            connected = true;
+        } else
+            connected = false;
+        return connected;
+    }
 
 
 

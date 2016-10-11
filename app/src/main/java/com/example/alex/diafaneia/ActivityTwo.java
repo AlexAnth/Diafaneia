@@ -1,8 +1,13 @@
 package com.example.alex.diafaneia;
 
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +17,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -75,7 +81,24 @@ public class ActivityTwo extends AppCompatActivity {
         mAdapter = new RVAdapter(JsonCollection);
         mRecyclerView.setAdapter(mAdapter);
 
-        JsonCollection=downloadAPI(text);
+        if(!internetConnection()) {
+            mProgressBar.setVisibility(View.GONE);
+            new AlertDialog.Builder(this)
+                    .setTitle("Σύνδεση στο Διαδίκτυο")
+                    .setMessage("Ελέγξτε την σύνδεσή σας και ξαναπροσπαθήστε.")
+                    .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                            startActivity(intent);
+                        }
+                    })
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+
+        }
+
+        JsonCollection = downloadAPI(text);
+
 
         ImageView info_button=(ImageView)findViewById(R.id.info_btn);
         info_button.setOnClickListener(new View.OnClickListener() {
@@ -124,7 +147,6 @@ public class ActivityTwo extends AppCompatActivity {
     }
 
     private ArrayList downloadAPI(String text) {
-
         if (text.equalsIgnoreCase(Constants.SECTOR_TITLE)) {            // if sectors
 
             final JsonArrayRequest jsonRequest = new JsonArrayRequest(Request.Method.GET, SECTORS_BASE_URL, null, new Response.Listener<JSONArray>() {
@@ -278,5 +300,17 @@ public class ActivityTwo extends AppCompatActivity {
         mProgressBar.setVisibility(View.GONE);
         mRecyclerView.setVisibility(View.VISIBLE);
     }
+    public boolean internetConnection() {
+        boolean connected;
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
+                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
+            //we are connected to a network
+            connected = true;
+        } else
+            connected = false;
+        return connected;
+    }
+
 }
 

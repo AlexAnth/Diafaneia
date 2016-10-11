@@ -3,6 +3,7 @@ package com.example.alex.diafaneia;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -35,6 +36,7 @@ public class SplashScreen extends Activity {
             public void onAnimationEnd(Animation animation) {
                 iv.startAnimation(anim2);
                 Intent i = new Intent(SplashScreen.this,MainActivity.class);
+                iv.setVisibility(View.GONE);
                 startActivity(i);
                 finish();
             }

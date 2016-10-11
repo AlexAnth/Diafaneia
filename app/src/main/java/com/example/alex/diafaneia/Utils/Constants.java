@@ -1,9 +1,8 @@
 package com.example.alex.diafaneia.Utils;
 
 
-
 /**
- * Created by user1 on 10/8/2016.
+ * Created by Alex on 10/8/2016.
  */
 public  class Constants {
 
