@@ -121,7 +121,8 @@
             android:padding="6dp"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/imageView19"
-            android:layout_toEndOf="@+id/imageView19" />
+            android:layout_toEndOf="@+id/imageView19"
+            android:fontFamily="sans-serif-light"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -132,7 +133,8 @@
             android:layout_below="@+id/info_btn"
             android:layout_alignLeft="@+id/imageView19"
             android:layout_alignStart="@+id/imageView19"
-            android:layout_marginLeft="20dp" />
+            android:layout_marginLeft="20dp"
+            android:fontFamily="sans-serif-light"/>
 
     </RelativeLayout>
 

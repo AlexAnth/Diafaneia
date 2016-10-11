@@ -68,7 +68,8 @@
             android:padding="6dp"
             android:layout_alignParentTop="true"
             android:layout_toRightOf="@+id/imageView6"
-            android:layout_toEndOf="@+id/imageView6" />
+            android:layout_toEndOf="@+id/imageView6"
+            android:fontFamily="sans-serif-light"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -79,7 +80,8 @@
             android:textSize="20dp"
             android:layout_alignStart="@+id/imageView6"
             android:textColor="#ffffff"
-            android:layout_marginTop="50dp" />
+            android:layout_marginTop="50dp"
+            android:fontFamily="sans-serif-light"/>
 
     </RelativeLayout>
 
@@ -166,7 +168,8 @@
             android:layout_centerVertical="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:text="Αναζήτηση Αποφάσεων..." />
+            android:text="Αναζήτηση Αποφάσεων..."
+            android:fontFamily="sans-serif-light"/>
     </RelativeLayout>
 
 </FrameLayout>

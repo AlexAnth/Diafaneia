@@ -24,7 +24,8 @@
             android:textSize="15dp"
             android:textStyle="italic"
             android:layout_alignParentStart="false"
-            android:padding="15dp" />
+            android:padding="15dp"
+            android:fontFamily="sans-serif-light"/>
 
         <View
             android:layout_width="match_parent"

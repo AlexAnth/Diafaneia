@@ -121,7 +121,9 @@
                 android:padding="6dp"
                 android:layout_alignParentTop="true"
                 android:layout_toRightOf="@+id/imageView19"
-                android:layout_toEndOf="@+id/imageView19" />
+                android:layout_toEndOf="@+id/imageView19"
+                android:fontFamily="sans-serif-light"
+                />
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -131,7 +133,8 @@
                 android:textSize="20dp"
                 android:layout_below="@+id/info_btn"
                 android:layout_alignLeft="@+id/imageView19"
-                android:layout_alignStart="@+id/imageView19" />
+                android:layout_alignStart="@+id/imageView19"
+                android:fontFamily="sans-serif-light"/>
 
         </RelativeLayout>
 
@@ -151,7 +154,8 @@
                 android:text="@string/info"
                 android:textColor="#191919"
                 android:padding="20dp"
-                android:id="@+id/textView13" />
+                android:id="@+id/textView13"
+                android:fontFamily="sans-serif-light"/>
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -163,7 +167,8 @@
                 android:textColorLink="#0040DD"
                 android:autoLink="phone"
                 android:id="@+id/textView17"
-                android:paddingLeft="20dp" />
+                android:paddingLeft="20dp"
+                android:fontFamily="sans-serif-light"/>
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -176,7 +181,8 @@
                 android:layout_alignParentStart="true"
                 android:paddingTop="5dp"
                 android:paddingLeft="20dp"
-                android:id="@+id/textView14" />
+                android:id="@+id/textView14"
+                android:fontFamily="sans-serif-light"/>
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -187,7 +193,8 @@
                 android:layout_below="@+id/textView14"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:id="@+id/textView18" />
+                android:id="@+id/textView18"
+                android:fontFamily="sans-serif-light"/>
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -200,7 +207,8 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:textColorLink="#0040DD"
-                android:paddingRight="5dp" />
+                android:paddingRight="5dp"
+                android:fontFamily="sans-serif-light"/>
 
 
         </RelativeLayout>
