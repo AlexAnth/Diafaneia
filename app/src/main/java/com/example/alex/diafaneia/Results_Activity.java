@@ -1,11 +1,14 @@
 package com.example.alex.diafaneia;
 
+import android.app.DownloadManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -26,6 +29,8 @@ import com.example.alex.diafaneia.Utils.RVAdapter2;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -119,12 +124,11 @@ public class Results_Activity extends AppCompatActivity {
             public void onItemClick(int position, View v) {
                 String filename = JsonCollection.get(position).getPathName();
                 String url = JsonCollection.get(position).getFileURL();
+                File file = new File(Environment.getExternalStorageDirectory() + "/Αποφάσεις/" + filename);
+                if (!file.exists()) {
+                    file_download(url, filename);
+                }
 
-
-                Intent myIntent = new Intent(Results_Activity.this, PdfViewer.class);
-                myIntent.putExtra("filename", filename); //Optional parameters
-                myIntent.putExtra("url", url);
-                Results_Activity.this.startActivity(myIntent);
 
 
 
@@ -291,7 +295,29 @@ public class Results_Activity extends AppCompatActivity {
         return connected;
     }
 
+    public void file_download(String uRl,String filename) {
+        File direct = new File(Environment.DIRECTORY_DOWNLOADS
+                + "/Αποφάσεις");
 
+        if (!direct.exists()) {
+            direct.mkdirs();
+        }
+
+
+        DownloadManager mgr = (DownloadManager) this.getSystemService(Context.DOWNLOAD_SERVICE);
+
+        Uri downloadUri = Uri.parse(uRl);
+        DownloadManager.Request request = new DownloadManager.Request(
+                downloadUri);
+
+        request.setAllowedNetworkTypes(
+                DownloadManager.Request.NETWORK_WIFI
+                        | DownloadManager.Request.NETWORK_MOBILE)
+                .setDestinationInExternalPublicDir("/Αποφάσεις", filename);
+
+        mgr.enqueue(request);
+
+    }
 
 }
 

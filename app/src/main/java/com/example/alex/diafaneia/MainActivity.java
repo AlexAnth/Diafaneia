@@ -3,7 +3,9 @@ package com.example.alex.diafaneia;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
@@ -30,6 +32,10 @@ import com.example.alex.diafaneia.Utils.Constants;
 
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
+import java.util.Locale;
+
+import static android.R.attr.typeface;
+import static com.example.alex.diafaneia.R.id.view;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -76,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView info_button;
     private ImageView action_button;
     private RelativeLayout RL1;
+    private  Typeface typeface;
 
     private Button firstButton;
     private Button secondButton;
@@ -90,6 +97,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_main);
 
         findViewsById();
