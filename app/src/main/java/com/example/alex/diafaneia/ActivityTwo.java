@@ -11,14 +11,10 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -85,14 +81,15 @@ public class ActivityTwo extends AppCompatActivity {
             mProgressBar.setVisibility(View.GONE);
             new AlertDialog.Builder(this)
                     .setTitle("Σύνδεση στο Διαδίκτυο")
-                    .setMessage("Ελέγξτε την σύνδεσή σας και ξαναπροσπαθήστε.")
+                    .setMessage("  Ελέγξτε την σύνδεσή σας\n" +
+                            "  και ξαναπροσπαθήστε.")
                     .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                             startActivity(intent);
                         }
                     })
-                    .setIcon(android.R.drawable.ic_dialog_alert)
+//                    .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
 
         }
@@ -120,7 +117,6 @@ public class ActivityTwo extends AppCompatActivity {
                 .MyClickListener() {
             @Override
             public void onItemClick(int position, View v) {
-                Log.v("Hi!", " Clicked on Item " + (JsonCollection.get(position)));
 
                 // Check the Category selected
                 if (text.equalsIgnoreCase(Constants.SECTOR_TITLE)){
@@ -176,7 +172,7 @@ public class ActivityTwo extends AppCompatActivity {
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.v("Διαφάνεια", "Err:" + error.getLocalizedMessage());
+
                 }
             });
 
@@ -209,7 +205,7 @@ public class ActivityTwo extends AppCompatActivity {
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.v("Διαφάνεια", "Err:" + error.getLocalizedMessage());
+
                 }
             });
 
@@ -245,7 +241,7 @@ public class ActivityTwo extends AppCompatActivity {
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.v("Διαφάνεια", "Err:" + error.getLocalizedMessage());
+
                 }
             });
 
@@ -284,7 +280,7 @@ public class ActivityTwo extends AppCompatActivity {
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.v("Διαφάνεια", "Err:" + error.getLocalizedMessage());
+
                 }
             });
 

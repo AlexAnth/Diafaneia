@@ -3,7 +3,6 @@ package com.example.alex.diafaneia;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
@@ -32,10 +31,7 @@ import com.example.alex.diafaneia.Utils.Constants;
 
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
-import java.util.Locale;
-
-import static android.R.attr.typeface;
-import static com.example.alex.diafaneia.R.id.view;
+import java.util.Date;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -104,12 +100,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewsById();
 
         // Date Pickers
-        dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
+        dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
         fromDateEtxt.setInputType(InputType.TYPE_NULL);
-
-
         toDateEtxt.setInputType(InputType.TYPE_NULL);
         setDateTimeField();
+
+        Date cDate = new Date();
+        String fDate = new SimpleDateFormat("dd/MM/yyyy").format(cDate);
+        toDateEtxt.setText(fDate);
 
 
 //        // Unfocus from Edit Texts
@@ -178,12 +176,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (free_Text_str != null) {
             c7.setImageResource(R.drawable.cancel_button_active);
         }
-        if (fromDate != null) {
-            c8.setImageResource(R.drawable.cancel_button_active);
-        }
-        if (toDate != null) {
-            c9.setImageResource(R.drawable.cancel_button_active);
-        }
+//        if (fromDate != null) {
+//            c8.setImageResource(R.drawable.cancel_button_active);
+//        }
+//        if (toDate != null) {
+//            c9.setImageResource(R.drawable.cancel_button_active);
+//        }
 
         c1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -293,7 +291,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onClick(View v) {
                 c8.setImageResource(R.drawable.cancel_button_inactive);
                 EditText text = (EditText) findViewById(R.id.etxt_fromdate);
-                text.setText("12/7/2014");
+                text.setText("1/1/2014");
                 fromDate = null;
 
 //                InputMethodManager imm = (InputMethodManager) RL1.getContext()
@@ -409,7 +407,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 free_Text_str = null;
                 c8.setImageResource(R.drawable.cancel_button_inactive);
                 EditText text = (EditText) findViewById(R.id.etxt_fromdate);
-                text.setText("12/7/2014");
+                text.setText("1/1/2014");
                 fromDate = null;
                 c9.setImageResource(R.drawable.cancel_button_inactive);
                 EditText text2 = (EditText) findViewById(R.id.etxt_todate);

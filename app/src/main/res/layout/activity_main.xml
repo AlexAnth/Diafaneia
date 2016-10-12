@@ -632,7 +632,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight=".5"
                         android:hint="@string/from_date"
-                        android:text="12/7/2014"
+                        android:text="1/1/2014"
                         android:layout_alignEnd="@+id/textView10"
                         android:layout_marginTop="23dp"
                         android:fontFamily="sans-serif-light"/>

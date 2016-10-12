@@ -1,6 +1,7 @@
 package com.example.alex.diafaneia;
 
 import android.app.DownloadManager;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -18,6 +19,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -127,6 +130,33 @@ public class Results_Activity extends AppCompatActivity {
                 File file = new File(Environment.getExternalStorageDirectory() + "/Αποφάσεις/" + filename);
                 if (!file.exists()) {
                     file_download(url, filename);
+
+                    Context context = getApplicationContext();
+                    CharSequence text = "Το έγγραφο αποθηκεύτηκε στο φάκελο Αποφάσεις";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                }else{
+                    Context context = getApplicationContext();
+                    CharSequence text = "Το έγγραφο υπάρχει ήδη στο φάκελο Αποφάσεις";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                }
+                Intent target = new Intent(Intent.ACTION_VIEW);
+                target.setDataAndType(Uri.fromFile(file),"application/pdf");
+                target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+
+                Intent intent = Intent.createChooser(target, "Open File");
+                try {
+                    startActivity(intent);
+                } catch (ActivityNotFoundException e) {
+                    // Instruct the user to install a PDF reader here, or something
+                    Context context = getApplicationContext();
+                    CharSequence text = "Δέν βρέθηκε εφαρμογή προβολής αρχείων PDF.\nΚατεβάστε μία απο το διαδίκτυο.";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
                 }
 
 
@@ -267,7 +297,7 @@ public class Results_Activity extends AppCompatActivity {
         TimeZone tz = TimeZone.getTimeZone("GMT+0200");
         Calendar cal = Calendar.getInstance(tz);
         cal.setTimeInMillis(x);
-        SimpleDateFormat f = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
         f.setTimeZone(tz);
         PublishDate=f.format(cal.getTime());
 
