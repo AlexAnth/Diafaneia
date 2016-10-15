@@ -5,6 +5,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -29,6 +30,8 @@ import com.android.volley.toolbox.Volley;
 import com.example.alex.diafaneia.Model.Result;
 import com.example.alex.diafaneia.Model.Search;
 import com.example.alex.diafaneia.Utils.RVAdapter2;
+import com.example.alex.diafaneia.Utils.SharedPreference;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -63,7 +66,8 @@ public class Results_Activity extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     private Result result;
     private TextView reco;
-
+    private ImageView dwnl_button;
+    SharedPreference sharedPreference = new SharedPreference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,8 +88,9 @@ public class Results_Activity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mAdapter = new RVAdapter2(JsonCollection);
+        mAdapter = new RVAdapter2(JsonCollection,getApplicationContext());
         mRecyclerView.setAdapter(mAdapter);
+
 
         if(!internetConnection()) {
             mProgressBar.setVisibility(View.GONE);
@@ -125,24 +130,24 @@ public class Results_Activity extends AppCompatActivity {
                 .MyClickListener() {
             @Override
             public void onItemClick(int position, View v) {
-                String filename = JsonCollection.get(position).getPathName();
+                final String filename = JsonCollection.get(position).getPathName();
                 String url = JsonCollection.get(position).getFileURL();
-                File file = new File(Environment.getExternalStorageDirectory() + "/Αποφάσεις/" + filename);
+                final File file = new File(Environment.getExternalStorageDirectory() + "/Αποφάσεις/" + filename);
                 if (!file.exists()) {
                     file_download(url, filename);
-
-                    Context context = getApplicationContext();
-                    CharSequence text = "Το έγγραφο αποθηκεύτηκε στο φάκελο Αποφάσεις";
-                    int duration = Toast.LENGTH_SHORT;
-                    Toast toast = Toast.makeText(context, text, duration);
-                    toast.show();
-                }else{
-                    Context context = getApplicationContext();
-                    CharSequence text = "Το έγγραφο υπάρχει ήδη στο φάκελο Αποφάσεις";
-                    int duration = Toast.LENGTH_SHORT;
-                    Toast toast = Toast.makeText(context, text, duration);
-                    toast.show();
                 }
+//                    Context context = getApplicationContext();
+//                    CharSequence text = "Το έγγραφο αποθηκεύτηκε στο φάκελο Αποφάσεις";
+//                    int duration = Toast.LENGTH_SHORT;
+//                    Toast toast = Toast.makeText(context, text, duration);
+//                    toast.show();
+//                }else{
+//                    Context context = getApplicationContext();
+//                    CharSequence text = "Το έγγραφο υπάρχει ήδη στο φάκελο Αποφάσεις";
+//                    int duration = Toast.LENGTH_SHORT;
+//                    Toast toast = Toast.makeText(context, text, duration);
+//                    toast.show();
+//                }
                 Intent target = new Intent(Intent.ACTION_VIEW);
                 target.setDataAndType(Uri.fromFile(file),"application/pdf");
                 target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
@@ -159,7 +164,55 @@ public class Results_Activity extends AppCompatActivity {
                     toast.show();
                 }
 
+                dwnl_button=(ImageView)v.findViewById(R.id.download_btn);
 
+//                getApplicationContext().getSharedPreferences("PRODUCT_APP",
+//                        Context.MODE_PRIVATE).edit().clear().commit();
+                final ArrayList temp = sharedPreference.getFavorites(getApplicationContext());
+                dwnl_button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //Change icon
+                        dwnl_button.setImageResource(R.drawable.bookmark_icon_selected);
+                        //Clear duplicates
+                        if(temp!=null) {
+                            sharedPreference.removeDuplicates(getApplicationContext());
+
+                            if (!temp.contains(filename)) {
+                                Context context = getApplicationContext();
+                                CharSequence text = "Το έγγραφο αποθηκεύτηκε στο φάκελο Αποφάσεις";
+                                int duration = Toast.LENGTH_SHORT;
+                                Toast toast = Toast.makeText(context, text, duration);
+                                toast.show();
+                                sharedPreference.addFavorite(getApplicationContext(), filename);
+                            } else {
+                                Context context = getApplicationContext();
+                                CharSequence text = "Το έγγραφο υπάρχει ήδη στο φάκελο Αποφάσεις";
+                                int duration = Toast.LENGTH_SHORT;
+                                Toast toast = Toast.makeText(context, text, duration);
+                                toast.show();
+                            }
+                        }else{
+                            sharedPreference.addFavorite(getApplicationContext(),filename);
+                        }
+                    }
+
+
+
+                });
+                //Check Log on Monitor
+                if(temp!=null) {
+                    for (int i = 0; i < temp.size(); i++) {
+                        Log.v("Array :", (String) temp.get(i));
+                    }
+                }else{
+                    Log.v("Pref :",  " Null Preferences ");
+                }
+                File f = new File(Environment.getExternalStorageDirectory() + "/Αποφάσεις/" );
+                File[] fileFold = f.listFiles();
+                for(int i = 0 ; i < fileFold.length ; i++){
+                    Log.v("Folder :",  fileFold[i].getName());
+                }
 
 
             }

@@ -4,28 +4,27 @@ package com.example.alex.diafaneia.Utils;
  * Created by Alex on 22/8/2016.
  */
 
+import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.style.ForegroundColorSpan;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.alex.diafaneia.Model.Search;
 import com.example.alex.diafaneia.R;
 
 import java.util.ArrayList;
 
-import static android.text.Html.*;
-import static android.text.Html.fromHtml;
 
 public class RVAdapter2 extends RecyclerView.Adapter<RVAdapter2.DataObjectHolder> {
 
-        private ArrayList<Search> JsonList = new ArrayList<>();
+    private final Context context;
+    private ArrayList<Search> JsonList = new ArrayList<>();
         private static MyClickListener myClickListener;
 
         public static class DataObjectHolder extends RecyclerView.ViewHolder
@@ -40,9 +39,11 @@ public class RVAdapter2 extends RecyclerView.Adapter<RVAdapter2.DataObjectHolder
             private TextView text_2;
             private TextView text_3;
             CardView cv;
+            private ImageView download;
 
             public DataObjectHolder(View itemView) {
                 super(itemView);
+                download = (ImageView) itemView.findViewById(R.id.download_btn);
                 ADA = (TextView) itemView.findViewById(R.id.ADA);
                 protoc_num= (TextView) itemView.findViewById(R.id.protoc_num);
                 protoc_num= (TextView) itemView.findViewById(R.id.protoc_num);
@@ -65,7 +66,8 @@ public class RVAdapter2 extends RecyclerView.Adapter<RVAdapter2.DataObjectHolder
             RVAdapter2.myClickListener = myClickListener;
         }
 
-        public RVAdapter2(ArrayList<Search> myDataset) {
+        public RVAdapter2(ArrayList<Search> myDataset, Context applicationContext) {
+            context=applicationContext;
             JsonList = myDataset;
         }
 
@@ -85,14 +87,18 @@ public class RVAdapter2 extends RecyclerView.Adapter<RVAdapter2.DataObjectHolder
 
         Search search = JsonList.get(position);
 
+        if(new SharedPreference().getFavorites(context).contains(search.getPathName())){
+            holder.download.setImageResource(R.drawable.bookmark_icon_selected);
+        }
+//        if (context.getSharedPreferences("PRODUCT_APP", Context.MODE_PRIVATE).contains(search.getPathName())){
+//        }else{
+//            Log.v("Fuck :"," Not favourite");
+//        }
+
         holder.ADA.setText(search.getADA());
         holder.date.setText(search.getPublishDate());
         holder.protoc_num.setText(search.getProtoc_Num());
-//        if (search.getType()!=null){
-            holder.sectors.setText(search.getSector()+", "+search.getType());
-//        }else{
-//            holder.sectors.setText(search.getSector());
-//        }
+        holder.sectors.setText(search.getSector()+", "+search.getType());
         holder.text_1.setText(search.getSbject());
         String span="<font color='#007AB2'>"+"ΘΕΜΑΤΙΚΗ ΕΝΟΤΗΤΑ"+"</font>"+" : "+search.getDocument();
         holder.text_2.setText(Html.fromHtml(span));
