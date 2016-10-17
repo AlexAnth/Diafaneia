@@ -76,9 +76,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView c8;
     private ImageView c9;
     private ImageView info_button;
-    private ImageView action_button;
+    private ImageView bookmark_button;
     private RelativeLayout RL1;
-    private  Typeface typeface;
 
     private Button firstButton;
     private Button secondButton;
@@ -106,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setDateTimeField();
 
         Date cDate = new Date();
-        String fDate = new SimpleDateFormat("dd/MM/yyyy").format(cDate);
+        final String fDate = new SimpleDateFormat("dd/MM/yyyy").format(cDate);
         toDateEtxt.setText(fDate);
 
 
@@ -306,7 +305,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onClick(View v) {
                 c9.setImageResource(R.drawable.cancel_button_inactive);
                 EditText text = (EditText) findViewById(R.id.etxt_todate);
-                text.setText("20/4/2016");
+                toDateEtxt.setText(fDate);
                 toDate = null;
 
 //                InputMethodManager imm = (InputMethodManager) RL1.getContext()
@@ -320,6 +319,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Info.class);
+                startActivity(intent);
+            }
+
+        });
+
+        bookmark_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),Bookmark.class);
                 startActivity(intent);
             }
 
@@ -411,7 +419,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 fromDate = null;
                 c9.setImageResource(R.drawable.cancel_button_inactive);
                 EditText text2 = (EditText) findViewById(R.id.etxt_todate);
-                text2.setText("20/4/2016");
+                text2.setText(fDate);
                 toDate = null;
 
             }
@@ -450,10 +458,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         c8 = (ImageView) findViewById(R.id.cancel_date_2);
         c9 = (ImageView) findViewById(R.id.cancel_date_1);
 
-        //Info and Action Buttons
+        //Info and Bookmark Buttons
         info_button = (ImageView) findViewById(R.id.info_btn);
-        action_button = (ImageView) findViewById(R.id.action_btn);
-
+        bookmark_button=(ImageView)findViewById(R.id.bookmark_btn);
+        
         // Unfocus from Edit Texts
         RL1 = (RelativeLayout) findViewById(R.id.RL1);
 

@@ -8,8 +8,6 @@ import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -90,16 +88,11 @@ public class RVAdapter2 extends RecyclerView.Adapter<RVAdapter2.DataObjectHolder
         if(new SharedPreference().getFavorites(context).contains(search.getPathName())){
             holder.download.setImageResource(R.drawable.bookmark_icon_selected);
         }
-//        if (context.getSharedPreferences("PRODUCT_APP", Context.MODE_PRIVATE).contains(search.getPathName())){
-//        }else{
-//            Log.v("Fuck :"," Not favourite");
-//        }
-
         holder.ADA.setText(search.getADA());
         holder.date.setText(search.getPublishDate());
         holder.protoc_num.setText(search.getProtoc_Num());
-        holder.sectors.setText(search.getSector()+", "+search.getType());
-        holder.text_1.setText(search.getSbject());
+        holder.sectors.setText(search.getSbject());
+        holder.text_1.setText(search.getSector()+", "+search.getType());
         String span="<font color='#007AB2'>"+"ΘΕΜΑΤΙΚΗ ΕΝΟΤΗΤΑ"+"</font>"+" : "+search.getDocument();
         holder.text_2.setText(Html.fromHtml(span));
         span= "<font color='#007AB2'>"+search.getSigner()+"</font>";

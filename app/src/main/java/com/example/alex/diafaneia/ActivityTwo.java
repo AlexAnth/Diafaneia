@@ -53,6 +53,7 @@ public class ActivityTwo extends AppCompatActivity {
     private RVAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private String text;
+    private ImageView bookmark_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +63,7 @@ public class ActivityTwo extends AppCompatActivity {
         setContentView(R.layout.activity_two);
 
         // Get the right Label
+        bookmark_button=(ImageView)findViewById(R.id.bookmark_btn);
         text = getIntent().getStringExtra("B");
         TextView textUi = (TextView) findViewById(R.id.TextInput);
         mProgressBar= (ProgressBar)findViewById(R.id.progress_bar);
@@ -102,6 +104,14 @@ public class ActivityTwo extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),Info.class);
+                startActivity(intent);
+            }
+
+        });
+        bookmark_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),Bookmark.class);
                 startActivity(intent);
             }
 

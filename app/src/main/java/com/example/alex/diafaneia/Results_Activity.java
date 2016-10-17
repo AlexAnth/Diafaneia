@@ -5,7 +5,6 @@ import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -67,6 +66,7 @@ public class Results_Activity extends AppCompatActivity {
     private Result result;
     private TextView reco;
     private ImageView dwnl_button;
+    private ImageView bookmark_button;
     SharedPreference sharedPreference = new SharedPreference();
 
     @Override
@@ -79,6 +79,7 @@ public class Results_Activity extends AppCompatActivity {
 
         // Get the intent
         result = MainActivity.getR();
+        bookmark_button=(ImageView)findViewById(R.id.bookmark_btn);
         mProgressBar= (ProgressBar)findViewById(R.id.progress_bar);
         reco = (TextView) findViewById(R.id.res_number);
         mRecyclerView = (RecyclerView) findViewById(R.id.result_card);
@@ -115,6 +116,14 @@ public class Results_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),Info.class);
+                startActivity(intent);
+            }
+
+        });
+        bookmark_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),Bookmark.class);
                 startActivity(intent);
             }
 

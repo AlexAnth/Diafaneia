@@ -33,7 +33,7 @@
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:id="@+id/imageView5"
+            android:id="@+id/bookmark_btn"
             android:layout_alignParentTop="false"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="false"
