@@ -45,7 +45,10 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.DataObjectHolder> 
                 myClickListener.onItemClick(getAdapterPosition(), v);
             }
         }
-
+        public void remove(int position) {
+            JsonList.remove(position);
+            notifyItemRemoved(position);
+        }
         public void setOnItemClickListener(MyClickListener myClickListener) {
             RVAdapter.myClickListener = myClickListener;
         }

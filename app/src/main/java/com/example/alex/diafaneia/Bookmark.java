@@ -14,6 +14,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -78,7 +79,6 @@ public class Bookmark extends AppCompatActivity {
         // Convert to ArrayList Object
         ArrayList<Object> strings = temp;
         Favourite_Collection.addAll(strings);
-//        setUiProg();
         mAdapter.notifyDataSetChanged();
         return strings;
 
@@ -122,6 +122,46 @@ public class Bookmark extends AppCompatActivity {
 
             }
         });
+
+        ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+
+
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
+                //Remove swiped item from list and notify the RecyclerView
+
+                new SharedPreference().removeFavorite(getApplicationContext(),
+                        Favourite_Collection.get(viewHolder.getAdapterPosition()).toString());
+                mAdapter.remove(viewHolder.getAdapterPosition());
+//                // Get favourites
+//                ArrayList temp=   new SharedPreference().getFavorites(getApplicationContext());
+
+//                Favourite_Collection.remove(viewHolder.getAdapterPosition());
+//                Favourite_Collection.trimToSize();
+//
+//
+////                Favourite_Collection=new ArrayList<>();
+////                Favourite_Collection.addAll(temp);
+////
+//
+
+//                Favourite_Collection.remove(Favourite_Collection.get(Favourite_Collection.size()-2));
+
+            }
+
+        };
+
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleItemTouchCallback);
+
+        itemTouchHelper.attachToRecyclerView(mRecyclerView);
+
 
 
 
