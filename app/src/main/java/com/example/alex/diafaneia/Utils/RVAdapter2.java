@@ -13,10 +13,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.alex.diafaneia.Model.Favourite;
 import com.example.alex.diafaneia.Model.Search;
 import com.example.alex.diafaneia.R;
 
 import java.util.ArrayList;
+
+import io.realm.Realm;
+import io.realm.RealmResults;
 
 
 public class RVAdapter2 extends RecyclerView.Adapter<RVAdapter2.DataObjectHolder> {
@@ -25,7 +30,9 @@ public class RVAdapter2 extends RecyclerView.Adapter<RVAdapter2.DataObjectHolder
     private ArrayList<Search> JsonList = new ArrayList<>();
         private static MyClickListener myClickListener;
 
-        public static class DataObjectHolder extends RecyclerView.ViewHolder
+
+
+    public static class DataObjectHolder extends RecyclerView.ViewHolder
                 implements View
                 .OnClickListener {
 
@@ -69,6 +76,11 @@ public class RVAdapter2 extends RecyclerView.Adapter<RVAdapter2.DataObjectHolder
             JsonList = myDataset;
         }
 
+        public void remove(int position) {
+            JsonList.remove(position);
+            notifyItemRemoved(position);
+        }
+
         @Override
         public DataObjectHolder onCreateViewHolder(ViewGroup parent,
                                                    int viewType) {
@@ -85,8 +97,19 @@ public class RVAdapter2 extends RecyclerView.Adapter<RVAdapter2.DataObjectHolder
 
         Search search = JsonList.get(position);
 
-        if(new SharedPreference().getFavorites(context).contains(search.getPathName())){
-            holder.download.setImageResource(R.drawable.bookmark_icon_selected);
+        // Initialize Realm
+        Realm.init(context);
+        // Get a Realm instance for this thread
+        Realm realm = Realm.getDefaultInstance();
+        RealmResults<Favourite> favs = realm.where(Favourite.class).findAll();
+        String ID = search.getID();
+        if(favs!=null) {
+            for (int i = 0; i < favs.size(); i++) {
+                if(favs.get(i).getID().equalsIgnoreCase(ID)){
+                    holder.download.setImageResource(R.drawable.bookmark_icon_selected);
+                    break;
+                }
+            }
         }
         holder.ADA.setText(search.getADA());
         holder.date.setText(search.getPublishDate());

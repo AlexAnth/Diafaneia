@@ -35,7 +35,7 @@ public class SplashScreen extends Activity {
             public void onAnimationEnd(Animation animation) {
                 iv.startAnimation(anim2);
                 Intent i = new Intent(SplashScreen.this,MainActivity.class);
-                iv.setVisibility(View.GONE);
+//                iv.setVisibility(View.GONE);
                 startActivity(i);
                 finish();
             }

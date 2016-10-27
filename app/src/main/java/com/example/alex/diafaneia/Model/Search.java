@@ -15,10 +15,11 @@ public class Search {
     private  String fileURL ;
     private  String pathName;
     private  String sbject;
+    private  String ID;
 
 
     public Search(String sector, String document, String type, String signer, String ADA, String protoc_Num,String fileURL, String pathName,
-                  String sbject,String publishDate){
+                  String sbject,String publishDate,String ID){
         this.sector=sector;
         this.document=document;
         this.type=type;
@@ -32,6 +33,7 @@ public class Search {
         this.pathName=pathName;
         this.sbject=sbject;
         this.publishDate=publishDate ;
+        this.ID=ID;
     }
 
     public  String getDocument() {
@@ -73,5 +75,8 @@ public class Search {
     public  String getSbject() {
         return sbject;
     }
+
+    public String getID() { return ID; }
+
 
 }

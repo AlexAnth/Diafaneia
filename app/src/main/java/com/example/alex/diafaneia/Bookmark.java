@@ -3,31 +3,29 @@ package com.example.alex.diafaneia;
 
 import android.content.ActivityNotFoundException;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.alex.diafaneia.Utils.RVAdapter;
-import com.example.alex.diafaneia.Utils.SharedPreference;
+import com.example.alex.diafaneia.Model.Favourite;
+import com.example.alex.diafaneia.Model.Search;
+
+import com.example.alex.diafaneia.Utils.RVAdapter2;
 
 
 import java.io.File;
 import java.util.ArrayList;
+
+import io.realm.Realm;
+import io.realm.RealmResults;
 
 
 /**
@@ -35,16 +33,21 @@ import java.util.ArrayList;
  */
 public class Bookmark extends AppCompatActivity {
 
-    ArrayList <Object> Favourite_Collection= new ArrayList();
+    ArrayList <Search> Favourite_Collection= new ArrayList();
 
     private RecyclerView mRecyclerView;
-    private RVAdapter mAdapter;
+    private RVAdapter2 mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private Realm realm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        // Initialize Realm
+        Realm.init(getApplicationContext());
 
+        // Get a Realm instance for this thread
+        realm = Realm.getDefaultInstance();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bookmark);
         mRecyclerView = (RecyclerView) findViewById(R.id.content);
@@ -52,11 +55,11 @@ public class Bookmark extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new RVAdapter(Favourite_Collection);
+        mAdapter = new RVAdapter2(Favourite_Collection,getApplicationContext());
         mRecyclerView.setAdapter(mAdapter);
 
-        Favourite_Collection = loadFavourites();
-
+        Favourite_Collection.addAll(convertFavsToSearch());
+        mAdapter.notifyDataSetChanged();
 
 
         ImageView info_button=(ImageView)findViewById(R.id.info_btn);
@@ -72,27 +75,17 @@ public class Bookmark extends AppCompatActivity {
 
     }
 
-    private ArrayList loadFavourites() {
 
-        // Get favourites
-        ArrayList temp=   new SharedPreference().getFavorites(getApplicationContext());
-        // Convert to ArrayList Object
-        ArrayList<Object> strings = temp;
-        Favourite_Collection.addAll(strings);
-        mAdapter.notifyDataSetChanged();
-        return strings;
-
-    }
 
     @Override
     protected void onResume() {
         super.onResume();
-        mAdapter.setOnItemClickListener(new RVAdapter
+        mAdapter.setOnItemClickListener(new RVAdapter2
                 .MyClickListener() {
             @Override
             public void onItemClick(int position, View v) {
 
-                final String filename = Favourite_Collection.get(position).toString();
+                final String filename = Favourite_Collection.get(position).getPathName();
                 final File file = new File(Environment.getExternalStorageDirectory() + "/Αποφάσεις/" + filename);
                 if (!file.exists()) {
                     Context context = getApplicationContext();
@@ -135,37 +128,33 @@ public class Bookmark extends AppCompatActivity {
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int swipeDir) {
                 //Remove swiped item from list and notify the RecyclerView
-
-                new SharedPreference().removeFavorite(getApplicationContext(),
-                        Favourite_Collection.get(viewHolder.getAdapterPosition()).toString());
+                RealmResults<Favourite> favs = realm.where(Favourite.class).findAll();
+                realm.beginTransaction();
+                favs.get(viewHolder.getAdapterPosition()).deleteFromRealm();
+                realm.commitTransaction();
                 mAdapter.remove(viewHolder.getAdapterPosition());
-//                // Get favourites
-//                ArrayList temp=   new SharedPreference().getFavorites(getApplicationContext());
-
-//                Favourite_Collection.remove(viewHolder.getAdapterPosition());
-//                Favourite_Collection.trimToSize();
-//
-//
-////                Favourite_Collection=new ArrayList<>();
-////                Favourite_Collection.addAll(temp);
-////
-//
-
-//                Favourite_Collection.remove(Favourite_Collection.get(Favourite_Collection.size()-2));
-
             }
 
         };
-
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleItemTouchCallback);
 
         itemTouchHelper.attachToRecyclerView(mRecyclerView);
 
 
-
-
     }
 
+
+    private ArrayList<Search> convertFavsToSearch() {
+
+        ArrayList<Search> s = new ArrayList<>();
+        // Get favourites
+        RealmResults<Favourite> favs = realm.where(Favourite.class).findAll();
+        for (int i = 0; i < favs.size(); i++) {
+            s.add(new Search(favs.get(i).getSector(), favs.get(i).getDocument(), favs.get(i).getType(), favs.get(i).getSigner(), favs.get(i).getADA(), favs.get(i).getProtoc_Num(),
+                    favs.get(i).getFileURL(), favs.get(i).getPathName(), favs.get(i).getSbject(), favs.get(i).getPublishDate(), favs.get(i).getID()));
+        }
+        return s;
+    }
 }
 

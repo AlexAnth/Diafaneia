@@ -45,10 +45,7 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.DataObjectHolder> 
                 myClickListener.onItemClick(getAdapterPosition(), v);
             }
         }
-        public void remove(int position) {
-            JsonList.remove(position);
-            notifyItemRemoved(position);
-        }
+
         public void setOnItemClickListener(MyClickListener myClickListener) {
             RVAdapter.myClickListener = myClickListener;
         }
@@ -83,8 +80,6 @@ public class RVAdapter extends RecyclerView.Adapter<RVAdapter.DataObjectHolder> 
                 holder.ltext.setText(((Document) object).getDocumentTitle());
             }else if (object.getClass().equals(Type.class)){
                 holder.ltext.setText(((Type) object).getTypeTitle());
-            }else{               // Bookmark
-                holder.ltext.setText(object.toString());
             }
 
         }

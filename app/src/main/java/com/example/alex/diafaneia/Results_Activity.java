@@ -14,7 +14,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -26,10 +25,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.alex.diafaneia.Model.Favourite;
 import com.example.alex.diafaneia.Model.Result;
 import com.example.alex.diafaneia.Model.Search;
 import com.example.alex.diafaneia.Utils.RVAdapter2;
-import com.example.alex.diafaneia.Utils.SharedPreference;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,6 +40,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.TimeZone;
 
+import io.realm.Realm;
+import io.realm.RealmResults;
 
 
 /**
@@ -67,7 +68,7 @@ public class Results_Activity extends AppCompatActivity {
     private TextView reco;
     private ImageView dwnl_button;
     private ImageView bookmark_button;
-    SharedPreference sharedPreference = new SharedPreference();
+    Realm realm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +77,11 @@ public class Results_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.results);
 
+        // Initialize Realm
+        Realm.init(getApplicationContext());
+
+        // Get a Realm instance for this thread
+        realm = Realm.getDefaultInstance();
 
         // Get the intent
         result = MainActivity.getR();
@@ -138,25 +144,13 @@ public class Results_Activity extends AppCompatActivity {
         (mAdapter).setOnItemClickListener(new RVAdapter2
                 .MyClickListener() {
             @Override
-            public void onItemClick(int position, View v) {
+            public void onItemClick(final int position, View v) {
                 final String filename = JsonCollection.get(position).getPathName();
                 String url = JsonCollection.get(position).getFileURL();
                 final File file = new File(Environment.getExternalStorageDirectory() + "/Αποφάσεις/" + filename);
                 if (!file.exists()) {
                     file_download(url, filename);
                 }
-//                    Context context = getApplicationContext();
-//                    CharSequence text = "Το έγγραφο αποθηκεύτηκε στο φάκελο Αποφάσεις";
-//                    int duration = Toast.LENGTH_SHORT;
-//                    Toast toast = Toast.makeText(context, text, duration);
-//                    toast.show();
-//                }else{
-//                    Context context = getApplicationContext();
-//                    CharSequence text = "Το έγγραφο υπάρχει ήδη στο φάκελο Αποφάσεις";
-//                    int duration = Toast.LENGTH_SHORT;
-//                    Toast toast = Toast.makeText(context, text, duration);
-//                    toast.show();
-//                }
                 Intent target = new Intent(Intent.ACTION_VIEW);
                 target.setDataAndType(Uri.fromFile(file),"application/pdf");
                 target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
@@ -174,26 +168,28 @@ public class Results_Activity extends AppCompatActivity {
                 }
 
                 dwnl_button=(ImageView)v.findViewById(R.id.download_btn);
-
-//                getApplicationContext().getSharedPreferences("PRODUCT_APP",
-//                        Context.MODE_PRIVATE).edit().clear().commit();
-                final ArrayList temp = sharedPreference.getFavorites(getApplicationContext());
+                final RealmResults<Favourite> favs = realm.where(Favourite.class).findAll();
                 dwnl_button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         //Change icon
                         dwnl_button.setImageResource(R.drawable.bookmark_icon_selected);
-                        //Clear duplicates
-                        if(temp!=null) {
-                            sharedPreference.removeDuplicates(getApplicationContext());
 
-                            if (!temp.contains(filename)) {
+                        Favourite fav = createFavourite(JsonCollection.get(position));
+
+
+                        if(favs!=null) {
+
+                            if (!favs.contains(fav)) {
                                 Context context = getApplicationContext();
                                 CharSequence text = "Το έγγραφο αποθηκεύτηκε στο φάκελο Αποφάσεις";
                                 int duration = Toast.LENGTH_SHORT;
                                 Toast toast = Toast.makeText(context, text, duration);
                                 toast.show();
-                                sharedPreference.addFavorite(getApplicationContext(), filename);
+
+                                realm.beginTransaction();
+                                realm.copyToRealm(fav);
+                                realm.commitTransaction();
                             } else {
                                 Context context = getApplicationContext();
                                 CharSequence text = "Το έγγραφο υπάρχει ήδη στο φάκελο Αποφάσεις";
@@ -202,26 +198,16 @@ public class Results_Activity extends AppCompatActivity {
                                 toast.show();
                             }
                         }else{
-                            sharedPreference.addFavorite(getApplicationContext(),filename);
+                            realm.beginTransaction();
+                            realm.copyToRealm(fav);
+                            realm.commitTransaction();
                         }
                     }
 
 
 
                 });
-                //Check Log on Monitor
-                if(temp!=null) {
-                    for (int i = 0; i < temp.size(); i++) {
-                        Log.v("Array :", (String) temp.get(i));
-                    }
-                }else{
-                    Log.v("Pref :",  " Null Preferences ");
-                }
-                File f = new File(Environment.getExternalStorageDirectory() + "/Αποφάσεις/" );
-                File[] fileFold = f.listFiles();
-                for(int i = 0 ; i < fileFold.length ; i++){
-                    Log.v("Folder :",  fileFold[i].getName());
-                }
+
 
 
             }
@@ -267,7 +253,6 @@ public class Results_Activity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.v("Διαφάνεια", "Err:" + error.getLocalizedMessage());
             }
         });
 
@@ -314,9 +299,8 @@ public class Results_Activity extends AppCompatActivity {
                 temp = temp + DATE_TO + result.getToDate();
             }
         }catch (Exception e){
-            Log.v("Διαφάνεια", "Exception Occured on URL Results Act." );
+
         }
-        Log.v("Διαφάνεια", "URL:" + temp);
         return temp;
     }
 
@@ -326,7 +310,7 @@ public class Results_Activity extends AppCompatActivity {
         try {
             sector = jsonobject.getJSONObject("Sector").getString("Title");
         }catch(Exception e){
-            sector=" Δεν βρέθηκε τομέας.";
+            sector=" Δεν βρέθηκε τομέας ";
         }
 
         String type;
@@ -346,6 +330,7 @@ public class Results_Activity extends AppCompatActivity {
         }
 
         String ADA = jsonobject.getString("ADA");
+        String ID = jsonobject.getString("ID");
         String ProtocolNumber = jsonobject.getString("ProtocolNumber");
         if (ProtocolNumber.equals("null") ) ProtocolNumber="";
 
@@ -369,22 +354,22 @@ public class Results_Activity extends AppCompatActivity {
         String sbject= jsonobject.getString("Subject");
 
         Search search = new Search(sector,document,type, signer, ADA, ProtocolNumber, fileURL, pathName,
-                sbject,PublishDate);
+                sbject,PublishDate,ID);
 
         JsonCollection.add(search);
 
     }
 
     public boolean internetConnection() {
-        boolean connected ;
-        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
-                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
-            //we are connected to a network
-            connected = true;
-        } else
-            connected = false;
-        return connected;
+
+        ConnectivityManager connManager = (ConnectivityManager) getApplicationContext()
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo info = connManager.getActiveNetworkInfo();
+        if (info != null)
+            return info.isConnected(); // WIFI connected
+        else
+            return false; // no info object implies no connectivity
     }
 
     public void file_download(String uRl,String filename) {
@@ -405,10 +390,27 @@ public class Results_Activity extends AppCompatActivity {
         request.setAllowedNetworkTypes(
                 DownloadManager.Request.NETWORK_WIFI
                         | DownloadManager.Request.NETWORK_MOBILE)
-                .setDestinationInExternalPublicDir("/Αποφάσεις", filename);
+                .setDestinationInExternalPublicDir("/Αποφάσεις/", filename);
 
         mgr.enqueue(request);
 
+    }
+
+    private Favourite createFavourite(Search search) {
+
+        final Favourite fav = new Favourite();
+        fav.setADA(search.getADA());
+        fav.setDocument(search.getDocument());
+        fav.setType(search.getType());
+        fav.setFileURL(search.getFileURL());
+        fav.setPathName(search.getPathName());
+        fav.setProtoc_Num(search.getProtoc_Num());
+        fav.setPublishDate(search.getPublishDate());
+        fav.setSbject(search.getSbject());
+        fav.setSector(search.getSector());
+        fav.setSigner(search.getSigner());
+        fav.setID(search.getID());
+        return fav;
     }
 
 }

@@ -1,0 +1,736 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:focusableInTouchMode="true"
+    android:id="@+id/RL1">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="115dp"
+        android:id="@+id/relativeLayout"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@drawable/gradient"
+        >
+
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/imageView3"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:adjustViewBounds="true"
+            android:src="@drawable/vouli_two"
+            android:scaleType="centerCrop"
+            android:contentDescription="a" />
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/info_btn"
+            android:layout_alignParentTop="false"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="false"
+            android:src="@drawable/info_icon"
+            android:paddingTop="2dp"
+            android:paddingRight="5dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginTop="2dp" />
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:id="@+id/bookmark_btn"
+            android:layout_alignParentTop="false"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="false"
+            android:src="@drawable/bookmark_icon"
+            android:paddingTop="2dp"
+            android:paddingRight="5dp"
+            android:layout_marginRight="72dp"
+            android:layout_marginTop="2dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Διαφάνεια"
+            android:id="@+id/textView"
+            android:textColor="#ffffff"
+            android:shadowColor="#b5343434"
+            android:singleLine="false"
+            android:paddingBottom="15dp"
+            android:textSize="35sp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:paddingLeft="70dp"
+            android:background="@drawable/gradient"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/info_btn"
+            android:gravity="bottom"
+            android:fontFamily="sans-serif-light"/>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:id="@+id/blue_background_bottom"
+        android:layout_alignParentBottom="true"
+        android:background="#03A9F4" />
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="100dp"
+        android:background="@drawable/background_with_shadow"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        >
+
+
+        <ScrollView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/scrollView">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:focusableInTouchMode="true"
+                android:focusable="true"
+                >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="false"
+                    android:id="@+id/relativeLayout1"
+                    android:layout_alignParentLeft="true">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/imageView15"
+                        android:src="@drawable/boolet_blue"
+                        android:layout_marginTop="17dp"
+                        android:layout_marginLeft="65dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="αναζήτηση"
+                        android:id="@+id/textView2"
+                        android:layout_alignParentStart="false"
+                        android:textColor="#FF36BAF6"
+                        android:paddingLeft="5dp"
+                        android:layout_marginLeft="70dp"
+                        android:textSize="28dp"
+                        android:fontFamily="sans-serif-light"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Υπηρεσία / Φορέας"
+                        android:id="@+id/textView3"
+                        android:layout_marginLeft="55dp"
+                        android:layout_alignParentLeft="false"
+                        android:layout_alignParentStart="false"
+                        android:textSize="18dp"
+                        android:textColor="#0288D1"
+                        android:layout_alignParentTop="false"
+                        android:layout_marginTop="34dp"
+                        android:fontFamily="sans-serif-light"/>
+
+                    <Button
+                        android:id="@+id/button1"
+
+                        android:textColor="#343434"
+                        android:textSize="10sp"
+
+                        android:layout_width="255dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/button"
+                        android:shadowColor="#ffffff"
+                        android:shadowDx="0"
+                        android:singleLine="true"
+                        android:layout_below="@+id/textView3"
+                        android:textAllCaps="false"
+                        android:layout_marginLeft="45dp"
+                        android:textStyle="normal"
+                        android:textAlignment="center" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Υπηρεσία / Φορέας"
+                        android:id="@+id/text1"
+                        android:layout_marginLeft="55dp"
+                        android:layout_alignParentStart="false"
+                        android:textSize="13dp"
+                        android:textColor="#7F7F7F"
+                        android:layout_alignRight="@+id/button1"
+                        android:layout_alignEnd="@+id/button1"
+                        android:layout_alignTop="@+id/button1"
+                        android:layout_alignBottom="@+id/button1"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="sans-serif-light"/>
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:id="@+id/cancel1"
+                        android:src="@drawable/cancel_button_inactive"
+                        android:layout_alignTop="@+id/button1"
+                        android:layout_toRightOf="@+id/button1"
+                        android:layout_toEndOf="@+id/button1"
+                        android:layout_marginLeft="6dp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="false"
+                    android:id="@+id/relativeLayout2"
+                    android:paddingTop="100dp">
+
+                    <Button
+                        android:id="@+id/button2"
+                        android:textColor="#343434"
+                        android:textSize="10sp"
+                        android:layout_width="255dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/button"
+                        android:shadowColor="#ffffff"
+                        android:shadowDx="0"
+                        android:singleLine="true"
+                        android:layout_below="@+id/textView5"
+                        android:textAllCaps="false"
+                        android:layout_marginLeft="45dp"
+                        android:textStyle="normal" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Θεματική Ενότητα"
+                        android:id="@+id/textView5"
+                        android:layout_marginLeft="55dp"
+                        android:layout_alignParentLeft="false"
+                        android:layout_alignParentStart="false"
+                        android:textSize="18dp"
+                        android:textColor="#0288D1"
+                        android:layout_alignParentTop="false"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="sans-serif-light"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Θεματική Ενότητα"
+                        android:id="@+id/text2"
+                        android:layout_marginLeft="55dp"
+                        android:layout_alignParentStart="false"
+                        android:textSize="13dp"
+                        android:textColor="#7F7F7F"
+                        android:layout_alignRight="@+id/button2"
+                        android:layout_alignEnd="@+id/button2"
+                        android:layout_alignTop="@+id/button2"
+                        android:layout_alignBottom="@+id/button2"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="sans-serif-light"/>
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:id="@+id/cancel2"
+                        android:src="@drawable/cancel_button_inactive"
+                        android:layout_alignTop="@+id/button2"
+                        android:layout_toRightOf="@+id/button2"
+                        android:layout_toEndOf="@+id/button2"
+                        android:layout_marginLeft="6dp" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="false"
+                    android:id="@+id/relativeLayout3"
+                    android:paddingTop="180dp" >
+
+                    <Button
+                        android:id="@+id/button3"
+                        android:textColor="#343434"
+                        android:textSize="10sp"
+                        android:layout_width="255dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/button"
+                        android:shadowColor="#ffffff"
+                        android:shadowDx="0"
+                        android:singleLine="true"
+                        android:layout_below="@+id/textView4"
+                        android:textAllCaps="false"
+                        android:layout_marginLeft="45dp"
+                        android:textStyle="normal" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Είδος Απόφασης"
+                        android:id="@+id/textView4"
+                        android:layout_marginLeft="55dp"
+                        android:layout_alignParentLeft="false"
+                        android:layout_alignParentStart="false"
+                        android:textColor="#0288D1"
+                        android:layout_alignParentTop="false"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="sans-serif-light"
+                        android:textSize="18dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Είδος Απόφασης"
+                        android:id="@+id/text3"
+                        android:layout_marginLeft="55dp"
+                        android:layout_alignParentStart="false"
+                        android:textSize="13dp"
+                        android:textColor="#7F7F7F"
+                        android:layout_toLeftOf="@+id/cancel3"
+                        android:layout_toStartOf="@+id/cancel3"
+                        android:layout_alignTop="@+id/button3"
+                        android:layout_alignBottom="@+id/button3"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="sans-serif-light"/>
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:id="@+id/cancel3"
+                        android:src="@drawable/cancel_button_inactive"
+                        android:layout_alignTop="@+id/button3"
+                        android:layout_toRightOf="@+id/button3"
+                        android:layout_toEndOf="@+id/button3"
+                        android:layout_marginLeft="6dp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="false"
+                    android:id="@+id/relativeLayout4"
+                    android:paddingTop="260dp" >
+
+                    <Button
+                        android:id="@+id/button4"
+                        android:textColor="#343434"
+                        android:textSize="10sp"
+                        android:layout_width="255dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/button"
+                        android:shadowColor="#ffffff"
+                        android:shadowDx="0"
+                        android:singleLine="true"
+                        android:layout_below="@+id/textView6"
+                        android:textAllCaps="false"
+                        android:layout_marginLeft="45dp"
+                        android:textStyle="normal" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Τελικός Υπογράφων"
+                        android:id="@+id/textView6"
+                        android:layout_marginLeft="55dp"
+                        android:layout_alignParentLeft="false"
+                        android:layout_alignParentStart="false"
+                        android:textColor="#0288D1"
+                        android:layout_alignParentTop="false"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="sans-serif-light"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Τελικός Υπογράφων"
+                        android:id="@+id/text4"
+                        android:layout_marginLeft="55dp"
+                        android:layout_alignParentStart="false"
+                        android:textSize="13dp"
+                        android:textColor="#7F7F7F"
+                        android:layout_alignRight="@+id/button4"
+                        android:layout_alignEnd="@+id/button4"
+                        android:layout_alignTop="@+id/button4"
+                        android:layout_alignBottom="@+id/button4"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="sans-serif-light"/>
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:id="@+id/cancel4"
+                        android:src="@drawable/cancel_button_inactive"
+                        android:layout_alignTop="@+id/button4"
+                        android:layout_toRightOf="@+id/button4"
+                        android:layout_toEndOf="@+id/button4"
+                        android:layout_marginLeft="6dp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="false"
+                    android:id="@+id/relativeLayout5"
+                    android:paddingTop="340dp"
+
+                    >
+
+                    <EditText
+                        android:id="@+id/editText1"
+                        android:layout_width="255dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:textColorHint="#7F7F7F"
+                        android:hint="ΑΔΑ (Αριθμός Δικτυακής Αναζήτησης)"
+                        android:textSize="13dp"
+                        android:imeOptions="actionDone"
+                        android:imeActionId="1"
+                        android:background="@drawable/button"
+                        android:focusableInTouchMode="true"
+                        android:focusable="true"
+                        android:enabled="true"
+                        android:layout_below="@+id/textView7"
+                        android:paddingLeft="14dp"
+                        android:layout_alignLeft="@+id/textView7"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginLeft="45dp"
+                        android:inputType="textNoSuggestions"
+                        android:fontFamily="sans-serif-light">
+                    </EditText>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="ΑΔΑ "
+                        android:id="@+id/textView7"
+                        android:layout_marginLeft="55dp"
+                        android:layout_alignParentLeft="false"
+                        android:layout_alignParentStart="false"
+                        android:textSize="18sp"
+                        android:textColor="#0288D1"
+                        android:layout_alignParentTop="false"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="sans-serif-light"/>
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:id="@+id/cancel5"
+                        android:src="@drawable/cancel_button_inactive"
+                        android:layout_below="@+id/textView7"
+                        android:layout_toRightOf="@+id/editText1"
+                        android:layout_marginLeft="6dp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="false"
+                    android:id="@+id/relativeLayout6"
+                    android:paddingTop="420dp" >
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Αριθμός Πρωτοκόλου"
+                        android:id="@+id/textView8"
+                        android:layout_marginLeft="55dp"
+                        android:layout_alignParentLeft="false"
+                        android:layout_alignParentStart="false"
+                        android:textSize="18sp"
+                        android:textColor="#0288D1"
+                        android:layout_alignParentTop="false"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="sans-serif-light"/>
+
+                    <EditText
+                        android:id="@+id/editText2"
+                        android:layout_width="255dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:textColorHint="#7F7F7F"
+                        android:hint="Αριθμός Πρωτοκόλου"
+                        android:textSize="13dp"
+                        android:imeOptions="actionDone"
+                        android:imeActionId="1"
+                        android:background="@drawable/button"
+                        android:focusableInTouchMode="true"
+                        android:focusable="true"
+                        android:enabled="true"
+                        android:layout_below="@+id/textView8"
+                        android:paddingLeft="14dp"
+                        android:layout_alignLeft="@+id/textView8"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginLeft="45dp"
+                        android:inputType="textNoSuggestions"
+                        android:fontFamily="sans-serif-light">
+                    </EditText>
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:id="@+id/cancel6"
+                        android:src="@drawable/cancel_button_inactive"
+                        android:layout_alignTop="@+id/editText2"
+                        android:layout_toRightOf="@+id/editText2"
+                        android:layout_toEndOf="@+id/editText2"
+                        android:layout_marginLeft="6dp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="173dp"
+                    android:background="#03A9F4"
+                    android:animationCache="false"
+                    android:paddingTop="3dp"
+                    android:layout_below="@+id/relativeLayout7"
+                    android:layout_marginTop="10dp"
+                    android:paddingLeft="23dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="από:"
+                        android:id="@+id/textView11"
+                        android:paddingTop="25dp"
+                        android:paddingLeft="30dp"
+                        android:textSize="15sp"
+                        android:textColor="#ffffff"
+                        android:layout_alignBottom="@+id/cancel_date_2"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:fontFamily="sans-serif-light"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:text="έως:"
+                        android:id="@+id/textView12"
+                        android:paddingTop="72dp"
+                        android:paddingLeft="30dp"
+                        android:textSize="15dp"
+                        android:singleLine="false"
+                        android:textColor="#ffffff"
+                        android:layout_alignTop="@+id/textView11"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:fontFamily="sans-serif-light"/>
+
+                    <EditText
+                        android:id="@+id/etxt_fromdate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight=".5"
+                        android:hint="@string/from_date"
+                        android:text="1/1/2014"
+                        android:layout_alignEnd="@+id/textView10"
+                        android:layout_marginTop="23dp"
+                        android:fontFamily="sans-serif-light"/>
+
+                    <EditText
+                        android:id="@+id/etxt_todate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/to_date"
+                        android:text="20/4/2016"
+                        android:layout_marginTop="72dp"
+                        android:layout_marginLeft="106dp"
+                        android:fontFamily="sans-serif-light"/>
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:id="@+id/cancel_date_1"
+                        android:src="@drawable/cancel_button_inactive"
+                        android:layout_below="@+id/view"
+                        android:layout_alignLeft="@+id/cancel_date_2"
+                        android:layout_alignStart="@+id/cancel_date_2"
+                        android:layout_marginTop="8dp" />
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:id="@+id/cancel_date_2"
+                        android:src="@drawable/cancel_button_inactive"
+                        android:layout_alignParentTop="true"
+                        android:layout_toRightOf="@+id/view"
+                        android:layout_toEndOf="@+id/view"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginTop="18dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="ημ/νια ανάρτησης"
+                        android:id="@+id/textView10"
+                        android:textSize="24dp"
+                        android:paddingLeft="2dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:fontFamily="sans-serif-light"/>
+
+                    <View style="@style/Divider"
+                        android:layout_width="258dp"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="60dp"
+                        android:layout_marginLeft="20dp"
+                        android:id="@+id/view" />
+
+                    <View style="@style/Divider"
+                        android:layout_width="258dp"
+                        android:layout_height="1dp"
+                        android:id="@+id/view2"
+                        android:layout_below="@+id/cancel_date_1"
+                        android:layout_toLeftOf="@+id/cancel_date_2"
+                        android:layout_toStartOf="@+id/cancel_date_2" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2"
+                    android:layout_marginTop="770dp"
+                    android:layout_marginBottom="10dp"
+                    android:padding="20dp">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/clear_btn"
+                        android:layout_weight="1"
+                        android:src="@drawable/clear_white_button"
+                        android:paddingLeft="15dp" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/search_btn"
+                        android:layout_weight="1"
+                        android:src="@drawable/search_white_button"
+                        android:paddingRight="15dp" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/relativeLayout7"
+                    android:paddingTop="500dp"
+                    android:layout_centerInParent="false"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentStart="true">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Ελεύθερο Κείμενο"
+                        android:id="@+id/textView9"
+                        android:layout_marginLeft="55dp"
+                        android:layout_alignParentLeft="false"
+                        android:layout_alignParentStart="false"
+                        android:textSize="18sp"
+                        android:textColor="#0288D1"
+                        android:layout_alignParentTop="false"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="sans-serif-light"/>
+
+                    <EditText
+                        android:id="@+id/editText3"
+                        android:layout_width="255dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:textColorHint="#7F7F7F"
+                        android:hint="Ελεύθερο Κείμενο"
+                        android:textSize="13dp"
+                        android:imeOptions="actionDone"
+                        android:imeActionId="1"
+                        android:background="@drawable/button"
+                        android:focusableInTouchMode="true"
+                        android:focusable="true"
+                        android:enabled="true"
+                        android:layout_below="@+id/textView9"
+                        android:paddingLeft="14dp"
+                        android:layout_alignLeft="@+id/textView9"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginLeft="45dp"
+                        android:inputType="textNoSuggestions"
+                        android:fontFamily="sans-serif-light">
+                    </EditText>
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:id="@+id/cancel7"
+                        android:src="@drawable/cancel_button_inactive"
+                        android:layout_alignTop="@+id/editText3"
+                        android:layout_toRightOf="@+id/editText3"
+                        android:layout_toEndOf="@+id/editText3"
+                        android:layout_marginLeft="6dp" />
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+        </ScrollView>
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

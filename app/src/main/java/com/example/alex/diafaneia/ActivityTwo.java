@@ -307,16 +307,17 @@ public class ActivityTwo extends AppCompatActivity {
         mRecyclerView.setVisibility(View.VISIBLE);
     }
     public boolean internetConnection() {
-        boolean connected;
-        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
-                connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).getState() == NetworkInfo.State.CONNECTED) {
-            //we are connected to a network
-            connected = true;
-        } else
-            connected = false;
-        return connected;
-    }
 
+            ConnectivityManager connManager = (ConnectivityManager) getApplicationContext()
+                    .getSystemService(Context.CONNECTIVITY_SERVICE);
+
+            NetworkInfo info = connManager.getActiveNetworkInfo();
+            if (info != null)
+                return info.isConnected(); // WIFI connected
+            else
+                return false; // no info object implies no connectivity
+    }
 }
+
+
 

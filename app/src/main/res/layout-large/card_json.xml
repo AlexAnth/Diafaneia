@@ -8,6 +8,7 @@
     android:background="#ffffff"
     android:id="@+id/cv"
     card_view:cardPreventCornerOverlap="false">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,7 +23,6 @@
             android:text="Large Text"
             android:id="@+id/card_text"
             android:textColor="#4A4A4A"
-            android:textSize="15dp"
             android:layout_alignParentStart="false"
             android:padding="15dp"
             android:fontFamily="sans-serif-light"/>

@@ -4,11 +4,9 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
-import android.util.Log;
 import android.view.KeyEvent;
 
 import android.view.View;
@@ -97,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         findViewsById();
+
 
         // Date Pickers
         dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
@@ -388,8 +387,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         search_b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.v("Διαφάνεια", "Date Format from date : " + fromDate);
-                Log.v("Διαφάνεια", "Date Format to Date : " + toDate);
                 r = new Result(sector, document, type, signer, ADA, protoc_Num, free_Text_str, fromDate, toDate);
                 Intent intent = new Intent(getApplicationContext(), Results_Activity.class);
                 startActivity(intent);
@@ -612,6 +609,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static Result getR() {
         return r;
     }
+
+
 
 
 }
