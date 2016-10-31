@@ -8,14 +8,12 @@ import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.alex.diafaneia.Bookmark;
 import com.example.alex.diafaneia.Model.Favourite;
 import com.example.alex.diafaneia.Model.Search;
 import com.example.alex.diafaneia.R;
@@ -25,12 +23,10 @@ import java.util.ArrayList;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
-import static android.support.v4.app.ShareCompat.getCallingActivity;
+
+public class RVAdapter3 extends RecyclerView.Adapter<RVAdapter3.DataObjectHolder> {
 
 
-public class RVAdapter2 extends RecyclerView.Adapter<RVAdapter2.DataObjectHolder> {
-
-    private final Context context;
     private ArrayList<Search> JsonList = new ArrayList<>();
         private static MyClickListener myClickListener;
 
@@ -72,11 +68,11 @@ public class RVAdapter2 extends RecyclerView.Adapter<RVAdapter2.DataObjectHolder
         }
 
         public void setOnItemClickListener(MyClickListener myClickListener) {
-            RVAdapter2.myClickListener = myClickListener;
+            RVAdapter3.myClickListener = myClickListener;
         }
 
-        public RVAdapter2(ArrayList<Search> myDataset, Context applicationContext) {
-            context=applicationContext;
+        public RVAdapter3(ArrayList<Search> myDataset) {
+
             JsonList = myDataset;
         }
 
@@ -89,7 +85,7 @@ public class RVAdapter2 extends RecyclerView.Adapter<RVAdapter2.DataObjectHolder
         public DataObjectHolder onCreateViewHolder(ViewGroup parent,
                                                    int viewType) {
             View view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.results_card, parent, false);
+                    .inflate(R.layout.results_card_bookmark, parent, false);
 
             DataObjectHolder dataObjectHolder = new DataObjectHolder(view);
             return dataObjectHolder;
@@ -103,19 +99,20 @@ public class RVAdapter2 extends RecyclerView.Adapter<RVAdapter2.DataObjectHolder
 
 
         // Initialize Realm
-        Realm.init(context);
-        // Get a Realm instance for this thread
-        Realm realm = Realm.getDefaultInstance();
-        RealmResults<Favourite> favs = realm.where(Favourite.class).findAll();
-        String ID = search.getID();
-        if(favs!=null) {
-            for (int i = 0; i < favs.size(); i++) {
-                if(favs.get(i).getID().equalsIgnoreCase(ID)){
-                    holder.download.setImageResource(R.drawable.bookmark_icon_selected);
-                    break;
-                }
-            }
-        }
+//        Realm.init(context);
+//        // Get a Realm instance for this thread
+//        Realm realm = Realm.getDefaultInstance();
+//        RealmResults<Favourite> favs = realm.where(Favourite.class).findAll();
+//        String ID = search.getID();
+//        if(favs!=null) {
+//            for (int i = 0; i < favs.size(); i++) {
+//                if(favs.get(i).getID().equalsIgnoreCase(ID)){
+//                    holder.download.setImageResource(R.drawable.bookmark_icon_selected);
+//                    break;
+//                }
+//            }
+//        }
+        holder.download.setImageResource(R.drawable.bookmark_icon_selected);
         holder.ADA.setText(search.getADA());
         holder.date.setText(search.getPublishDate());
         holder.protoc_num.setText(search.getProtoc_Num());

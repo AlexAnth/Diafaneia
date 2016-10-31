@@ -25,7 +25,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
-                android:background="#03A9F4">
+                android:background="#8191B2">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -39,8 +39,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_marginTop="5dp"
                     android:layout_marginLeft="7dp"
-                    android:fontFamily="sans-serif-light"
-                    android:textSize="18sp" />
+                    android:fontFamily="sans-serif-light"/>
 
                 <TextView
                     android:layout_width="90dp"
@@ -53,8 +52,7 @@
                     android:layout_toRightOf="@+id/textView23"
                     android:layout_toEndOf="@+id/textView23"
                     android:layout_marginLeft="7dp"
-                    android:fontFamily="sans-serif-light"
-                    android:textSize="18sp"/>
+                    android:fontFamily="sans-serif-light"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -68,8 +66,7 @@
                     android:layout_toRightOf="@+id/textView22"
                     android:layout_toEndOf="@+id/textView22"
                     android:layout_marginStart="5dp"
-                    android:fontFamily="sans-serif-light"
-                    android:textSize="18sp"/>
+                    android:fontFamily="sans-serif-light"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -83,12 +80,11 @@
                     android:layout_alignParentStart="true"
                     android:layout_marginTop="25dp"
                     android:layout_marginLeft="7dp"
-                    android:fontFamily="sans-serif-light"
-                    android:textSize="18sp"/>
+                    android:fontFamily="sans-serif-light"/>
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:id="@+id/download_btn"
                     android:src="@drawable/bookmark_icon"
                     android:paddingTop="2dp"
@@ -111,8 +107,7 @@
                     android:layout_alignBaseline="@+id/textView24"
                     android:layout_alignBottom="@+id/textView24"
                     android:layout_toLeftOf="@+id/download_btn"
-                    android:layout_toStartOf="@+id/download_btn"
-                    android:textSize="18sp"/>
+                    android:layout_toStartOf="@+id/download_btn" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -124,16 +119,14 @@
                     android:fontFamily="sans-serif-light"
                     android:layout_above="@+id/protoc_num"
                     android:layout_toLeftOf="@+id/date"
-                    android:layout_toStartOf="@+id/date"
-                    android:textSize="18sp"
-                    android:paddingTop="3dp" />
+                    android:layout_toStartOf="@+id/date" />
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="55dp"
-                android:background="#007AB2"
+                android:background="#566281"
                 android:id="@+id/relativeLayout10">
 
                 <TextView
@@ -152,9 +145,7 @@
                     android:layout_alignParentEnd="true"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
-                    android:fontFamily="sans-serif-light"
-                    android:textSize="18sp"
-                    android:paddingBottom="2dp" />
+                    android:fontFamily="sans-serif-light"/>
             </RelativeLayout>
 
             <RelativeLayout
@@ -179,16 +170,15 @@
                     android:layout_alignParentRight="true"
                     android:layout_alignParentEnd="true"
                     android:layout_marginRight="3dp"
-                    android:fontFamily="sans-serif-light"
-                    android:textSize="18sp"/>
+                    android:fontFamily="sans-serif-light"/>
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/imageView8"
                     android:src="@drawable/boolet_blue"
-                    android:layout_marginTop="32dp"
-                    android:paddingTop="10dp"
+                    android:layout_marginTop="30dp"
+                    android:paddingTop="6dp"
                     android:layout_below="@+id/imageView7"
                     android:layout_toLeftOf="@+id/text_bull_1"
                     android:layout_toStartOf="@+id/text_bull_1" />
@@ -213,12 +203,13 @@
                     android:layout_alignLeft="@+id/imageView8"
                     android:layout_alignStart="@+id/imageView8"
                     android:layout_marginTop="102dp"
-                    android:paddingTop="7dp"
+                    android:paddingTop="6dp"
                     android:layout_alignRight="@+id/imageView8"
                     android:layout_alignEnd="@+id/imageView8" />
 
                 <TextView
                     android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="Medium Text"
                     android:id="@+id/text_bull_1"
@@ -229,12 +220,10 @@
                     android:layout_alignParentEnd="true"
                     android:layout_marginLeft="4dp"
                     android:layout_marginRight="4dp"
+                    android:padding="2dp"
                     android:textColor="#4D4D4D"
-                    android:fontFamily="sans-serif-light"
-                    android:textSize="18sp"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="2dp"
-                    android:paddingRight="2dp" />
+                    android:layout_marginBottom="3dp"
+                    android:fontFamily="sans-serif-light"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -242,6 +231,7 @@
                     android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="γ) ο προϋπολογισμός εξόδων, ο ισολογισμός − απολογισμός της Βουλής των Ελλήνων, μετά την έγκριση τους από την Ολομέλεια της Βουλής, καθώς και τριμηνιαίοι πίνακες εκτέλεσης του προϋπολογισμού της Βουλής, και πίνακες στοχοθεσίας και επίτευξης ή απόκλισης στ "
                     android:id="@+id/text_bull_2"
+                    android:padding="2dp"
                     android:textColor="#4D4D4D"
                     android:layout_below="@+id/text_bull_1"
                     android:layout_alignLeft="@+id/text_bull_1"
@@ -249,12 +239,8 @@
                     android:layout_alignRight="@+id/text_bull_3"
                     android:layout_alignEnd="@+id/text_bull_3"
                     android:layout_above="@+id/text_bull_3"
-                    android:layout_marginBottom="4dp"
-                    android:fontFamily="sans-serif-light"
-                    android:textSize="18sp"
-                    android:paddingLeft="2dp"
-                    android:paddingRight="2dp"
-                    android:layout_marginTop="4dp" />
+                    android:layout_marginBottom="3dp"
+                    android:fontFamily="sans-serif-light"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -271,8 +257,7 @@
                     android:layout_alignTop="@+id/imageView9"
                     android:paddingLeft="2dp"
                     android:paddingRight="2dp"
-                    android:fontFamily="sans-serif-light"
-                    android:textSize="18sp"/>
+                    android:fontFamily="sans-serif-light"/>
 
             </RelativeLayout>
 

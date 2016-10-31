@@ -10,14 +10,14 @@
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:id="@+id/upper_right"
-        android:background="#03A9F4"
+        android:background="#8191B2"
         android:layout_alignParentRight="true" />
 
     <ImageView
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:id="@+id/low_right"
-        android:background="#03A9F4"
+        android:background="#6E7DA3"
         android:layout_below="@+id/upper_right"
         android:layout_alignParentRight="true" />
 
@@ -25,21 +25,21 @@
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:id="@+id/upper_left"
-        android:background="#03A9F4" />
+        android:background="#6E7DA3" />
 
     <ImageView
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:id="@+id/low_left"
         android:layout_below="@+id/upper_right"
-        android:background="#03A9F4" />
+        android:background="#8191B2" />
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:id="@+id/blue_background_bottom"
         android:layout_alignParentBottom="true"
-        android:background="#03A9F4" />
+        android:background="#6E7DA3" />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -69,7 +69,7 @@
                 android:adjustViewBounds="true"
                 android:scaleType="fitXY"
                 android:contentDescription="a"
-                android:background="#03A9F4" />
+                android:background="#6E7DA3" />
 
             <ImageView
                 android:layout_width="60dp"
@@ -86,7 +86,7 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:id="@+id/imageView2"
+                android:id="@+id/bookmark_btn"
                 android:layout_alignParentTop="false"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="false"

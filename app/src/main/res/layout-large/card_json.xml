@@ -25,7 +25,8 @@
             android:textColor="#4A4A4A"
             android:layout_alignParentStart="false"
             android:padding="15dp"
-            android:fontFamily="sans-serif-light"/>
+            android:fontFamily="sans-serif-light"
+            android:textSize="18sp" />
 
         <View
             android:layout_width="match_parent"

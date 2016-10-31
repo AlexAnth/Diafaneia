@@ -19,6 +19,7 @@ import com.example.alex.diafaneia.Model.Favourite;
 import com.example.alex.diafaneia.Model.Search;
 
 import com.example.alex.diafaneia.Utils.RVAdapter2;
+import com.example.alex.diafaneia.Utils.RVAdapter3;
 
 
 import java.io.File;
@@ -36,7 +37,7 @@ public class Bookmark extends AppCompatActivity {
     ArrayList <Search> Favourite_Collection= new ArrayList();
 
     private RecyclerView mRecyclerView;
-    private RVAdapter2 mAdapter;
+    private RVAdapter3 mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private Realm realm;
 
@@ -55,7 +56,7 @@ public class Bookmark extends AppCompatActivity {
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new RVAdapter2(Favourite_Collection,getApplicationContext());
+        mAdapter = new RVAdapter3(Favourite_Collection);
         mRecyclerView.setAdapter(mAdapter);
 
         Favourite_Collection.addAll(convertFavsToSearch());
@@ -68,6 +69,17 @@ public class Bookmark extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),Info.class);
                 startActivity(intent);
+                finish();
+
+            }
+
+        });
+
+        ImageView bookmark_button=(ImageView)findViewById(R.id.bookmark_btn);
+        bookmark_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
 
         });
@@ -80,7 +92,7 @@ public class Bookmark extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        mAdapter.setOnItemClickListener(new RVAdapter2
+        mAdapter.setOnItemClickListener(new RVAdapter3
                 .MyClickListener() {
             @Override
             public void onItemClick(int position, View v) {
