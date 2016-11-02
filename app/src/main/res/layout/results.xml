@@ -81,7 +81,8 @@
             android:layout_alignStart="@+id/imageView6"
             android:textColor="#ffffff"
             android:layout_marginTop="50dp"
-            android:fontFamily="sans-serif-light"/>
+            android:fontFamily="sans-serif-light"
+            android:layout_marginLeft="20dp" />
 
     </RelativeLayout>
 

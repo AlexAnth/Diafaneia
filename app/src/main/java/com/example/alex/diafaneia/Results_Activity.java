@@ -70,6 +70,8 @@ public class Results_Activity extends AppCompatActivity {
     private ImageView bookmark_button;
     Realm realm;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -86,7 +88,7 @@ public class Results_Activity extends AppCompatActivity {
         // Get the intent
         result = MainActivity.getR();
         bookmark_button=(ImageView)findViewById(R.id.bookmark_btn);
-        mProgressBar= (ProgressBar)findViewById(R.id.progress_bar);
+        mProgressBar= (ProgressBar)this.findViewById(R.id.progress_bar);
         reco = (TextView) findViewById(R.id.res_number);
         mRecyclerView = (RecyclerView) findViewById(R.id.result_card);
         mRecyclerView.setNestedScrollingEnabled(false);
@@ -150,6 +152,11 @@ public class Results_Activity extends AppCompatActivity {
                 final File file = new File(Environment.getExternalStorageDirectory() + "/Αποφάσεις/" + filename);
                 if (!file.exists()) {
                     file_download(url, filename);
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
                 Intent target = new Intent(Intent.ACTION_VIEW);
                 target.setDataAndType(Uri.fromFile(file),"application/pdf");
@@ -223,14 +230,15 @@ public class Results_Activity extends AppCompatActivity {
                     JSONObject jsonobj = new JSONObject(response.toString());
 
                     String records = jsonobj.getString("TotalRecords");
-                    if(records=="1"){
+                    if(records.equalsIgnoreCase("1")){
                         reco.setText("Βρέθηκε "+records+" απόφαση");
-                    }else if(records=="0") {
+                    }else if(records.equalsIgnoreCase("0")) {
                         reco.setText("Δεν βρέθηκαν απόφασεις");
                         mProgressBar.setVisibility(View.GONE);
                         mRecyclerView.setVisibility(View.VISIBLE);
                     }else{
                         reco.setText("Βρέθηκαν "+records+" αποφάσεις");
+
 
                     }
 

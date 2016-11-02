@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.text.InputType;
 import android.view.KeyEvent;
 
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -32,7 +33,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, View.OnFocusChangeListener {
 
 
     private static Sector sector = null;
@@ -501,6 +502,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void setDateTimeField() {
         fromDateEtxt.setOnClickListener(this);
+        fromDateEtxt.setOnFocusChangeListener(this);
+        toDateEtxt.setOnFocusChangeListener(this);
         toDateEtxt.setOnClickListener(this);
 
         Calendar newCalendar = Calendar.getInstance();
@@ -532,9 +535,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
+        public void onFocusChange(View view, boolean hasFocus) {
+            if(hasFocus) {
+                if (view == fromDateEtxt) {
+                    fromDatePickerDialog.show();
+                } else if (view == toDateEtxt) {
+                    toDatePickerDialog.show();
+                }
+            } else {
+                // Hide your calender here
+                if (view == fromDateEtxt) {
+                    fromDatePickerDialog.hide();
+                } else if (view == toDateEtxt) {
+                    toDatePickerDialog.hide();
+                }
+            }
+        }
+
     @Override
     public void onClick(View view) {
-
         if (view == fromDateEtxt) {
             fromDatePickerDialog.show();
         } else if (view == toDateEtxt) {
@@ -609,7 +628,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static Result getR() {
         return r;
     }
-
 
 
 

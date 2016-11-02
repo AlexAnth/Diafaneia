@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#d2000000</color>
-    <color name="colorPrimaryDark">#ed1b1b1b</color>
+    <color name="colorPrimary">#d28c8c8c</color>
+    <color name="colorPrimaryDark">#ed494949</color>
     <color name="colorBlue">#0288D1</color>
     <color name="listDivider">#ffffff</color>
 
