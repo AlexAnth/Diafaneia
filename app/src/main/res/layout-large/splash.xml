@@ -20,8 +20,9 @@
         android:layout_height="120dp"
         android:id="@+id/imageView16"
         android:src="@drawable/logo_white_border"
-        android:layout_above="@+id/textView15"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignBottom="@+id/textView15"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="47dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -32,8 +33,7 @@
         android:textSize="30sp"
         android:fontFamily="sans-serif-light"
         android:layout_below="@+id/imageView16"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -43,8 +43,8 @@
         android:id="@+id/textView15"
         android:fontFamily="sans-serif-light"
         android:textSize="40dp"
-        android:layout_marginBottom="25dp"
-        android:layout_above="@+id/load"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="31dp"
+        android:layout_marginTop="320dp" />
 
 </RelativeLayout>
