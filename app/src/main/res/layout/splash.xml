@@ -7,10 +7,10 @@
 
 
     <ImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
         android:id="@+id/imageView16"
-        android:src="@drawable/logo_white_border"
+        android:src="@drawable/icon_round_120x120"
         android:layout_marginTop="114dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Βουλή των Ελλήνων"
+        android:text="Διαφάνεια"
         android:id="@+id/textView15"
         android:textSize="24dp"
         android:layout_below="@+id/imageView16"
@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Διαφάνεια"
+        android:text="Κοινοβουλευτικών Αποφασεων"
         android:id="@+id/textView16"
         android:textSize="20dp"
         android:layout_below="@+id/textView15"

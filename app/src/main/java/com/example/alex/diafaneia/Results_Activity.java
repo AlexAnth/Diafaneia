@@ -195,7 +195,7 @@ public class Results_Activity extends AppCompatActivity {
                                 toast.show();
 
                                 realm.beginTransaction();
-                                realm.copyToRealm(fav);
+                                realm.copyToRealmOrUpdate(fav);
                                 realm.commitTransaction();
                             } else {
                                 Context context = getApplicationContext();

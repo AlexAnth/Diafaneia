@@ -99,7 +99,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:id="@+id/imageView19"
-            android:src="@drawable/logo_white_border"
+            android:src="@drawable/iconbte_80x50_radius"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"

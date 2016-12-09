@@ -24,6 +24,7 @@
             android:textColor="#4A4A4A"
             android:textSize="15dp"
             android:layout_alignParentStart="false"
+            android:layout_alignParentLeft="true"
             android:padding="15dp"
             android:fontFamily="sans-serif-light"/>
 
