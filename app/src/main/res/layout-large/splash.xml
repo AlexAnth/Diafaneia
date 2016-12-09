@@ -19,7 +19,7 @@
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:id="@+id/imageView16"
-        android:src="@drawable/iconbte_120x75"
+        android:src="@drawable/icon_round_120x120"
         android:layout_alignBottom="@+id/textView15"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="47dp" />

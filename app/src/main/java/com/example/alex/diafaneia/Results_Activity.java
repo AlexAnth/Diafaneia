@@ -153,7 +153,7 @@ public class Results_Activity extends AppCompatActivity {
                 if (!file.exists()) {
                     file_download(url, filename);
                     try {
-                        Thread.sleep(500);
+                        Thread.sleep(600);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

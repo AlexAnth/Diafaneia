@@ -8,6 +8,7 @@
     <string name="adress">Ταχυδρομική διεύθυνση:\nΜέγαρο Βουλής\n100 21 Αθήνα </string>
     <string name="comments">Για σχόλια και παρατηρήσεις μπορείτε να\nεπικοινωνείτε με την Βουλή των Ελλήνων\nστέλνοντας e-mail στην διέυθυνση:
         <a href="infopar@parliament.gr">infopar@parliament.gr</a></string>
+    <string name="subtext_splash">Κοινοβουλευτικών Αποφασεων</string>
 
 
 </resources>
