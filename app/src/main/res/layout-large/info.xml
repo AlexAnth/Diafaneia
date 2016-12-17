@@ -191,6 +191,7 @@
                 android:id="@+id/textView18"
                 android:fontFamily="sans-serif-light"
                 android:textSize="20sp" />
+
             <TextView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -199,7 +200,7 @@
                 android:paddingTop="15dp"
                 android:paddingLeft="20dp"
                 android:autoLink="email"
-                android:layout_below="@+id/textView18"
+                android:layout_below="@+id/textView16"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:textColorLink="#0040DD"
@@ -222,6 +223,23 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_marginTop="50dp" />
+            <TextView
+                android:id="@+id/textView16"
+                android:textSize="20sp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/rank_app"
+                android:textColor="#191919"
+                android:paddingTop="15dp"
+                android:paddingLeft="20dp"
+                android:autoLink="email"
+                android:layout_below="@+id/textView18"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textColorLink="#0040DD"
+                android:clickable="true"
+                android:paddingRight="5dp"
+                android:fontFamily="sans-serif-light"/>
 
 
         </RelativeLayout>

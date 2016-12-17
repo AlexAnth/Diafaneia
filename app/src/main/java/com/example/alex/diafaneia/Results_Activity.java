@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AlertDialog;
@@ -35,6 +36,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -151,13 +153,15 @@ public class Results_Activity extends AppCompatActivity {
                 String url = JsonCollection.get(position).getFileURL();
                 final File file = new File(Environment.getExternalStorageDirectory() + "/Αποφάσεις/" + filename);
                 if (!file.exists()) {
-                    file_download(url, filename);
+                    //file_download(url, filename);
+                    new DownloadFile().execute(url, filename);
                     try {
-                        Thread.sleep(600);
+                        Thread.sleep(500);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
+
                 Intent target = new Intent(Intent.ACTION_VIEW);
                 target.setDataAndType(Uri.fromFile(file),"application/pdf");
                 target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
@@ -167,11 +171,7 @@ public class Results_Activity extends AppCompatActivity {
                     startActivity(intent);
                 } catch (ActivityNotFoundException e) {
                     // Instruct the user to install a PDF reader here, or something
-                    Context context = getApplicationContext();
-                    CharSequence text = "Δέν βρέθηκε εφαρμογή προβολής αρχείων PDF.\nΚατεβάστε μία απο το διαδίκτυο.";
-                    int duration = Toast.LENGTH_SHORT;
-                    Toast toast = Toast.makeText(context, text, duration);
-                    toast.show();
+                    Toast.makeText(Results_Activity.this, "Δέν βρέθηκε εφαρμογή προβολής αρχείων PDF.\\nΚατεβάστε μία απο το διαδίκτυο.", Toast.LENGTH_SHORT).show();
                 }
 
                 dwnl_button=(ImageView)v.findViewById(R.id.download_btn);
@@ -221,6 +221,27 @@ public class Results_Activity extends AppCompatActivity {
         });
     }
 
+    private class DownloadFile extends AsyncTask<String, Void, Void> {
+
+        @Override
+        protected Void doInBackground(String... strings) {
+            String fileUrl = strings[0];   // -> http://maven.apache.org/maven-1.x/maven.pdf
+            String fileName = strings[1];  // -> maven.pdf
+            String extStorageDirectory = Environment.getExternalStorageDirectory().toString();
+            File folder = new File(extStorageDirectory, "Αποφάσεις");
+            folder.mkdir();
+
+            File pdfFile = new File(folder, fileName);
+
+            try{
+                pdfFile.createNewFile();
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+            FileDownloader.downloadFile(fileUrl, pdfFile);
+            return null;
+        }
+    }
     private ArrayList downloadAPI(Result result) {
 
         String temp =URLtoString(result);
@@ -378,30 +399,6 @@ public class Results_Activity extends AppCompatActivity {
             return info.isConnected(); // WIFI connected
         else
             return false; // no info object implies no connectivity
-    }
-
-    public void file_download(String uRl,String filename) {
-        File direct = new File(Environment.DIRECTORY_DOWNLOADS
-                + "/Αποφάσεις");
-
-        if (!direct.exists()) {
-            direct.mkdirs();
-        }
-
-
-        DownloadManager mgr = (DownloadManager) this.getSystemService(Context.DOWNLOAD_SERVICE);
-
-        Uri downloadUri = Uri.parse(uRl);
-        DownloadManager.Request request = new DownloadManager.Request(
-                downloadUri);
-
-        request.setAllowedNetworkTypes(
-                DownloadManager.Request.NETWORK_WIFI
-                        | DownloadManager.Request.NETWORK_MOBILE)
-                .setDestinationInExternalPublicDir("/Αποφάσεις/", filename);
-
-        mgr.enqueue(request);
-
     }
 
     private Favourite createFavourite(Search search) {
