@@ -28,7 +28,6 @@ import java.util.ArrayList;
 import io.realm.Realm;
 import io.realm.RealmResults;
 
-
 /**
  * Created by Alex on 3/8/2016.
  */
@@ -98,7 +97,11 @@ public class Bookmark extends AppCompatActivity {
             public void onItemClick(int position, View v) {
 
                 final String filename = Favourite_Collection.get(position).getPathName();
-                final File file = new File(Environment.getExternalStorageDirectory() + "/Αποφάσεις/" + filename);
+
+                final String decoded = Uri.decode(filename); //handles spaces at filename
+                // The place where the downloaded PDF file will be put
+                final File file = new File(getApplicationContext().getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS +"/Αποφάσεις/"), decoded);
+
                 if (!file.exists()) {
                     Context context = getApplicationContext();
                     CharSequence text = "Το έγγραφο δεν βρέθηκε.";
@@ -115,11 +118,7 @@ public class Bookmark extends AppCompatActivity {
                         startActivity(intent);
                     } catch (ActivityNotFoundException e) {
                         // Instruct the user to install a PDF reader here, or something
-                        Context context = getApplicationContext();
-                        CharSequence text = "Δέν βρέθηκε εφαρμογή προβολής αρχείων PDF.\nΚατεβάστε μία απο το διαδίκτυο.";
-                        int duration = Toast.LENGTH_SHORT;
-                        Toast toast = Toast.makeText(context, text, duration);
-                        toast.show();
+                        Toast.makeText(Bookmark.this, "Δέν βρέθηκε εφαρμογή προβολής αρχείων PDF.\\nΚατεβάστε μία απο το διαδίκτυο.", Toast.LENGTH_SHORT).show();
                     }
 
                 }

@@ -290,7 +290,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onClick(View v) {
                 c8.setImageResource(R.drawable.cancel_button_inactive);
                 EditText text = (EditText) findViewById(R.id.etxt_fromdate);
-                text.setText("1/1/2014");
+                text.setText("01/01/2014");
                 fromDate = null;
 
 //                InputMethodManager imm = (InputMethodManager) RL1.getContext()
@@ -413,7 +413,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 free_Text_str = null;
                 c8.setImageResource(R.drawable.cancel_button_inactive);
                 EditText text = (EditText) findViewById(R.id.etxt_fromdate);
-                text.setText("1/1/2014");
+                text.setText("01/01/2014");
                 fromDate = null;
                 c9.setImageResource(R.drawable.cancel_button_inactive);
                 EditText text2 = (EditText) findViewById(R.id.etxt_todate);

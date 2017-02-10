@@ -1,10 +1,14 @@
 package com.example.alex.diafaneia;
 
 import android.app.DownloadManager;
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -15,6 +19,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -151,45 +156,24 @@ public class Results_Activity extends AppCompatActivity {
             public void onItemClick(final int position, View v) {
                 final String filename = JsonCollection.get(position).getPathName();
                 String url = JsonCollection.get(position).getFileURL();
-                final File file = new File(Environment.getExternalStorageDirectory() + "/Αποφάσεις/" + filename);
-                if (!file.exists()) {
-                    //file_download(url, filename);
-                    new DownloadFile().execute(url, filename);
-                    try {
-                        Thread.sleep(500);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
 
-                Intent target = new Intent(Intent.ACTION_VIEW);
-                target.setDataAndType(Uri.fromFile(file),"application/pdf");
-                target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-
-                Intent intent = Intent.createChooser(target, "Open File");
-                try {
-                    startActivity(intent);
-                } catch (ActivityNotFoundException e) {
-                    // Instruct the user to install a PDF reader here, or something
-                    Toast.makeText(Results_Activity.this, "Δέν βρέθηκε εφαρμογή προβολής αρχείων PDF.\\nΚατεβάστε μία απο το διαδίκτυο.", Toast.LENGTH_SHORT).show();
-                }
-
+                CopyPDF(filename,url);
                 dwnl_button=(ImageView)v.findViewById(R.id.download_btn);
                 final RealmResults<Favourite> favs = realm.where(Favourite.class).findAll();
                 dwnl_button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
                         //Change icon
                         dwnl_button.setImageResource(R.drawable.bookmark_icon_selected);
 
                         Favourite fav = createFavourite(JsonCollection.get(position));
 
-
                         if(favs!=null) {
 
-                            if (!favs.contains(fav)) {
+                            if (realm.where(Favourite.class).equalTo("ID",fav.getID()).findFirst()==null) {
                                 Context context = getApplicationContext();
-                                CharSequence text = "Το έγγραφο αποθηκεύτηκε στο φάκελο Αποφάσεις";
+                                CharSequence text = "Το έγγραφο προστέθηκε στις Αποθηκεύμένες Αποφάσεις";
                                 int duration = Toast.LENGTH_SHORT;
                                 Toast toast = Toast.makeText(context, text, duration);
                                 toast.show();
@@ -199,7 +183,7 @@ public class Results_Activity extends AppCompatActivity {
                                 realm.commitTransaction();
                             } else {
                                 Context context = getApplicationContext();
-                                CharSequence text = "Το έγγραφο υπάρχει ήδη στο φάκελο Αποφάσεις";
+                                CharSequence text = "Το έγγραφο υπάρχει ήδη στις Αποθηκεύμένες Αποφάσεις";
                                 int duration = Toast.LENGTH_SHORT;
                                 Toast toast = Toast.makeText(context, text, duration);
                                 toast.show();
@@ -221,27 +205,63 @@ public class Results_Activity extends AppCompatActivity {
         });
     }
 
-    private class DownloadFile extends AsyncTask<String, Void, Void> {
-
-        @Override
-        protected Void doInBackground(String... strings) {
-            String fileUrl = strings[0];   // -> http://maven.apache.org/maven-1.x/maven.pdf
-            String fileName = strings[1];  // -> maven.pdf
-            String extStorageDirectory = Environment.getExternalStorageDirectory().toString();
-            File folder = new File(extStorageDirectory, "Αποφάσεις");
-            folder.mkdir();
-
-            File pdfFile = new File(folder, fileName);
-
-            try{
-                pdfFile.createNewFile();
-            }catch (IOException e){
-                e.printStackTrace();
-            }
-            FileDownloader.downloadFile(fileUrl, pdfFile);
-            return null;
+    //method to write the PDFs file to sd card under a PDF directory.
+    private void CopyPDF(String filename, String url) {
+        try {
+            downloadAndOpenPDF(this, url,filename);
+        } catch (Exception e) {
+            Log.d("Downloader", e.getMessage());
         }
     }
+
+    public void downloadAndOpenPDF(final Context context, final String pdfUrl, String filename) {
+
+        final String decoded = Uri.decode(filename); //handles spaces at filename
+        // The place where the downloaded PDF file will be put
+        final File tempFile = new File(context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS +"/Αποφάσεις/"), decoded);
+        // If we have downloaded the file before, just go ahead and show it(if its cached)
+        if (tempFile.exists()) {
+            openPDF(context, Uri.fromFile(tempFile));
+            return;
+        }
+
+// Show progress dialog while downloading
+//        final ProgressDialog progress = ProgressDialog.show(context, "Λήψη έκδοσης", "Περιμένετε να κατέβει το pdf.", true);
+
+        // Create the download request
+        DownloadManager.Request r = new DownloadManager.Request(Uri.parse(pdfUrl));
+        r.setDestinationInExternalFilesDir(context, Environment.DIRECTORY_DOWNLOADS+"/Αποφάσεις/", decoded);
+        final DownloadManager dm = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+        //Broadcast receiver for when downloading the PDF is complete
+        BroadcastReceiver onComplete = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+//                if (!progress.isShowing()) {
+//                    return;
+//                }
+                context.unregisterReceiver(this);
+                //Dismiss the progressDialog
+//                progress.dismiss();
+                long downloadId = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
+                Cursor c = dm.query(new DownloadManager.Query().setFilterById(downloadId));
+                //if download was successful attempt to open the PDF
+                if (c.moveToFirst()) {
+                    int status = c.getInt(c.getColumnIndex(DownloadManager.COLUMN_STATUS));
+                    if (status == DownloadManager.STATUS_SUCCESSFUL) {
+                        openPDF(context, Uri.fromFile(tempFile));
+                    }
+                }
+                c.close();
+            }
+        };
+        //Resister the receiver
+        context.registerReceiver(onComplete, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+
+        // Enqueue the request
+        dm.enqueue(r);
+    }
+
+
     private ArrayList downloadAPI(Result result) {
 
         String temp =URLtoString(result);
@@ -416,6 +436,17 @@ public class Results_Activity extends AppCompatActivity {
         fav.setSigner(search.getSigner());
         fav.setID(search.getID());
         return fav;
+    }
+
+    public static final void openPDF(Context context, Uri localUri) {
+        Intent i = new Intent(Intent.ACTION_VIEW);
+        i.setDataAndType(localUri, "application/pdf");
+        try {
+            context.startActivity(i);
+        } catch (ActivityNotFoundException e) {
+            // Instruct the user to install a PDF reader here, or something
+            Toast.makeText(context, "Δέν βρέθηκε εφαρμογή προβολής αρχείων PDF.\\nΚατεβάστε μία απο το διαδίκτυο.", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

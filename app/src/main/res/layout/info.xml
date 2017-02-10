@@ -132,7 +132,7 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Πληροφορίες"
                 android:id="@+id/TextInput"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:layout_below="@+id/info_btn"
                 android:layout_alignLeft="@+id/imageView19"
                 android:layout_alignStart="@+id/imageView19"
