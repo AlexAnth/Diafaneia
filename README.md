@@ -7,7 +7,7 @@ its supplies and staff matters. You can find the current version the application
 
 ## Overview
 
-<p align="center"><img src="documentation/ext.jpg" width=550 align=center/></p>
+<a href="https://play.google.com/store/apps/details?id=com.alex.diafaneia&hl=el"> <p align="center"><img src="documentation/ext.jpg" width=550 align=center/></p></a>
 
 ### The application features: 
 * MVC model programming
