@@ -9,6 +9,7 @@ its supplies and staff matters. You can find the current version the application
 
 <p align="center"><img src="documentation/ext.jpg" width=550 align=center/></p>
 
+### The application features: 
 * MVC model programming
 * Client-Server communication
 * REST API
