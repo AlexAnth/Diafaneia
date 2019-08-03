@@ -3,7 +3,7 @@
 This project was conducted over the half year period of my internship in June 2016. Working as an Android Developer I took on and completed 
 the Hellenic Parliament Transparency application on Android enviroment. The application allows users to review up-to-date parliamentary
 decisions regarding Hellenic Parliament's work on its management and administration, the preparation and implementation of its budget, 
-its supplies and staff matters.You can find the current version the application on [Google Play Store](https://play.google.com/store/apps/details?id=com.alex.diafaneia&hl=el)
+its supplies and staff matters. You can find the current version the application on [Google Play Store](https://play.google.com/store/apps/details?id=com.alex.diafaneia&hl=el)
 
 ## Overview
 
