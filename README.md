@@ -19,7 +19,7 @@ its supplies and staff matters. You can find the current version the application
       
 ### Prerequisites
 
-* Android 4.1 and upwards 
+* Android 4.1 and onwards 
 
 ## Built With
 
