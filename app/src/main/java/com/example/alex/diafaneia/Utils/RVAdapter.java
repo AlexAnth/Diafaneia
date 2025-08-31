@@ -4,8 +4,8 @@ package com.example.alex.diafaneia.Utils;
  * Created by Alex on 22/8/2016.
  */
 
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;

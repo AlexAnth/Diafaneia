@@ -11,7 +11,7 @@ public class Sector {
     private String sectorCleanUrl;
     private String sectorId;
 
-    public Sector(String sectorTitle ,String sectorCleanUrl ,String sectorId ) {
+    public Sector(String sectorTitle, String sectorCleanUrl, String sectorId) {
         this.sectorTitle = sectorTitle;
         this.sectorCleanUrl = sectorCleanUrl;
         this.sectorId = sectorId;
@@ -32,8 +32,6 @@ public class Sector {
     public String getSectorId() {
         return sectorId;
     }
-
-
 
 
 }

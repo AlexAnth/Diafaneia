@@ -5,8 +5,8 @@ package com.example.alex.diafaneia.Utils;
  */
 
 import android.content.Context;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,8 +20,8 @@ import com.example.alex.diafaneia.R;
 
 import java.util.ArrayList;
 
-import io.realm.Realm;
-import io.realm.RealmResults;
+// import io.realm.Realm;
+// import io.realm.RealmResults;
 
 
 public class RVAdapter3 extends RecyclerView.Adapter<RVAdapter3.DataObjectHolder> {

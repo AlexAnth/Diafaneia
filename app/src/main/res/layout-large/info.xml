@@ -99,7 +99,7 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:id="@+id/imageView19"
+                android:id="@+id/home_btn"
                 android:src="@drawable/iconround_75x75"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
@@ -122,8 +122,8 @@
                 android:gravity="bottom"
                 android:padding="6dp"
                 android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/imageView19"
-                android:layout_toEndOf="@+id/imageView19"
+                android:layout_toRightOf="@+id/home_btn"
+                android:layout_toEndOf="@+id/home_btn"
                 android:fontFamily="sans-serif-light"
                 />
 
@@ -136,8 +136,8 @@
                 android:textSize="25dp"
                 android:fontFamily="sans-serif-light"
                 android:layout_alignParentBottom="true"
-                android:layout_toRightOf="@+id/imageView19"
-                android:layout_toEndOf="@+id/imageView19"
+                android:layout_toRightOf="@+id/home_btn"
+                android:layout_toEndOf="@+id/home_btn"
                 android:layout_marginLeft="11dp"
                 android:layout_marginStart="8dp" />
 

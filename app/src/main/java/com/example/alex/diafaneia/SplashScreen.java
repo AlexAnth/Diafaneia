@@ -22,7 +22,7 @@ public class SplashScreen extends Activity {
         // animation
         final ImageView iv= (ImageView) findViewById(R.id.load);
         final Animation anim = AnimationUtils.loadAnimation(getBaseContext(),R.anim.rotate);
-        final Animation anim2 = AnimationUtils.loadAnimation(getBaseContext(),R.anim.abc_fade_out);
+        final Animation anim2 = AnimationUtils.loadAnimation(getBaseContext(),android.R.anim.fade_out);
 
         iv.startAnimation(anim);
         anim.setAnimationListener(new Animation.AnimationListener() {
@@ -34,7 +34,7 @@ public class SplashScreen extends Activity {
             @Override
             public void onAnimationEnd(Animation animation) {
                 iv.startAnimation(anim2);
-                Intent i = new Intent(SplashScreen.this,MainActivity.class);
+                Intent i = new Intent(com.example.alex.diafaneia.SplashScreen.this,MainActivity.class);
                 iv.setVisibility(View.GONE);
                 startActivity(i);
                 finish();

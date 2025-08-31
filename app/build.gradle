@@ -1,16 +1,22 @@
 apply plugin: 'com.android.application'
 apply plugin: 'realm-android'
 
+
+
+
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.0"
+    namespace "com.example.alex.diafaneia"
+    compileSdkVersion 34
+    buildToolsVersion "34.0.0"
+
 
     defaultConfig {
         applicationId "com.alex.diafaneia"
-        minSdkVersion 16
-        targetSdkVersion 24
-        versionCode 2
-        versionName "1.0"
+        minSdkVersion 21
+        targetSdkVersion 34
+        versionCode 20
+        versionName "20.0"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -18,16 +24,37 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
+    }
+}
+
+configurations.all {
+    resolutionStrategy {
+        force 'org.jetbrains.kotlin:kotlin-stdlib:1.8.22'
+        force 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22'
+        force 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22'
+    }
+}
+
+realm {
+    syncEnabled = true
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile project(':volley')
-    compile 'com.android.support:appcompat-v7:24.2.0'
-    compile 'com.android.support:support-v4:24.2.0'
-    compile 'com.android.support:recyclerview-v7:24.2.0'
-    compile 'com.android.support:cardview-v7:24.2.0'
-    compile 'com.google.android.gms:play-services-appindexing:9.4.0'
-    testCompile 'junit:junit:4.12'
-    compile 'com.google.code.gson:gson:2.7'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation('com.android.volley:volley:1.2.1') {
+        exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib-jdk7'
+        exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib-jdk8'
+    }
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.core:core:1.12.0'
+    implementation 'androidx.recyclerview:recyclerview:1.3.2'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.google.android.gms:play-services-appindexing:9.8.0'
+    testImplementation 'junit:junit:4.13.2'
+    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'androidx.multidex:multidex:2.0.1'
 }

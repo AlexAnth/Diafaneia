@@ -7,10 +7,10 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -44,9 +44,9 @@ public class ActivityTwo extends AppCompatActivity {
 
     ArrayList <Object> JsonCollection= new ArrayList();
 
-    final String SECTORS_BASE_URL = "http://diafaneia.hellenicparliament.gr//api.ashx?q=sectors";
-    final String SIGNERS_BASE_URL = "http://diafaneia.hellenicparliament.gr//api.ashx?q=final-signers";
-    final String DOCUMENT_TYPES_BASE_URL = "http://diafaneia.hellenicparliament.gr//api.ashx?q=document-types";
+    final String SECTORS_BASE_URL = "https://diafaneia.hellenicparliament.gr/api.ashx?q=sectors";
+    final String SIGNERS_BASE_URL = "https://diafaneia.hellenicparliament.gr/api.ashx?q=final-signers";
+    final String DOCUMENT_TYPES_BASE_URL = "https://diafaneia.hellenicparliament.gr/api.ashx?q=document-types";
 
     private RecyclerView mRecyclerView;
     private ProgressBar mProgressBar;
@@ -98,16 +98,15 @@ public class ActivityTwo extends AppCompatActivity {
 
         JsonCollection = downloadAPI(text);
 
-
-        ImageView info_button=(ImageView)findViewById(R.id.info_btn);
-        info_button.setOnClickListener(new View.OnClickListener() {
+        // Add home button functionality
+        ImageView home_button = (ImageView) findViewById(R.id.home_btn);
+        home_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),Info.class);
-                startActivity(intent);
+                finish(); // This will return to the previous activity (like swiping back)
             }
-
         });
+
         bookmark_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,32 +122,28 @@ public class ActivityTwo extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        mAdapter.setOnItemClickListener(new RVAdapter
-                .MyClickListener() {
-            @Override
-            public void onItemClick(int position, View v) {
+        mAdapter.setOnItemClickListener((position, v) -> {
 
-                // Check the Category selected
-                if (text.equalsIgnoreCase(Constants.SECTOR_TITLE)){
-                    Sector s = (Sector) JsonCollection.get(position);
-                    MainActivity.setSector(s);
-                }else if (text.equalsIgnoreCase(Constants.DOCUMENT_TITLE)){
+            // Check the Category selected
+            if (text.equalsIgnoreCase(Constants.SECTOR_TITLE)){
+                Sector s = (Sector) JsonCollection.get(position);
+                MainActivity.setSector(s);
+            }else if (text.equalsIgnoreCase(Constants.DOCUMENT_TITLE)){
 
-                    Document d = (Document) JsonCollection.get(position);
-                    MainActivity.setDocument(d);
-                }else if (text.equalsIgnoreCase(Constants.TYPE_TITLE)){
+                Document d = (Document) JsonCollection.get(position);
+                MainActivity.setDocument(d);
+            }else if (text.equalsIgnoreCase(Constants.TYPE_TITLE)){
 
-                    Type t = (Type) JsonCollection.get(position);
-                    MainActivity.setType(t);
-                }else if (text.equalsIgnoreCase(Constants.SIGNER_TITLE)){
+                Type t = (Type) JsonCollection.get(position);
+                MainActivity.setType(t);
+            }else if (text.equalsIgnoreCase(Constants.SIGNER_TITLE)){
 
-                    Signer s = (Signer) JsonCollection.get(position);
-                    MainActivity.setSigner(s);
-                }
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
-
+                Signer s = (Signer) JsonCollection.get(position);
+                MainActivity.setSigner(s);
             }
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+
         });
     }
 
@@ -179,11 +174,8 @@ public class ActivityTwo extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
+            }, error -> {
 
-                }
             });
 
             Volley.newRequestQueue(this).add(jsonRequest);
