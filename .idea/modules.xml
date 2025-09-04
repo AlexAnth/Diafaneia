@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Diafaneia.iml" filepath="$PROJECT_DIR$/Diafaneia.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/volley/volley.iml" filepath="$PROJECT_DIR$/volley/volley.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Diafaneia.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Diafaneia.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Diafaneia.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Diafaneia.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Diafaneia.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Diafaneia.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Diafaneia.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Diafaneia.app.unitTest.iml" />
     </modules>
   </component>
 </project>

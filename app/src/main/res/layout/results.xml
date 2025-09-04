@@ -46,7 +46,7 @@
         <ImageView
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:id="@+id/imageView6"
+            android:id="@+id/home_btn"
             android:src="@drawable/iconround_75x75"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
@@ -68,8 +68,8 @@
             android:gravity="bottom"
             android:padding="6dp"
             android:layout_alignParentTop="true"
-            android:layout_toRightOf="@+id/imageView6"
-            android:layout_toEndOf="@+id/imageView6"
+            android:layout_toRightOf="@+id/home_btn"
+            android:layout_toEndOf="@+id/home_btn"
             android:fontFamily="sans-serif-light"/>
 
         <TextView
@@ -79,12 +79,12 @@
             android:text="Αποτελέσματα"
             android:id="@+id/textView20"
             android:textSize="20dp"
-            android:layout_alignStart="@+id/imageView6"
+            android:layout_alignStart="@+id/home_btn"
             android:textColor="#ffffff"
             android:layout_marginTop="50dp"
             android:fontFamily="sans-serif-light"
             android:layout_marginLeft="20dp"
-            android:layout_alignLeft="@+id/imageView6" />
+            android:layout_alignLeft="@+id/home_btn" />
 
     </RelativeLayout>
 
@@ -117,7 +117,7 @@
                     android:layout_gravity="center"
                     android:paddingTop="150dp" />
 
-                <android.support.v7.widget.RecyclerView
+                <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/result_card"

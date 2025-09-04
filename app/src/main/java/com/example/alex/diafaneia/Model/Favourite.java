@@ -8,19 +8,18 @@ import io.realm.annotations.PrimaryKey;
  */
 
 public class Favourite extends RealmObject {
-
     @PrimaryKey
-    private  String ID ;
-    private  String sector ;
-    private  String document ;
-    private  String type ;
-    private  String signer ;
-    private  String ADA ;
-    private  String protoc_Num ;
-    private  String publishDate ;
-    private  String fileURL ;
-    private  String pathName;
-    private  String sbject;
+    private String ID;
+    private String sector;
+    private String document;
+    private String type;
+    private String signer;
+    private String ADA;
+    private String protoc_Num;
+    private String publishDate;
+    private String fileURL;
+    private String pathName;
+    private String sbject;
 
     public void setProtoc_Num(String protoc_Num) {
         this.protoc_Num = protoc_Num;
@@ -67,9 +66,6 @@ public class Favourite extends RealmObject {
     }
 
 
-
-
-
     public String getSector() {
         return sector;
     }
@@ -113,9 +109,6 @@ public class Favourite extends RealmObject {
     public String getSbject() {
         return sbject;
     }
-
-
-
 
 
 }

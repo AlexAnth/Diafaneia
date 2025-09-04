@@ -4,7 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.KeyEvent;
@@ -63,8 +63,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText editText1;
     private EditText editText2;
     private EditText editText3;
-    private TextView protocol_Num;
-    private TextView free_Text;
     private ImageView c1;
     private ImageView c2;
     private ImageView c3;
@@ -125,68 +123,68 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (sector == null) {
             text_Sector.setText(Constants.SECTOR_TITLE);
             text_Sector.setTextColor(Color.parseColor("#7E7E7E"));
-            c1.setImageResource(R.drawable.cancel_button_inactive);
+            c1.setImageResource(R.drawable.cancel_button_minimal);
         } else {                                                      // else : the user has entered values(selected from list)
             text_Sector.setText(sector.getSectorTitle());
             text_Sector.setTextColor(Color.parseColor("#333333"));
-            c1.setImageResource(R.drawable.cancel_button_active);
+            c1.setImageResource(R.drawable.cancel_button_minimal);
         }
         //DOCUMENT
         if (document == null) {
             text_Doc.setText(Constants.DOCUMENT_TITLE);
             text_Doc.setTextColor(Color.parseColor("#7E7E7E"));
-            c2.setImageResource(R.drawable.cancel_button_inactive);
+            c2.setImageResource(R.drawable.cancel_button_minimal);
         } else {
             text_Doc.setText(document.getDocumentTitle());
             text_Doc.setTextColor(Color.parseColor("#333333"));
-            c2.setImageResource(R.drawable.cancel_button_active);
+            c2.setImageResource(R.drawable.cancel_button_minimal);
         }
         //TYPE
         if (type == null) {
             text_Type.setText(Constants.TYPE_TITLE);
             text_Type.setTextColor(Color.parseColor("#7E7E7E"));
-            c3.setImageResource(R.drawable.cancel_button_inactive);
+            c3.setImageResource(R.drawable.cancel_button_minimal);
         } else {
             text_Type.setText(type.getTypeTitle());
             text_Type.setTextColor(Color.parseColor("#333333"));
-            c3.setImageResource(R.drawable.cancel_button_active);
+            c3.setImageResource(R.drawable.cancel_button_minimal);
         }
         //SIGNER
         if (signer == null) {
             text_Sign.setText(Constants.SIGNER_TITLE);
             text_Sign.setTextColor(Color.parseColor("#7E7E7E"));
-            c4.setImageResource(R.drawable.cancel_button_inactive);
+            c4.setImageResource(R.drawable.cancel_button_minimal);
 
         } else {
             text_Sign.setText(signer.getSignerFullName());
             text_Sign.setTextColor(Color.parseColor("#333333"));
-            c4.setImageResource(R.drawable.cancel_button_active);
+            c4.setImageResource(R.drawable.cancel_button_minimal);
         }
 
 
         //ADA
         if (ADA != null) {
-            c5.setImageResource(R.drawable.cancel_button_active);
+            c5.setImageResource(R.drawable.cancel_button_minimal);
         }
         //
         if (protoc_Num != null) {
-            c6.setImageResource(R.drawable.cancel_button_active);
+            c6.setImageResource(R.drawable.cancel_button_minimal);
         }//
         if (free_Text_str != null) {
-            c7.setImageResource(R.drawable.cancel_button_active);
+            c7.setImageResource(R.drawable.cancel_button_minimal);
         }
 //        if (fromDate != null) {
-//            c8.setImageResource(R.drawable.cancel_button_active);
+//            c8.setImageResource(R.drawable.cancel_button_minimal);
 //        }
 //        if (toDate != null) {
-//            c9.setImageResource(R.drawable.cancel_button_active);
+//            c9.setImageResource(R.drawable.cancel_button_minimal);
 //        }
 
         c1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                c1.setImageResource(R.drawable.cancel_button_inactive);
+                c1.setImageResource(R.drawable.cancel_button_minimal);
                 TextView text_Sector = (TextView) findViewById(R.id.text1);
                 text_Sector.setText(Constants.SECTOR_TITLE);
                 text_Sector.setTextColor(Color.parseColor("#7E7E7E"));
@@ -199,13 +197,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View v) {
 
-                c2.setImageResource(R.drawable.cancel_button_inactive);
+                c2.setImageResource(R.drawable.cancel_button_minimal);
                 TextView text_Doc = (TextView) findViewById(R.id.text2);
                 text_Doc.setText(Constants.DOCUMENT_TITLE);
                 text_Doc.setTextColor(Color.parseColor("#7E7E7E"));
                 document = null;
                 if (type != null) {
-                    c3.setImageResource(R.drawable.cancel_button_inactive);
+                    c3.setImageResource(R.drawable.cancel_button_minimal);
                     text_Type.setTextColor(Color.parseColor("#333333"));
                     text_Type.setText(Constants.TYPE_TITLE);
                     text_Type.setTextColor(Color.parseColor("#7E7E7E"));
@@ -220,7 +218,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View v) {
 
-                c3.setImageResource(R.drawable.cancel_button_inactive);
+                c3.setImageResource(R.drawable.cancel_button_minimal);
                 TextView text_Type = (TextView) findViewById(R.id.text3);
                 text_Type.setText(Constants.TYPE_TITLE);
                 text_Type.setTextColor(Color.parseColor("#7E7E7E"));
@@ -233,7 +231,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View v) {
 
-                c4.setImageResource(R.drawable.cancel_button_inactive);
+                c4.setImageResource(R.drawable.cancel_button_minimal);
                 TextView text_Sign = (TextView) findViewById(R.id.text4);
                 text_Sign.setText(Constants.SIGNER_TITLE);
                 text_Sign.setTextColor(Color.parseColor("#7E7E7E"));
@@ -245,7 +243,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         c5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                c5.setImageResource(R.drawable.cancel_button_inactive);
+                c5.setImageResource(R.drawable.cancel_button_minimal);
                 editText1.setText(null);
                 ADA = null;
 
@@ -260,7 +258,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View v) {
 
-                c6.setImageResource(R.drawable.cancel_button_inactive);
+                c6.setImageResource(R.drawable.cancel_button_minimal);
                 editText2.setText(null);
                 protoc_Num = null;
 
@@ -274,7 +272,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         c7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                c7.setImageResource(R.drawable.cancel_button_inactive);
+                c7.setImageResource(R.drawable.cancel_button_minimal);
                 editText3.setText(null);
                 free_Text_str = null;
 
@@ -288,7 +286,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         c8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                c8.setImageResource(R.drawable.cancel_button_inactive);
+                c8.setImageResource(R.drawable.cancel_button_minimal);
                 EditText text = (EditText) findViewById(R.id.etxt_fromdate);
                 text.setText("01/01/2014");
                 fromDate = null;
@@ -303,7 +301,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         c9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                c9.setImageResource(R.drawable.cancel_button_inactive);
+                c9.setImageResource(R.drawable.cancel_button_minimal);
                 EditText text = (EditText) findViewById(R.id.etxt_todate);
                 toDateEtxt.setText(fDate);
                 toDate = null;
@@ -402,20 +400,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 c2.performClick();
                 c3.performClick();
                 c4.performClick();
-                c5.setImageResource(R.drawable.cancel_button_inactive);
+                c5.setImageResource(R.drawable.cancel_button_minimal);
                 editText1.setText(null);
                 ADA = null;
-                c6.setImageResource(R.drawable.cancel_button_inactive);
+                c6.setImageResource(R.drawable.cancel_button_minimal);
                 editText2.setText(null);
                 protoc_Num = null;
-                c7.setImageResource(R.drawable.cancel_button_inactive);
+                c7.setImageResource(R.drawable.cancel_button_minimal);
                 editText3.setText(null);
                 free_Text_str = null;
-                c8.setImageResource(R.drawable.cancel_button_inactive);
+                c8.setImageResource(R.drawable.cancel_button_minimal);
                 EditText text = (EditText) findViewById(R.id.etxt_fromdate);
                 text.setText("01/01/2014");
                 fromDate = null;
-                c9.setImageResource(R.drawable.cancel_button_inactive);
+                c9.setImageResource(R.drawable.cancel_button_minimal);
                 EditText text2 = (EditText) findViewById(R.id.etxt_todate);
                 text2.setText(fDate);
                 toDate = null;
@@ -435,8 +433,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         editText1 = (EditText) this.findViewById(R.id.editText1);
         editText2 = (EditText) this.findViewById(R.id.editText2);
         editText3 = (EditText) this.findViewById(R.id.editText3);
-        protocol_Num = (TextView) findViewById(R.id.editText2);
-        free_Text = (TextView) findViewById(R.id.editText3);
 
         //Date Picker
         fromDateEtxt = (EditText) findViewById(R.id.etxt_fromdate);
@@ -609,13 +605,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (temp.trim().length() > 0) {
                     if (finalTest == 1) {
                         ADA = temp;
-                        c5.setImageResource(R.drawable.cancel_button_active);
+                        c5.setImageResource(R.drawable.cancel_button_minimal);
                     } else if (finalTest == 2) {
                         protoc_Num = temp;
-                        c6.setImageResource(R.drawable.cancel_button_active);
+                        c6.setImageResource(R.drawable.cancel_button_minimal);
                     } else if (finalTest == 3) {
                         free_Text_str = temp;
-                        c7.setImageResource(R.drawable.cancel_button_active);
+                        c7.setImageResource(R.drawable.cancel_button_minimal);
                     }
 
                 }

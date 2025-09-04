@@ -12,7 +12,6 @@ public class Signer {
     private String signerCleanUrl;
 
 
-
     // constructor
     public Signer(String signerFullName, String signerId, String signerCleanUrl) {
         this.signerId = signerId;
@@ -23,7 +22,7 @@ public class Signer {
 
 
     // constructor default
-    public Signer(String signerFullName ) {
+    public Signer(String signerFullName) {
         this.signerFullName = signerFullName;
     }
 

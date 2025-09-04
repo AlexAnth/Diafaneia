@@ -5,8 +5,8 @@ package com.example.alex.diafaneia.Utils;
  */
 
 import android.content.Context;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,10 +22,10 @@ import com.example.alex.diafaneia.R;
 
 import java.util.ArrayList;
 
-import io.realm.Realm;
-import io.realm.RealmResults;
+// import io.realm.Realm;
+// import io.realm.RealmResults;
 
-import static android.support.v4.app.ShareCompat.getCallingActivity;
+
 
 
 public class RVAdapter2 extends RecyclerView.Adapter<RVAdapter2.DataObjectHolder> {
@@ -103,19 +103,19 @@ public class RVAdapter2 extends RecyclerView.Adapter<RVAdapter2.DataObjectHolder
 
 
         // Initialize Realm
-        Realm.init(context);
+        // Realm.init(context);
         // Get a Realm instance for this thread
-        Realm realm = Realm.getDefaultInstance();
-        RealmResults<Favourite> favs = realm.where(Favourite.class).findAll();
+        // Realm realm = Realm.getDefaultInstance();
+        // RealmResults<Favourite> favs = realm.where(Favourite.class).findAll();
         String ID = search.getID();
-        if(favs!=null) {
-            for (int i = 0; i < favs.size(); i++) {
-                if(favs.get(i).getID().equalsIgnoreCase(ID)){
-                    holder.download.setImageResource(R.drawable.bookmark_icon_selected);
-                    break;
-                }
-            }
-        }
+        // if(favs!=null) {
+        //     for (int i = 0; i < favs.size(); i++) {
+        //         if(favs.get(i).getID().equalsIgnoreCase(ID)){
+        //             holder.download.setImageResource(R.drawable.bookmark_icon_selected);
+        //             break;
+        //         }
+        //     }
+        // }
         holder.ADA.setText(search.getADA());
         holder.date.setText(search.getPublishDate());
         holder.protoc_num.setText(search.getProtoc_Num());

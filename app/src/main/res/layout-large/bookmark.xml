@@ -99,7 +99,7 @@
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:id="@+id/imageView19"
+                android:id="@+id/home_btn"
                 android:src="@drawable/iconround_75x75"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
@@ -136,8 +136,8 @@
                 android:padding="6dp"
                 android:fontFamily="sans-serif-light"
                 android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/imageView19"
-                android:layout_toEndOf="@+id/imageView19" />
+                android:layout_toRightOf="@+id/home_btn"
+                android:layout_toEndOf="@+id/home_btn" />
 
         </RelativeLayout>
 
@@ -170,13 +170,13 @@
                     android:layout_gravity="center_horizontal"
                     android:gravity="center_horizontal">
 
-                    <android.support.v7.widget.RecyclerView
+                    <androidx.recyclerview.widget.RecyclerView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/content"
                         android:visibility="visible">
 
-                    </android.support.v7.widget.RecyclerView>
+                    </androidx.recyclerview.widget.RecyclerView>
 
 
 

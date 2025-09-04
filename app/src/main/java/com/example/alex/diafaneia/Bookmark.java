@@ -7,10 +7,11 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -27,6 +28,9 @@ import java.util.ArrayList;
 
 import io.realm.Realm;
 import io.realm.RealmResults;
+
+// import io.realm.Realm;
+// import io.realm.RealmResults;
 
 /**
  * Created by Alex on 3/8/2016.
@@ -61,6 +65,14 @@ public class Bookmark extends AppCompatActivity {
         Favourite_Collection.addAll(convertFavsToSearch());
         mAdapter.notifyDataSetChanged();
 
+        // Add home button functionality
+        ImageView home_button = (ImageView) findViewById(R.id.home_btn);
+        home_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish(); // This will return to the previous activity (like swiping back)
+            }
+        });
 
         ImageView info_button=(ImageView)findViewById(R.id.info_btn);
         info_button.setOnClickListener(new View.OnClickListener() {
@@ -110,15 +122,26 @@ public class Bookmark extends AppCompatActivity {
                     toast.show();
                 }else{
                     Intent target = new Intent(Intent.ACTION_VIEW);
-                    target.setDataAndType(Uri.fromFile(file),"application/pdf");
-                    target.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                    
+                    // Use FileProvider for Android 7.0+ compatibility
+                    Uri contentUri = getUriForFile(file);
+                    target.setDataAndType(contentUri, "application/pdf");
+                    
+                    // Add flags for newer Android versions
+                    target.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    target.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-                    Intent intent = Intent.createChooser(target, "Open File");
                     try {
-                        startActivity(intent);
+                        startActivity(target);
                     } catch (ActivityNotFoundException e) {
                         // Instruct the user to install a PDF reader here, or something
-                        Toast.makeText(Bookmark.this, "Δέν βρέθηκε εφαρμογή προβολής αρχείων PDF.\\nΚατεβάστε μία απο το διαδίκτυο.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Bookmark.this, "Δέν βρέθηκε εφαρμογή προβολής αρχείων PDF.\nΚατεβάστε μία απο το διαδίκτυο.", Toast.LENGTH_SHORT).show();
+                    } catch (SecurityException e) {
+                        // Handle security exceptions for newer Android versions
+                        Toast.makeText(Bookmark.this, "Δεν έχετε άδεια πρόσβασης στο αρχείο.", Toast.LENGTH_SHORT).show();
+                    } catch (Exception e) {
+                        // Generic error handling
+                        Toast.makeText(Bookmark.this, "Σφάλμα κατά το άνοιγμα του αρχείου.", Toast.LENGTH_SHORT).show();
                     }
 
                 }
@@ -155,6 +178,18 @@ public class Bookmark extends AppCompatActivity {
 
     }
 
+
+    /**
+     * Converts a file to a content URI using FileProvider for Android 7.0+
+     */
+    private Uri getUriForFile(File file) {
+        try {
+            return FileProvider.getUriForFile(this, "com.alex.diafaneia.fileprovider", file);
+        } catch (Exception e) {
+            // Fallback to file URI if FileProvider fails
+            return Uri.fromFile(file);
+        }
+    }
 
     private ArrayList<Search> convertFavsToSearch() {
 

@@ -1,5 +1,6 @@
 package com.example.alex.diafaneia;
 
+import android.annotation.SuppressLint;
 import android.app.DownloadManager;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
@@ -15,10 +16,15 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
+import android.Manifest;
+import android.content.pm.PackageManager;
+import androidx.core.app.ActivityCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -47,8 +53,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.TimeZone;
 
-import io.realm.Realm;
-import io.realm.RealmResults;
+ import io.realm.Realm;
+ import io.realm.RealmResults;
 
 
 /**
@@ -58,7 +64,7 @@ public class Results_Activity extends AppCompatActivity {
 
     ArrayList <Search> JsonCollection= new ArrayList();
     private ProgressBar mProgressBar;
-    final String RESULTS_BASE_URL = "http://diafaneia.hellenicparliament.gr/api.ashx?q=documents&pageSize=50";
+    final String RESULTS_BASE_URL = "https://diafaneia.hellenicparliament.gr/api.ashx?q=documents&pageSize=50";
     final String DOCUMENT_TYPE ="&type=";
     final String SIGNER ="&signer=";
     final String SECTOR ="&sector=";
@@ -75,7 +81,7 @@ public class Results_Activity extends AppCompatActivity {
     private TextView reco;
     private ImageView dwnl_button;
     private ImageView bookmark_button;
-    Realm realm;
+     Realm realm;
 
 
 
@@ -87,10 +93,10 @@ public class Results_Activity extends AppCompatActivity {
         setContentView(R.layout.results);
 
         // Initialize Realm
-        Realm.init(getApplicationContext());
+         Realm.init(getApplicationContext());
 
         // Get a Realm instance for this thread
-        realm = Realm.getDefaultInstance();
+         realm = Realm.getDefaultInstance();
 
         // Get the intent
         result = MainActivity.getR();
@@ -124,7 +130,14 @@ public class Results_Activity extends AppCompatActivity {
         }
         JsonCollection = downloadAPI(result);
 
-
+        // Add home button functionality
+        ImageView home_button = (ImageView) findViewById(R.id.home_btn);
+        home_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish(); // This will return to the previous activity (like swiping back)
+            }
+        });
 
         ImageView info_button=(ImageView)findViewById(R.id.info_btn);
         info_button.setOnClickListener(new View.OnClickListener() {
@@ -159,7 +172,7 @@ public class Results_Activity extends AppCompatActivity {
 
                 CopyPDF(filename,url);
                 dwnl_button=(ImageView)v.findViewById(R.id.download_btn);
-                final RealmResults<Favourite> favs = realm.where(Favourite.class).findAll();
+                 final RealmResults<Favourite> favs = realm.where(Favourite.class).findAll();
                 dwnl_button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -167,32 +180,32 @@ public class Results_Activity extends AppCompatActivity {
                         //Change icon
                         dwnl_button.setImageResource(R.drawable.bookmark_icon_selected);
 
-                        Favourite fav = createFavourite(JsonCollection.get(position));
+                         Favourite fav = createFavourite(JsonCollection.get(position));
 
-                        if(favs!=null) {
+                         if(favs!=null) {
 
-                            if (realm.where(Favourite.class).equalTo("ID",fav.getID()).findFirst()==null) {
-                                Context context = getApplicationContext();
-                                CharSequence text = "Το έγγραφο προστέθηκε στις Αποθηκεύμένες Αποφάσεις";
-                                int duration = Toast.LENGTH_SHORT;
-                                Toast toast = Toast.makeText(context, text, duration);
-                                toast.show();
+                             if (realm.where(Favourite.class).equalTo("ID",fav.getID()).findFirst()==null) {
+                                 Context context = getApplicationContext();
+                                 CharSequence text = "Το έγγραφο προστέθηκε στις Αποθηκεύμένες Αποφάσεις";
+                                 int duration = Toast.LENGTH_SHORT;
+                                 Toast toast = Toast.makeText(context, text, duration);
+                                 toast.show();
 
-                                realm.beginTransaction();
-                                realm.copyToRealmOrUpdate(fav);
-                                realm.commitTransaction();
-                            } else {
-                                Context context = getApplicationContext();
-                                CharSequence text = "Το έγγραφο υπάρχει ήδη στις Αποθηκεύμένες Αποφάσεις";
-                                int duration = Toast.LENGTH_SHORT;
-                                Toast toast = Toast.makeText(context, text, duration);
-                                toast.show();
-                            }
-                        }else{
-                            realm.beginTransaction();
-                            realm.copyToRealm(fav);
-                            realm.commitTransaction();
-                        }
+                                 realm.beginTransaction();
+                                 realm.copyToRealmOrUpdate(fav);
+                                 realm.commitTransaction();
+                             } else {
+                                 Context context = getApplicationContext();
+                                 CharSequence text = "Το έγγραφο υπάρχει ήδη στις Αποθηκεύμένες Αποφάσεις";
+                                 int duration = Toast.LENGTH_SHORT;
+                                 Toast toast = Toast.makeText(context, text, duration);
+                                 toast.show();
+                             }
+                         }else{
+                             realm.beginTransaction();
+                             realm.copyToRealm(fav);
+                             realm.commitTransaction();
+                         }
                     }
 
 
@@ -221,11 +234,14 @@ public class Results_Activity extends AppCompatActivity {
         final File tempFile = new File(context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS +"/Αποφάσεις/"), decoded);
         // If we have downloaded the file before, just go ahead and show it(if its cached)
         if (tempFile.exists()) {
-            openPDF(context, Uri.fromFile(tempFile));
+            // Use FileProvider for Android 7.0+ compatibility
+            Uri contentUri = FileProvider.getUriForFile(context, 
+                "com.alex.diafaneia.fileprovider", tempFile);
+            openPDF(context, contentUri);
             return;
         }
 
-// Show progress dialog while downloading
+        // Show progress dialog while downloading
 //        final ProgressDialog progress = ProgressDialog.show(context, "Λήψη έκδοσης", "Περιμένετε να κατέβει το pdf.", true);
 
         // Create the download request
@@ -233,29 +249,58 @@ public class Results_Activity extends AppCompatActivity {
         r.setDestinationInExternalFilesDir(context, Environment.DIRECTORY_DOWNLOADS+"/Αποφάσεις/", decoded);
         final DownloadManager dm = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
         //Broadcast receiver for when downloading the PDF is complete
+//        BroadcastReceiver onComplete = new BroadcastReceiver() {
+//            @Override
+//            public void onReceive(Context context, Intent intent) {
+////                if (!progress.isShowing()) {
+////                    return;
+////                }
+//                context.unregisterReceiver(this);
+//                //Dismiss the progressDialog
+////                progress.dismiss();
+//                long downloadId = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
+//                Cursor c = dm.query(new DownloadManager.Query().setFilterById(downloadId));
+//                //if download was successful attempt to open the PDF
+//                if (c.moveToFirst()) {
+//                    @SuppressLint("Range") int status = c.getInt(c.getColumnIndex(DownloadManager.COLUMN_STATUS));
+//                    if (status == DownloadManager.STATUS_SUCCESSFUL) {
+//                        // Use FileProvider for Android 7.0+ compatibility
+//                        Uri contentUri = FileProvider.getUriForFile(context,
+//                                "com.alex.diafaneia.fileprovider", tempFile);
+//                        openPDF(context, contentUri);
+//                    }
+//                }
+//                c.close();
+//            }
+//
+//        };
+
         BroadcastReceiver onComplete = new BroadcastReceiver() {
             @Override
-            public void onReceive(Context context, Intent intent) {
-//                if (!progress.isShowing()) {
-//                    return;
-//                }
-                context.unregisterReceiver(this);
-                //Dismiss the progressDialog
-//                progress.dismiss();
+            public void onReceive(Context ctx, Intent intent) {
+                ctx.unregisterReceiver(this);
+
                 long downloadId = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
                 Cursor c = dm.query(new DownloadManager.Query().setFilterById(downloadId));
-                //if download was successful attempt to open the PDF
+
                 if (c.moveToFirst()) {
-                    int status = c.getInt(c.getColumnIndex(DownloadManager.COLUMN_STATUS));
+                    int status = c.getInt(c.getColumnIndexOrThrow(DownloadManager.COLUMN_STATUS));
                     if (status == DownloadManager.STATUS_SUCCESSFUL) {
-                        openPDF(context, Uri.fromFile(tempFile));
+//                        if (progress.isShowing()) progress.dismiss();
+
+                        Uri contentUri = FileProvider.getUriForFile(context,
+                                "com.alex.diafaneia.fileprovider", tempFile);
+                        openPDF(context, contentUri);
                     }
                 }
                 c.close();
             }
         };
+
         //Resister the receiver
-        context.registerReceiver(onComplete, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+//        ContextCompat.registerReceiver(context, onComplete, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE), ContextCompat.RECEIVER_NOT_EXPORTED);
+        ContextCompat.registerReceiver(context, onComplete, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE), ContextCompat.RECEIVER_EXPORTED);
+
 
         // Enqueue the request
         dm.enqueue(r);
@@ -397,7 +442,7 @@ public class Results_Activity extends AppCompatActivity {
         f.setTimeZone(tz);
         PublishDate=f.format(cal.getTime());
 
-        String fileURL="http://diafaneia.hellenicparliament.gr" + jsonobject.getJSONObject("Attachment")
+        String fileURL="https://diafaneia.hellenicparliament.gr" + jsonobject.getJSONObject("Attachment")
                 .getString("FilePath");
         String pathName=jsonobject.getJSONObject("Attachment").getString("OriginalFileName");
         String sbject= jsonobject.getString("Subject");
@@ -438,14 +483,199 @@ public class Results_Activity extends AppCompatActivity {
         return fav;
     }
 
+    /**
+     * Checks if storage permission is granted
+     */
+    private static boolean hasStoragePermission(Context context) {
+        return ContextCompat.checkSelfPermission(context, 
+            Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
+    }
+
+    /**
+     * Requests storage permission if not granted
+     */
+    private void requestStoragePermission() {
+        if (!hasStoragePermission(this)) {
+            ActivityCompat.requestPermissions(this, 
+                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 
+                1001);
+        }
+    }
+
+    /**
+     * Converts a file URI to a content URI using FileProvider for Android 7.0+
+     */
+    private static Uri getUriForFile(Context context, Uri fileUri) {
+        Log.d("Results_Activity", "Original URI: " + fileUri);
+        Log.d("Results_Activity", "URI scheme: " + fileUri.getScheme());
+        
+        if (fileUri.getScheme() != null && fileUri.getScheme().equals("file")) {
+            File file = new File(fileUri.getPath());
+            Log.d("Results_Activity", "File path: " + file.getAbsolutePath());
+            Log.d("Results_Activity", "File exists: " + file.exists());
+            
+            // Test FileProvider functionality
+            testFileProvider(context, file);
+            
+            try {
+                Uri contentUri = FileProvider.getUriForFile(context, 
+                    "com.alex.diafaneia.fileprovider", file);
+                Log.d("Results_Activity", "Content URI: " + contentUri);
+                return contentUri;
+            } catch (Exception e) {
+                Log.e("Results_Activity", "Error getting FileProvider URI: " + e.getMessage(), e);
+                return fileUri; // Fallback to original URI
+            }
+        }
+        return fileUri;
+    }
+
     public static final void openPDF(Context context, Uri localUri) {
+        Log.d("Results_Activity", "openPDF called with URI: " + localUri);
+        
+//        // Check if we have storage permission (for Android 6.0+)
+//        if (!hasStoragePermission(context)) {
+//            Log.d("Results_Activity", "No storage permission");
+//            Toast.makeText(context, "Χρειάζεται άδεια πρόσβασης στην αποθήκευση για να ανοίξετε το αρχείο.", Toast.LENGTH_SHORT).show();
+//            // If this is called from an Activity, request permission
+//            if (context instanceof Results_Activity) {
+//                ((Results_Activity) context).requestStoragePermission();
+//            }
+//            return;
+//        }
+//
         Intent i = new Intent(Intent.ACTION_VIEW);
-        i.setDataAndType(localUri, "application/pdf");
+        
+        // Convert file URI to content URI for Android 7.0+
+        Uri contentUri = getUriForFile(context, localUri);
+        Log.d("Results_Activity", "Final content URI: " + contentUri);
+        
+        i.setDataAndType(contentUri, "application/pdf");
+        
+        // Add flags for newer Android versions
+        i.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        
+        Log.d("Results_Activity", "Starting activity with intent: " + i.toString());
+        
         try {
             context.startActivity(i);
+            Log.d("Results_Activity", "Activity started successfully");
         } catch (ActivityNotFoundException e) {
-            // Instruct the user to install a PDF reader here, or something
-            Toast.makeText(context, "Δέν βρέθηκε εφαρμογή προβολής αρχείων PDF.\\nΚατεβάστε μία απο το διαδίκτυο.", Toast.LENGTH_SHORT).show();
+            // Try alternative approach
+            Log.e("Results_Activity", "Primary approach failed, trying alternative", e);
+            openPDFAlternative(context, localUri);
+        } catch (SecurityException e) {
+            // Handle security exceptions for newer Android versions
+            Log.e("Results_Activity", "Security exception", e);
+            Toast.makeText(context, "Δεν έχετε άδεια πρόσβασης στο αρχείο.", Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            // Log the error for debugging
+            Log.e("Results_Activity", "Error opening PDF: " + e.getMessage(), e);
+            Toast.makeText(context, "Σφάλμα κατά το άνοιγμα του αρχείου: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+     * Alternative method to open PDF - tries different approaches
+     */
+    public static final void openPDFAlternative(Context context, Uri localUri) {
+        Log.d("Results_Activity", "openPDFAlternative called with URI: " + localUri);
+        
+        // Try multiple approaches
+        Intent[] intents = new Intent[5];
+        
+        // Approach 1: Direct file URI (for older Android versions)
+        intents[0] = new Intent(Intent.ACTION_VIEW);
+        intents[0].setDataAndType(localUri, "application/pdf");
+        intents[0].addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        
+        // Approach 2: Content URI with FileProvider
+        intents[1] = new Intent(Intent.ACTION_VIEW);
+        Uri contentUri = getUriForFile(context, localUri);
+        intents[1].setDataAndType(contentUri, "application/pdf");
+        intents[1].addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        intents[1].addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        
+        // Approach 3: Generic intent with content URI
+        intents[2] = new Intent(Intent.ACTION_VIEW);
+        intents[2].setDataAndType(contentUri, "*/*");
+        intents[2].addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        intents[2].addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        
+        // Approach 4: Generic intent with file URI
+        intents[3] = new Intent(Intent.ACTION_VIEW);
+        intents[3].setDataAndType(localUri, "*/*");
+        intents[3].addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        
+        // Approach 5: Send intent (for sharing)
+        intents[4] = new Intent(Intent.ACTION_SEND);
+        intents[4].setType("application/pdf");
+        intents[4].putExtra(Intent.EXTRA_STREAM, contentUri);
+        intents[4].addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        intents[4].addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        
+        for (int i = 0; i < intents.length; i++) {
+            try {
+                Log.d("Results_Activity", "Trying approach " + (i + 1) + ": " + intents[i].toString());
+                context.startActivity(intents[i]);
+                Log.d("Results_Activity", "Success with approach " + (i + 1));
+                return;
+            } catch (Exception e) {
+                Log.e("Results_Activity", "Approach " + (i + 1) + " failed: " + e.getMessage());
+            }
+        }
+        
+        // If all approaches fail, show chooser
+        try {
+            Intent chooser = Intent.createChooser(intents[1], "Επιλέξτε εφαρμογή για το άνοιγμα του PDF");
+            chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(chooser);
+        } catch (Exception e) {
+            Log.e("Results_Activity", "Chooser also failed: " + e.getMessage());
+            Toast.makeText(context, "Δεν ήταν δυνατό το άνοιγμα του αρχείου PDF.", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    /**
+     * Check if PDF viewer apps are available on the device
+     */
+    public static boolean isPDFViewerAvailable(Context context) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setType("application/pdf");
+        boolean hasPdfViewer = intent.resolveActivity(context.getPackageManager()) != null;
+        
+        // Also check for generic file viewers
+        Intent genericIntent = new Intent(Intent.ACTION_VIEW);
+        genericIntent.setType("*/*");
+        boolean hasGenericViewer = genericIntent.resolveActivity(context.getPackageManager()) != null;
+        
+        Log.d("Results_Activity", "PDF viewer available: " + hasPdfViewer);
+        Log.d("Results_Activity", "Generic viewer available: " + hasGenericViewer);
+        
+        // Return true if either PDF-specific or generic viewer is available
+        return hasPdfViewer || hasGenericViewer;
+    }
+
+    /**
+     * Test FileProvider functionality
+     */
+    public static void testFileProvider(Context context, File file) {
+        try {
+            Uri contentUri = FileProvider.getUriForFile(context, "com.alex.diafaneia.fileprovider", file);
+            Log.d("Results_Activity", "FileProvider test successful: " + contentUri);
+            
+            // Test if we can query the content URI
+            try (Cursor cursor = context.getContentResolver().query(contentUri, null, null, null, null)) {
+                if (cursor != null) {
+                    Log.d("Results_Activity", "Content URI is queryable, row count: " + cursor.getCount());
+                    cursor.close();
+                }
+            } catch (Exception e) {
+                Log.e("Results_Activity", "Content URI query failed: " + e.getMessage());
+            }
+        } catch (Exception e) {
+            Log.e("Results_Activity", "FileProvider test failed: " + e.getMessage(), e);
         }
     }
 
