@@ -61,6 +61,8 @@ public class ActivityTwo extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_two);
+        com.example.alex.diafaneia.Utils.EdgeToEdgeUtils.applyStatusBarPadding(this,
+                androidx.core.content.ContextCompat.getColor(this, R.color.statusBarBlue));
 
         // Get the right Label
         bookmark_button=(ImageView)findViewById(R.id.bookmark_btn);
@@ -111,6 +113,16 @@ public class ActivityTwo extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),Bookmark.class);
+                startActivity(intent);
+            }
+
+        });
+
+        ImageView info_button = (ImageView) findViewById(R.id.info_btn);
+        info_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Info.class);
                 startActivity(intent);
             }
 

@@ -91,6 +91,8 @@ public class Results_Activity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.results);
+        com.example.alex.diafaneia.Utils.EdgeToEdgeUtils.applyStatusBarPadding(this,
+                androidx.core.content.ContextCompat.getColor(this, R.color.statusBarBlue));
 
         // Initialize Realm
          Realm.init(getApplicationContext());

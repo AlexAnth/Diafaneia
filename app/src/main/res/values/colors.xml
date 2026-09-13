@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#ed494949</color>
     <color name="colorBlue">#0288D1</color>
     <color name="listDivider">#ffffff</color>
+    <color name="statusBarBlue">#03A9F4</color>
+    <color name="statusBarPurple">#6E7DA3</color>
 
 
 

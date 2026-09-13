@@ -42,6 +42,8 @@ public class Info extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.info);
+        com.example.alex.diafaneia.Utils.EdgeToEdgeUtils.applyStatusBarPadding(this,
+                androidx.core.content.ContextCompat.getColor(this, R.color.statusBarPurple));
 
         // Add home button functionality
         ImageView home_button = (ImageView) findViewById(R.id.home_btn);
