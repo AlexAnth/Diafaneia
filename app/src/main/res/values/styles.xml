@@ -9,7 +9,7 @@
     </style>
 
     <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.NoActionBar">
-        <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
+        <!-- <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item> -->
     </style>
 
     <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
