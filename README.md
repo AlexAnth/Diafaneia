@@ -1,6 +1,6 @@
 # Parliamentary Decision Documents - Android Application  
 
-[![Build Status](https://github.com/AlexAnth/Diafaneia/actions/workflows/android.yml/badge.svg?style=flat-square)](https://github.com/AlexAnth/Diafaneia/actions/workflows/maven.yml)
+![Android CI](https://github.com/AlexAnth/Diafaneia/actions/workflows/android.yml/badge.svg)
 ![License](https://img.shields.io/badge/license-GNU%20General%20Public%20Licence-blue.svg?style=flat-square)
 
 This project was conducted over the half year period of my internship in June 2016. Working as an Android Developer I took on and completed 
