@@ -93,6 +93,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         setContentView(R.layout.activity_main);
 
+        // Emulate Home Button
+        getOnBackPressedDispatcher().addCallback(this, new androidx.activity.OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                Intent startMain = new Intent(Intent.ACTION_MAIN);
+                startMain.addCategory(Intent.CATEGORY_HOME);
+                startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(startMain);
+            }
+        });
+
+        android.graphics.Bitmap headerImage = android.graphics.BitmapFactory.decodeResource(getResources(), R.drawable.vouli_two);
+        int statusBarColor = com.example.alex.diafaneia.Utils.EdgeToEdgeUtils.sampleTopEdgeColor(headerImage);
+        headerImage.recycle();
+        com.example.alex.diafaneia.Utils.EdgeToEdgeUtils.applyStatusBarPadding(this, statusBarColor);
+
+        // Grade the top of the header image into the status bar's flat scrim color, so the
+        // hard seam between them reads as a smooth transition instead of a hard cut.
+        RelativeLayout header = findViewById(R.id.relativeLayout);
+        View gradeOverlay = new View(this);
+        int gradeHeightPx = (int) (30 * getResources().getDisplayMetrics().density);
+        android.graphics.drawable.GradientDrawable gradeDrawable = new android.graphics.drawable.GradientDrawable(
+                android.graphics.drawable.GradientDrawable.Orientation.TOP_BOTTOM,
+                new int[]{statusBarColor, Color.TRANSPARENT});
+        gradeOverlay.setBackground(gradeDrawable);
+        RelativeLayout.LayoutParams gradeParams =
+                new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, gradeHeightPx);
+        gradeParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
+        // Insert right above the background image (index 0) so the info/bookmark icons and
+        // title, added after it in the layout, draw on top and stay unaffected by the fade.
+        header.addView(gradeOverlay, 1, gradeParams);
+
         findViewsById();
 
 
@@ -486,15 +518,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return document;
     }
 
-
-    //Emulate Home Button
-    @Override
-    public void onBackPressed() {
-        Intent startMain = new Intent(Intent.ACTION_MAIN);
-        startMain.addCategory(Intent.CATEGORY_HOME);
-        startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(startMain);
-    }
 
     private void setDateTimeField() {
         fromDateEtxt.setOnClickListener(this);

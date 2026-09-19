@@ -6,9 +6,9 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.12.3'
+        classpath 'com.android.tools.build:gradle:9.3.2'
         classpath "io.realm:realm-gradle-plugin:10.19.0"
-        classpath 'com.google.gms:google-services:4.4.4'
+        classpath 'com.google.gms:google-services:4.5.0'
     }
 }
 
@@ -24,6 +24,6 @@ allprojects {
     }
 }
 
-task clean(type: Delete) {
+tasks.register('clean', Delete) {
     delete rootProject.buildDir
 }

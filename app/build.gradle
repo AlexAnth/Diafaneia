@@ -7,16 +7,14 @@ apply plugin: 'realm-android'
 android {
     namespace "com.example.alex.diafaneia"
     compileSdkVersion 36
-    buildToolsVersion "35.0.0"
 
 
     defaultConfig {
         applicationId "com.alex.diafaneia"
         minSdkVersion 21
-        targetSdkVersion 35
+        targetSdkVersion 36
         versionCode 24
         versionName "24.0"
-        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -56,5 +54,4 @@ dependencies {
     implementation 'com.google.android.gms:play-services-appindexing:9.8.0'
     testImplementation 'junit:junit:4.13.2'
     implementation 'com.google.code.gson:gson:2.10.1'
-    implementation 'androidx.multidex:multidex:2.0.1'
 }

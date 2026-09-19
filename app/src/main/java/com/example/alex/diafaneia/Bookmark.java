@@ -54,6 +54,8 @@ public class Bookmark extends AppCompatActivity {
         realm = Realm.getDefaultInstance();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.bookmark);
+        com.example.alex.diafaneia.Utils.EdgeToEdgeUtils.applyStatusBarPadding(this,
+                androidx.core.content.ContextCompat.getColor(this, R.color.statusBarPurple));
         mRecyclerView = (RecyclerView) findViewById(R.id.content);
         mRecyclerView.setNestedScrollingEnabled(false);
         mRecyclerView.setHasFixedSize(true);

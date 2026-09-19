@@ -1,8 +1,14 @@
+# IDE / Android Studio
+/.idea/
 *.iml
+
+# Gradle / build output
 .gradle
-/local.properties
-/.idea/workspace.xml
-/.idea/libraries
-.DS_Store
 /build
 /captures
+
+# Local config
+/local.properties
+
+# OS
+.DS_Store
