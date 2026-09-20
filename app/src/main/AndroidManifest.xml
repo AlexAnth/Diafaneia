@@ -11,13 +11,13 @@
         android:theme="@style/AppTheme.NoActionBar"
         android:enableOnBackInvokedCallback="true"
         >
-        <activity android:name=".MainActivity"
+        <activity android:name=".MainActivity" android:screenOrientation="portrait"
             android:exported="true">
         </activity>
 
         <activity
             android:name=".SplashScreen"
-            android:theme="@style/SplashTheme"
+            android:theme="@style/SplashTheme" android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,12 +25,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ActivityTwo"/>
+        <activity android:name=".ActivityTwo" android:screenOrientation="portrait"/>
 
-        <activity android:name=".Info"/>
-        <activity android:name=".Bookmark"/>
+        <activity android:name=".Info" android:screenOrientation="portrait"/>
+        <activity android:name=".Bookmark" android:screenOrientation="portrait"/>
 
-        <activity android:name=".Results_Activity"/>
+        <activity android:name=".Results_Activity" android:screenOrientation="portrait"/>
 
         <!-- FileProvider for sharing files on Android 7.0+ -->
         <provider

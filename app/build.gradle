@@ -13,8 +13,8 @@ android {
         applicationId "com.alex.diafaneia"
         minSdkVersion 21
         targetSdkVersion 36
-        versionCode 24
-        versionName "24.0"
+        versionCode 25
+        versionName "25.0"
     }
     buildTypes {
         release {
